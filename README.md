@@ -1,3 +1,6 @@
+# Bender Bootstrap
+A Bootstrap theme inspired in Bender from Osclass.
+
 | Full screen | iPad |
 |--|--|
 | ![Bender Bootstrap in Full screen](https://i.imgur.com/PS9kwEi.png) | ![Bender Bootstrap in iPad](https://i.imgur.com/GgKscRq.png) |
@@ -5,9 +8,6 @@
 | Smartphone | Landscape |
 |--|--|
 | ![Bender Bootstrap in Smartphone](https://i.imgur.com/qi2iYU2.png) | ![Bender Bootstrap in Landscape](https://i.imgur.com/pX1ewK3.png) |
-
-# Bender Bootstrap
-A Bootstrap theme inspired in Bender from Osclass.
 
 ## About
 
