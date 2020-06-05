@@ -81,7 +81,7 @@ class BenderForm {
     {
         $attr = array(
             'name'  => $name,
-            'class' => 'form-control form-control-light'
+            'class' => self::$class
         );
 
         $options = array();

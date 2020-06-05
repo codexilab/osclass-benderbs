@@ -79,24 +79,4 @@
             parent::generic_input_hidden('alert', osc_search_alert() );
             return true;
         }
-
-        public static function custom_textarea_example() {
-            parent::textarea(array('id' => 'loremId', 'name' => 'loremId', 'value' => 'lorem', 'class' => 'form-control form-control-light'));
-            return true;
-        }
-
-        public static function custom_select_example() {
-            $attr = array(
-                'id'    => 'lorem',
-                'name'  => 'lorem',
-                'class' => 'form-control form-control-light'
-            );
-
-            $options = array(
-                array('value' => 'lorem1', 'option' => 'Lorem 1'),
-                array('value' => 'lorem2', 'option' => 'Lorem 2', 'selected' => 'selected')
-            );
-            parent::select($attr, $options);
-            return true;
-        }
     }

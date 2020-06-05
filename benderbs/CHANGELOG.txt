@@ -1,3 +1,7 @@
-Bender Bootstrap pre-release 0.1Beta 2020-06-04
+Bender Bootstrap pre-release 0.2-beta 2020-06-05
+-------------------------
+- Minor fixes
+
+Bender Bootstrap pre-release 0.1-beta 2020-06-04
 -------------------------
 - Pre-release
