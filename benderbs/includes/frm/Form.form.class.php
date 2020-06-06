@@ -92,6 +92,7 @@ class BenderForm {
         }
         
         // Setting values
+        $j = 0;
         foreach ($items as $i) {
             $j++;
             $options[$j]['value']   = $i[$fld_key];
@@ -102,7 +103,7 @@ class BenderForm {
         if ($id) {
             $num = count($options);
             for ($i=0; $i < $num; $i++) {
-                if ($options[$i]['value'] == $id) {
+                if (isset($options[$i]['value']) && $options[$i]['value'] == $id) {
                     $options[$i]['selected'] = 'selected';
                 }
             }

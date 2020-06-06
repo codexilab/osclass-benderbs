@@ -46,8 +46,8 @@
 				<div class="small">
 					<span><?php echo osc_item_category(); ?></span> 
 					<span><?php echo osc_item_city(); ?> <?php if (osc_item_region() != '') echo '('.osc_item_region().')'; ?></span> 
-					<span>-</span> <span><?php echo osc_format_date(osc_item_pub_date()); ?></span>
-					<?php if (osc_price_enabled_at_items()) : ?><span class="text-bender-price font-weight-bold"><?php echo osc_format_price(osc_item_price()); ?></span><?php endif; ?>
+					<span>-</span> <span class="text-nowrap"><?php echo osc_format_date(osc_item_pub_date()); ?></span>
+					<?php if (osc_price_enabled_at_items()) : ?><span class="text-bender-price font-weight-bold text-nowrap"><?php echo osc_format_price(osc_item_price()); ?></span><?php endif; ?>
 				</div>
 				<?php if (!bender_show_as() || bender_show_as() == 'list') : ?>
 				<div class="mt-2"><?php echo osc_highlight(osc_item_description(), 250); ?></div>

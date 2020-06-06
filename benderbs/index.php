@@ -27,7 +27,7 @@
 Theme Name: Bender Bootstrap
 Theme URI: https://github.com/codexilab/osclass-benderbs
 Description: Bootstrap 4 theme inspired in Bender
-Version: 0.2
+Version: 0.4
 Author: CodexiLab
 Author URI: https://github.com/codexilab/osclass-benderbs
 Widgets:  header, footer
@@ -37,7 +37,7 @@ Theme update URI: benderbs
     function benderbs_theme_info() {
         return array(
              'name'        => 'Bender Bootstrap'
-            ,'version'     => '0.2'
+            ,'version'     => '0.4'
             ,'description' => 'Bootstrap 4 theme inspired in Bender'
             ,'author_name' => 'CodexiLab'
             ,'author_url'  => 'https://github.com/codexilab/osclass-benderbs'

@@ -46,8 +46,8 @@
 				<div class="small">
 					<span><?php echo osc_premium_category(); ?></span> 
 					<span><?php echo osc_premium_city(); ?> <?php if (osc_premium_region()!='') echo '('.osc_premium_region().')'; ?></span> 
-					<span>-</span> <span><?php echo osc_format_date(osc_premium_pub_date()); ?></span>
-					<?php if (osc_price_enabled_at_items()) : ?><span class="text-bender-price font-weight-bold"><?php echo osc_format_price(osc_premium_price(),osc_premium_currency_symbol()); ?></span><?php endif; ?>
+					<span>-</span> <span class="text-nowrap"><?php echo osc_format_date(osc_premium_pub_date()); ?></span>
+					<?php if (osc_price_enabled_at_items()) : ?><span class="text-bender-price font-weight-bold text-nowrap"><?php echo osc_format_price(osc_premium_price(),osc_premium_currency_symbol()); ?></span><?php endif; ?>
 				</div>
 				<?php if (!bender_show_as() || bender_show_as() == 'list') : ?>
 				<div class="mt-2"><?php echo osc_highlight( osc_premium_description(), 250 ); ?></div>

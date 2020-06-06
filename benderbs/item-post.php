@@ -128,6 +128,7 @@ osc_current_web_theme_path('header.php'); ?>
 
 			<?php
 			$aCountries = osc_get_countries();
+			$aCountries[0]['pk_c_code'] = isset($aCountries[0]['pk_c_code']) && $aCountries[0]['pk_c_code'] ? $aCountries[0]['pk_c_code'] : '';
             $aRegions = osc_get_regions($aCountries[0]['pk_c_code']);
             ?>
 
