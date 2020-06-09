@@ -21,7 +21,7 @@
 	/**
 	 * Class ContactForm
 	 */
-	class CustomContactForm extends BenderForm {
+	class CustomContactForm extends CustomForm {
 
 		/**
          * @return bool

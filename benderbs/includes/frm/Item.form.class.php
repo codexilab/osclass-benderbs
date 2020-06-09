@@ -21,7 +21,7 @@
     /**
      * Class ItemForm
      */
-    class CustomItemForm extends BenderForm {
+    class CustomItemForm extends CustomForm {
 
         /**
          * @param $item

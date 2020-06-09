@@ -21,7 +21,7 @@
     /**
      * Class AlertForm
      */
-    class CustomAlertForm extends BenderForm {
+    class CustomAlertForm extends CustomForm {
 
         /**
          * @return bool

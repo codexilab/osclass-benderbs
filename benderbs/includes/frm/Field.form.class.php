@@ -19,7 +19,7 @@
 /**
  * Custom Class FieldForm
  */
-class CustomFieldForm extends BenderForm
+class CustomFieldForm extends CustomForm
 {
 
 	/*public static function i18n_datePicker() { ?>

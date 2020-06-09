@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-    class CustomUserForm extends BenderForm {
+    class CustomUserForm extends CustomForm {
 
         static public function primary_input_hidden($user) {
             parent::generic_input_hidden("id", (isset($user["pk_i_id"]) ? $user['pk_i_id'] : '') );

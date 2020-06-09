@@ -19,7 +19,7 @@
      * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-define('BENDERBS_THEME_VERSION', '100');
+define('BENDERBS_THEME_VERSION', '101');
 
 // CUSTOM CLASSES
 include 'includes/classes/benderRowClass.php';

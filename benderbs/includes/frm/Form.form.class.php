@@ -27,7 +27,7 @@
 /**
  * class Form
  */
-class BenderForm {
+class CustomForm {
     
     public static $class = 'form-control form-control-light';
 

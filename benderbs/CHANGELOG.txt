@@ -1,3 +1,7 @@
+Bender Bootstrap 1.0.1 2020-06-09
+-------------------------
+- Changed BenderForm class name to CustomForm
+
 Bender Bootstrap 1.0.0 2020-06-09
 -------------------------
 - Fixed change username form

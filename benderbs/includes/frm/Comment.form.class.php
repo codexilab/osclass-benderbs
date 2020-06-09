@@ -21,7 +21,7 @@
 	/**
 	 * Class CommentForm
 	 */
-	class CustomCommentForm extends BenderForm
+	class CustomCommentForm extends CustomForm
     {
 
 		/**

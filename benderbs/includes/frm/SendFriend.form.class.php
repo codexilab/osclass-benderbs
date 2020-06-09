@@ -21,7 +21,7 @@
     /**
      * Class SendFriendForm
      */
-    class CustomSendFriendForm extends BenderForm {
+    class CustomSendFriendForm extends CustomForm {
 
         /*static public function primary_input_hidden($page) {
             parent::generic_input_hidden("id", $page["pk_i_id"]);
