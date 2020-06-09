@@ -120,32 +120,37 @@
 ?>
 <script>
 $(document).ready(function() {
-    $('form[name=contact_form]').formValidation({
-        framework: 'bootstrap4',
-        icon: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
-        fields: {
+    $('form[name=contact_form]').validate({
+        rules: {
             message: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e( 'Message: this field is required' ); ?>.'
-                    }
-                }
+                required: true,
+                minlength: 1
             },
             yourEmail: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e('Email: this field is required'); ?>.'
-                    },
-                    emailAddress: {
-                        message: '<?php _e('Invalid email address'); ?>.'
-                    }
-                }
+                required: true,
+                email: true
             }
-        }
+        },
+        messages: {
+            yourEmail: {
+                required: "<?php _e("Email: this field is required"); ?>.",
+                email: "<?php _e("Invalid email address"); ?>."
+            },
+            message: {
+                required: "<?php _e("Message: this field is required"); ?>.",
+                minlength: "<?php _e("Message: this field is required"); ?>."
+            }
+        },
+        highlight: function(element) {
+            $(element).closest('.form-control').addClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").addClass('text-danger');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-control').removeClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").removeClass('text-danger');
+        },
+        errorElement: 'div',
+        errorClass: 'invalid-feedback'
     });
 });
 </script>

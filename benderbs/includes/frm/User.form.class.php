@@ -175,54 +175,53 @@
 ?>
 <script>
 $(document).ready(function() {
-    $('form[name=register]').formValidation({
-        framework: 'bootstrap4',
-        icon: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
-        fields: {
+    $('form[name=register]').validate({
+        rules: {
             s_name: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e("Name: this field is required"); ?>.'
-                    }
-                }
+                required: true
             },
             s_email: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e("Email: this field is required"); ?>.'
-                    },
-                    emailAddress: {
-                        message: '<?php _e("Invalid email address"); ?>.'
-                    }
-                }
+                required: true,
+                email: true
             },
             s_password: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e("Password: this field is required"); ?>.'
-                    },
-                    stringLength: {
-                        min: 5,
-                        message: '<?php _e("Password: enter at least 5 characters"); ?>.'
-                    }
-                }
+                required: true,
+                minlength: 5
             },
             s_password2: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e("Second password: this field is required"); ?>.'
-                    },
-                    identical: {
-                        field: 's_password',
-                        message: '<?php _e("Passwords don\'t match"); ?>.'
-                    }
-                }
+                required: true,
+                minlength: 5,
+                equalTo: "#s_password"
             }
-        }
+        },
+        messages: {
+            s_name: {
+                required: "<?php _e("Name: this field is required"); ?>."
+            },
+            s_email: {
+                required: "<?php _e("Email: this field is required"); ?>.",
+                email: "<?php _e("Invalid email address"); ?>."
+            },
+            s_password: {
+                required: "<?php _e("Password: this field is required"); ?>.",
+                minlength: "<?php _e("Password: enter at least 5 characters"); ?>."
+            },
+            s_password2: {
+                required: "<?php _e("Second password: this field is required"); ?>.",
+                minlength: "<?php _e("Second password: enter at least 5 characters"); ?>.",
+                equalTo: "<?php _e("Passwords don't match"); ?>."
+            }
+        },
+        highlight: function(element) {
+            $(element).closest('.form-control').addClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").addClass('text-danger');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-control').removeClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").removeClass('text-danger');
+        },
+        errorElement: 'div',
+        errorClass: 'invalid-feedback'
     });
 });
 </script>
@@ -289,7 +288,7 @@ function checkForm() {
 <script>
     $(document).ready(function(){
         // Code for form validation
-        $("form[name=register]").validate({
+        $('form[name=register]').validate({
             rules: {
                 s_name: {
                     required: true
@@ -322,15 +321,16 @@ function checkForm() {
                     equalTo: "<?php _e("Passwords don't match"); ?>."
                 }
             },
-            errorLabelContainer: "#error_list",
-            wrapper: "li",
-            invalidHandler: function(form, validator) {
-                $('html,body').animate({ scrollTop: $('h1').offset().top }, { duration: 250, easing: 'swing'});
+            highlight: function(element) {
+                $(element).closest('.form-control').addClass('is-invalid');
+                $(element).closest(".form-group").children(".col-form-label").addClass('text-danger');
             },
-            submitHandler: function(form){
-                $('button[type=submit], input[type=submit]').attr('disabled', 'disabled');
-                form.submit();
-            }
+            unhighlight: function(element) {
+                $(element).closest('.form-control').removeClass('is-invalid');
+                $(element).closest(".form-group").children(".col-form-label").removeClass('text-danger');
+            },
+            errorElement: 'div',
+            errorClass: 'invalid-feedback'
         });
     });
 </script>

@@ -98,56 +98,54 @@
 ?>
 <script>
 $(document).ready(function() {
-    $('form[name=sendfriend]').formValidation({
-        framework: 'bootstrap4',
-        icon: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
-        fields: {
+    $('form[name=sendfriend]').validate({
+        rules: {
             yourName: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e('Your name: this field is required'); ?>.'
-                    }
-                }
+                required: true
             },
             yourEmail: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e('Email: this field is required'); ?>.'
-                    },
-                    emailAddress: {
-                        message: '<?php _e('Invalid email address'); ?>.'
-                    }
-                }
+                required: true,
+                email: true
             },
             friendName: {
-                validators: {
-                    notEmpty: {
-                        message: "<?php _e("Friend's name: this field is required"); ?>."
-                    }
-                }
+                required: true
             },
             friendEmail: {
-                validators: {
-                    notEmpty: {
-                        message: "<?php _e("Friend's email: this field is required"); ?>."
-                    },
-                    emailAddress: {
-                        message: "<?php _e("Invalid friend's email address"); ?>."
-                    }
-                }
+                required: true,
+                email: true
             },
-            message: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e('Message: this field is required'); ?>.'
-                    }
-                }
+            message:  {
+                required: true
             }
-        }
+        },
+        messages: {
+            yourName: {
+                required: "<?php _e("Your name: this field is required"); ?>."
+            },
+            yourEmail: {
+                email: "<?php _e("Invalid email address"); ?>.",
+                required: "<?php _e("Email: this field is required"); ?>."
+            },
+            friendName: {
+                required: "<?php _e("Friend's name: this field is required"); ?>."
+            },
+            friendEmail: {
+                required: "<?php _e("Friend's email: this field is required"); ?>.",
+                email: "<?php _e("Invalid friend's email address"); ?>."
+            },
+            message: "<?php _e("Message: this field is required"); ?>."
+
+        },
+        highlight: function(element) {
+            $(element).closest('.form-control').addClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").addClass('text-danger');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-control').removeClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").removeClass('text-danger');
+        },
+        errorElement: 'div',
+        errorClass: 'invalid-feedback'
     });
 });
 </script>

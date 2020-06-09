@@ -867,63 +867,78 @@
          * Validate form
          */
 
-        $('form[name=item]').formValidation({
-            framework: 'bootstrap4',
-            icon: {
-                valid: 'fa fa-check',
-                invalid: 'fa fa-times',
-                validating: 'fa fa-refresh'
-            },
-            fields: {
+        $('form[name=item]').validate({
+            rules: {
                 catId: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__('Choose one category')); ?>.'
-                        }
-                    }
-                },<?php if (osc_price_enabled_at_items()) : ?>price: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: '<?php echo osc_esc_js(__( 'Price: no more than 50 characters' )); ?>.'
-                        }
-                    }
-                },<?php endif; ?>currency: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__( 'Currency: make your selection' )); ?>.'
-                        }
-                    }
+                    required: true,
+                    digits: true
                 },
+                <?php if (osc_price_enabled_at_items()) : ?>
+                price: {
+                    maxlength: 50
+                },
+                <?php endif; ?>
+                currency: "required",
+                <?php if (osc_images_enabled_at_items()) : ?>
+                "photos[]": {
+                    accept: "<?php echo osc_esc_js(osc_allowed_extension()); ?>"
+                },
+                <?php endif; ?>
+                <?php if ($path == 'front') : ?>
                 contactName: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            max: 35,
-                            message: '<?php echo osc_esc_js(__( 'Name: no more than 35 characters' )); ?>.'
-                        }
-                    }
+                    minlength: 3,
+                    maxlength: 35
                 },
                 contactEmail: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__( 'Email: this field is required' )); ?>.'
-                        },
-                        emailAddress: {
-                            message: '<?php echo osc_esc_js(__( 'Invalid email address' )); ?>.'
-                        }
-                    }
+                    required: true,
+                    email: true
                 },
+                <?php endif; ?>
                 address: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            max: 100,
-                            message: '<?php echo osc_esc_js(__( 'Address: no more than 100 characters' )); ?>.'
-                        }
-                    }
+                    minlength: 3,
+                    maxlength: 100
                 }
-            }
+                <?php osc_run_hook('item_form_new_validation_rules'); ?>
+            },
+            messages: {
+                catId: "<?php echo osc_esc_js(__('Choose one category')); ?>.",
+                <?php if (osc_price_enabled_at_items()) : ?>
+                price: {
+                    maxlength: "<?php echo osc_esc_js(__("Price: no more than 50 characters")); ?>."
+                },
+                currency: "<?php echo osc_esc_js(__("Currency: make your selection")); ?>.",
+                <?php endif; ?>
+                <?php if (osc_images_enabled_at_items()) : ?>
+                "photos[]": {
+                    accept: "<?php echo osc_esc_js(sprintf(__("Photo: must be %s"), osc_allowed_extension())); ?>."
+                },
+                <?php endif; ?>
+                <?php if ($path == 'front') : ?>
+                contactName: {
+                    minlength: "<?php echo osc_esc_js(__("Name: enter at least 3 characters")); ?>.",
+                    maxlength: "<?php echo osc_esc_js(__("Name: no more than 35 characters")); ?>."
+                },
+                contactEmail: {
+                    required: "<?php echo osc_esc_js(__("Email: this field is required")); ?>.",
+                    email: "<?php echo osc_esc_js(__("Invalid email address")); ?>."
+                },
+                <?php endif; ?>
+                address: {
+                    minlength: "<?php echo osc_esc_js(__("Address: enter at least 3 characters")); ?>.",
+                    maxlength: "<?php echo osc_esc_js(__("Address: no more than 100 characters")); ?>."
+                }
+                <?php osc_run_hook('item_form_new_validation_messages'); ?>
+            },
+            highlight: function(element) {
+                $(element).closest('.form-control').addClass('is-invalid');
+                $(element).closest(".form-group").children(".col-form-label").addClass('text-danger');
+            },
+            unhighlight: function(element) {
+                $(element).closest('.form-control').removeClass('is-invalid');
+                $(element).closest(".form-group").children(".col-form-label").removeClass('text-danger');
+            },
+            errorElement: 'div',
+            errorClass: 'invalid-feedback'
         });
 
     });
@@ -1120,87 +1135,98 @@
          * Validate form
          */
 
-        $('form[name=item]').formValidation({
-            framework: 'bootstrap4',
-            icon: {
-                valid: 'fa fa-check',
-                invalid: 'fa fa-times',
-                validating: 'fa fa-refresh'
-            },
-            fields: {
+        $('form[name=item]').validate({
+            rules: {
                 catId: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__('Choose one category')); ?>.'
-                        }
-                    }
-                },<?php if (osc_price_enabled_at_items()) : ?>price: {
-                    validators: {
-                        stringLength: {
-                            max: 15,
-                            message: '<?php echo osc_esc_js(__( 'Price: no more than 50 characters' )); ?>.'
-                        }
-                    }
-                },<?php endif; ?>currency: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__( 'Currency: make your selection' )); ?>.'
-                        }
-                    }
-                },<?php if ($path === 'front') : ?>contactName: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            max: 35,
-                            message: '<?php echo osc_esc_js(__( 'Name: enter at least 3 characters' )); ?>.'
-                        }
-                    }
+                    required: true,
+                    digits: true
+                },
+                <?php if (osc_price_enabled_at_items()) : ?>
+                price: {
+                    maxlength: 15
+                },
+                currency: "required",
+                <?php endif; ?>
+                <?php if (osc_images_enabled_at_items()) : ?>
+                "photos[]": {
+                    accept: "<?php echo osc_allowed_extension(); ?>"
+                },
+                <?php endif; ?>
+                <?php if ($path == 'front') : ?>
+                contactName: {
+                    minlength: 3,
+                    maxlength: 35
                 },
                 contactEmail: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__( 'Email: this field is required' )); ?>.'
-                        },
-                        emailAddress: {
-                            message: '<?php echo osc_esc_js(__( 'Invalid email address' )); ?>.'
-                        }
-                    }
-                },<?php endif; ?>address: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            max: 100,
-                            message: '<?php echo osc_esc_js(__( 'Address: enter at least 3 characters' )); ?>.'
-                        }
-                    }
+                    required: true,
+                    email: true
                 },
+                <?php endif; ?>
                 regionId: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__( 'Select a region' )); ?>.'
-                        }
-                    }
-                    
+                    required: true,
+                    digits: true
                 },
                 cityId: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo osc_esc_js(__( 'Select a city' )); ?>.'
-                        }
-                    }
-                    
+                    required: true,
+                    digits: true
                 },
                 cityArea: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            max: 50,
-                            message: '<?php echo osc_esc_js(__( 'City area: enter at least 3 characters' )); ?>.'
-                        }
-                    }
+                    minlength: 3,
+                    maxlength: 50
+                },
+                address: {
+                    minlength: 3,
+                    maxlength: 100
                 }
-            }
+                <?php osc_run_hook('item_form_validation_rules'); ?>
+            },
+            messages: {
+                catId: "<?php echo osc_esc_js(__('Choose one category')); ?>.",
+                <?php if (osc_price_enabled_at_items()) : ?>
+                price: {
+                    maxlength: "<?php echo osc_esc_js(__("Price: no more than 50 characters")); ?>."
+                },
+                currency: "<?php echo osc_esc_js(__("Currency: make your selection")); ?>.",
+                <?php endif; ?>
+                <?php if (osc_images_enabled_at_items()) : ?>
+                "photos[]": {
+                    accept: "<?php echo osc_esc_js(sprintf(__("Photo: must be %s"), osc_allowed_extension())); ?>."
+                },
+                <?php endif; ?>
+                <?php if ($path == 'front') : ?>
+                contactName: {
+                    minlength: "<?php echo osc_esc_js(__("Name: enter at least 3 characters")); ?>.",
+                    maxlength: "<?php echo osc_esc_js(__("Name: no more than 35 characters")); ?>."
+                },
+                contactEmail: {
+                    required: "<?php echo osc_esc_js(__("Email: this field is required")); ?>.",
+                    email: "<?php echo osc_esc_js(__("Invalid email address")); ?>."
+                },
+                <?php endif; ?>
+                regionId: "<?php echo osc_esc_js(__("Select a region")); ?>.",
+                cityId: "<?php echo osc_esc_js(__("Select a city")); ?>.",
+                cityArea: {
+                    minlength: "<?php echo osc_esc_js(__("City area: enter at least 3 characters")); ?>.",
+                    maxlength: "<?php echo osc_esc_js(__("City area: no more than 50 characters")); ?>."
+                },
+                address: {
+                    minlength: "<?php echo osc_esc_js(__("Address: enter at least 3 characters")); ?>.",
+                    maxlength: "<?php echo osc_esc_js(__("Address: no more than 100 characters")); ?>."
+                }
+                <?php osc_run_hook('item_form_validation_messages'); ?>
+            },
+            highlight: function(element) {
+                $(element).closest('.form-control').addClass('is-invalid');
+                $(element).closest(".form-group").children(".col-form-label").addClass('text-danger');
+            },
+            unhighlight: function(element) {
+                $(element).closest('.form-control').removeClass('is-invalid');
+                $(element).closest(".form-group").children(".col-form-label").removeClass('text-danger');
+            },
+            errorElement: 'div',
+            errorClass: 'invalid-feedback'
         });
+
     });
 
     /**

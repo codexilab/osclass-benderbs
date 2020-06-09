@@ -19,7 +19,7 @@
      * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-define('BENDERBS_THEME_VERSION', '04');
+define('BENDERBS_THEME_VERSION', '100');
 
 // CUSTOM CLASSES
 include 'includes/classes/benderRowClass.php';
@@ -36,29 +36,26 @@ include 'includes/frm/Item.form.class.php';
 
 if(!OC_ADMIN) {
     // Custom fonts for this template
-    osc_enqueue_style('font-awesome', osc_current_web_theme_url('vendor/fontawesome-free/css/all.min.css'));
+    osc_enqueue_style('fontawesome', 'https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.12.0/css/all.min.css');
     osc_enqueue_style('fonts-googleapis', 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i');
 
     // Custom styles for this template
-    osc_enqueue_style('formvalidation', osc_current_web_theme_url('vendor/formvalidation/css/formValidation.min.css'));
     osc_enqueue_style('sb-admin-2', osc_current_web_theme_url('css/sb-admin-2.min.css'));
     osc_enqueue_style('datepicker', osc_current_web_theme_url('vendor/datepicker/css/bootstrap-datepicker3.min.css'));
-    osc_enqueue_style('jquery-ui', osc_current_web_theme_url('vendor/jquery-ui/jquery-ui.custom.css'));
+    osc_enqueue_style('jquery-ui', osc_current_web_theme_url('css/jquery-ui.custom.css'));
     osc_enqueue_style('css-custom', osc_current_web_theme_url('css/custom.css'));
 
     // Bootstrap core JavaScript
     osc_register_script('jquery', osc_current_web_theme_url('vendor/jquery/jquery.min.js'));
     osc_enqueue_script('jquery');
-    osc_register_script('jquery-ui', osc_current_web_theme_url('vendor/jquery-ui/jquery-ui.min.js'));
+    osc_register_script('jquery-ui', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js');
     osc_enqueue_script('jquery-ui');
+    osc_register_script('jquery-validate', 'https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js');
+    osc_enqueue_script('jquery-validate');
     osc_register_script('bootstrap-bundle', osc_current_web_theme_url('vendor/bootstrap/js/bootstrap.bundle.min.js'));
     osc_enqueue_script('bootstrap-bundle');
     osc_register_script('jquery-easing', osc_current_web_theme_url('vendor/jquery-easing/jquery.easing.min.js'));
     osc_enqueue_script('jquery-easing');
-    osc_register_script('formvalidation', osc_current_web_theme_url('vendor/formvalidation/js/formValidation.min.js'));
-    osc_enqueue_script('formvalidation');
-    osc_register_script('formvalidation-bootstrap4', osc_current_web_theme_url('vendor/formvalidation/js/framework/bootstrap4.min.js'));
-    osc_enqueue_script('formvalidation-bootstrap4');
 
     // Custom scripts for all pages
     osc_register_script('sb-admin-2', osc_current_web_theme_url('js/sb-admin-2.js'));
@@ -169,6 +166,11 @@ if (!function_exists('search_ads_listing_medium_fn')) {
     }
 }
 osc_add_hook('search_ads_listing_medium', 'search_ads_listing_medium_fn');
+
+function bender_logged_username() {
+    $user = User::newInstance()->findByPrimaryKey(osc_logged_user_id());
+    return (string) (isset($user['s_username']) && $user['s_username']) ? $user['s_username'] : '';
+}
 
 if( !function_exists('osc_uploads_url')) {
     function osc_uploads_url($item = '') {

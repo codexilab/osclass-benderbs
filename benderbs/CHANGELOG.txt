@@ -1,3 +1,11 @@
+Bender Bootstrap 1.0.0 2020-06-09
+-------------------------
+- Fixed change username form
+
+Bender Bootstrap pre-release 0.5-beta 2020-06-08
+-------------------------
+- Replaced formValidation by jQuery Validation
+
 Bender Bootstrap pre-release 0.4-beta 2020-06-06
 -------------------------
 - Fixed some bugs

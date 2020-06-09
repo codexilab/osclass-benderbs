@@ -108,34 +108,38 @@
 ?>
 <script>
 $(document).ready(function() {
-    $('form[name=comment_form]').formValidation({
-        framework: 'bootstrap4',
-        icon: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
-        fields: {
+    // Code for form validation
+    $("form[name=comment_form]").validate({
+        rules: {
             body: {
-                row: '.col-sm-10',
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e('Comment: this field is required'); ?>.'
-                    }
-                }
+                required: true,
+                minlength: 1
             },
             authorEmail: {
-                row: '.col-sm-10',
-                validators: {
-                    notEmpty: {
-                        message: '<?php _e('Email: this field is required'); ?>.'
-                    },
-                    emailAddress: {
-                        message: '<?php _e('Invalid email address'); ?>.'
-                    }
-                }
+                required: true,
+                email: true
             }
-        }
+        },
+        messages: {
+            authorEmail: {
+                required: "<?php _e("Email: this field is required"); ?>.",
+                email: "<?php _e("Invalid email address"); ?>."
+            },
+            body: {
+                required: "<?php _e("Comment: this field is required"); ?>.",
+                minlength: "<?php _e("Comment: this field is required"); ?>."
+            }
+        },
+        highlight: function(element) {
+            $(element).closest('.form-control').addClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").addClass('text-danger');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-control').removeClass('is-invalid');
+            $(element).closest(".form-group").children(".col-form-label").removeClass('text-danger');
+        },
+        errorElement: 'div',
+        errorClass: 'invalid-feedback'
     });
 });
 </script>
