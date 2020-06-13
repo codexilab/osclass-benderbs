@@ -35,7 +35,7 @@ class CustomBreadcrumb extends Breadcrumb
 
         $node = array();
         for ($i = 0 , $iMax = count( $this->aLevel ); $i < $iMax; $i ++) {
-            $text = '<li class="breadcrumb-item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">';
+            $text = '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">';
             // set separator
             if( $i > 0 ) {
                 $text .= '' . $separator . '';
@@ -48,7 +48,7 @@ class CustomBreadcrumb extends Breadcrumb
             $node[] = $text . $title . '</li>' . PHP_EOL;
         }
 
-        $result  = '<ul class="breadcrumb bg-gray-bender small">' . PHP_EOL;
+        $result  = '<ul class="breadcrumb bg-gray-bender small" itemscope itemtype="http://schema.org/BreadcrumbList">' . PHP_EOL;
         $result .= implode(PHP_EOL, $node);
         $result .= '</ul>' . PHP_EOL;
 
