@@ -1,4 +1,4 @@
-Bender Bootstrap 1.0.2
+Bender Bootstrap 1.0.2 2020-06-16
 -------------------------
 - Upgraded breadcrumb to schema
 
