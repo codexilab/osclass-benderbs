@@ -33,7 +33,7 @@
 
 	<?php
 	if (meta_description() != '') {
-		echo '<meta name="description" content="'.osc_esc_html(meta_title()).'" />' . PHP_EOL;
+		echo '<meta name="description" content="'.osc_esc_html(meta_description()).'" />' . PHP_EOL;
 	}
 
 	if (meta_keywords() != '') {
