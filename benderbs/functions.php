@@ -864,6 +864,13 @@ function bender_pagination_items($extraParams = array (), $field = false) {
     return $pagination->doPagination();
 }
 
+function bender_meta_description() {
+    if (osc_is_public_profile()) {
+        return osc_highlight( osc_user_info() , 120 );
+    }
+}
+osc_add_filter('meta_description_filter', 'bender_meta_description');
+
 /**
  *
  * All CF will be searchable
