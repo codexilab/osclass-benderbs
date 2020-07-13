@@ -57,7 +57,7 @@ class CustomFieldForm extends CustomForm
 
 	    if ($value == '') $value = 0;
 
-        $aux = <<<FB
+$aux = <<<FB
             <script>
             $(document).ready(function(){
                 // setting datepicker
@@ -104,7 +104,7 @@ class CustomFieldForm extends CustomForm
                 });
             });
             </script>
-        FB;
+FB;
 
 	    echo $aux;
 	}
