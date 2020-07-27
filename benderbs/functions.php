@@ -22,7 +22,7 @@
 define('BENDERBS_THEME_VERSION', '103');
 
 // CUSTOM CLASSES
-include 'includes/classes/benderRowClass.php';
+include 'includes/classes/customRowClass.php';
 include 'includes/classes/Breadcrumb.php';
 include 'includes/classes/Pagination.php';
 include 'includes/frm/Form.form.class.php';
@@ -111,8 +111,8 @@ if (!function_exists('bender_follow_construct')) {
 }
 
 function bender_add_row_class_construct($classes){
-    $benderRowClass = benderRowClass::newInstance();
-    $classes = array_merge($classes, $benderRowClass->get());
+    $customRowClass = customRowClass::newInstance();
+    $classes = array_merge($classes, $customRowClass->get());
     return $classes;
 }
 
@@ -139,8 +139,8 @@ function bender_row_class($echo = true) {
  * @param string $class required parameter.
  */
 function bender_add_row_class($class){
-    $benderRowClass = benderRowClass::newInstance();
-    $benderRowClass->add($class);
+    $customRowClass = customRowClass::newInstance();
+    $customRowClass->add($class);
 }
 bender_add_row_class('row');
 
