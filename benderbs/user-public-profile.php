@@ -74,7 +74,7 @@ osc_current_web_theme_path('header.php'); ?>
 	<div class="col-md-8 order-1">
 		<div class="fb-profile clearfix">
 			<!-- <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/> -->
-	        <img align="left" class="fb-image-profile img-fluid img-thumbnail" src="<?php echo osc_current_web_theme_url('img/user_default.gif'); ?>" alt="Profile image example"/>
+	        <img align="left" class="fb-image-profile img-fluid img-thumbnail" src="<?php echo osc_current_web_theme_url('images/user_default.gif'); ?>" alt="Profile image example"/>
 	        <div class="fb-profile-text">
 	            <h1><?php echo osc_user_name(); ?></h1>
 	        </div>

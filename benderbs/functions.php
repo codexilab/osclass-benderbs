@@ -286,7 +286,7 @@ function breadcrumb() {
 osc_add_hook('before-main', 'breadcrumb');
 
 function user_thumb_url() {
-    return osc_current_web_theme_url('img/user-icon.png');
+    return osc_current_web_theme_url('images/user-icon.png');
 }
 
 if (!function_exists('bender_default_location_show_as')) {

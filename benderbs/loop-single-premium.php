@@ -32,7 +32,7 @@
 			<?php if (osc_count_premium_resources()) : ?>
 			<a href="<?php echo osc_premium_url() ; ?>" title="<?php echo osc_esc_html(osc_premium_title()) ; ?>"><img src="<?php echo osc_resource_thumbnail_url(); ?>" class="img-responsive" alt="<?php echo osc_esc_html(osc_premium_title()); ?>" /></a>
 			<?php else: ?>
-			<a href="<?php echo osc_premium_url() ; ?>" title="<?php echo osc_esc_html(osc_premium_title()) ; ?>"><img src="<?php echo osc_current_web_theme_url('img/no_photo.gif'); ?>" class="img-responsive" alt="<?php echo osc_esc_html(osc_premium_title()) ; ?>" /></a>
+			<a href="<?php echo osc_premium_url() ; ?>" title="<?php echo osc_esc_html(osc_premium_title()) ; ?>"><img src="<?php echo osc_current_web_theme_url('images/no_photo.gif'); ?>" class="img-responsive" alt="<?php echo osc_esc_html(osc_premium_title()) ; ?>" /></a>
 			<?php endif; ?>
 
 		</div>
