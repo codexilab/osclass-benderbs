@@ -28,18 +28,10 @@ osc_add_hook('header','bender_follow_construct');
 
 osc_remove_hook('before-content', 'bender_header');
 
-function custom_bender_header() {
-    $logo = logo_header();
-    $description = osc_page_description();
-    echo <<<FB
-    <div id="header" class="jumbotron bg-info">
-        <div class="container">
-            <div id="logo"></div>
-        </div>
-    </div>
-    FB;
+function benderbs_public_profile_header() {
+    echo '<div id="user-cover" class="jumbotron bg-gray"></div>';
 }
-osc_add_hook('before-content', 'custom_bender_header');
+osc_add_hook('before-content', 'benderbs_public_profile_header');
 
 osc_remove_hook('before-main', 'breadcrumb');
 

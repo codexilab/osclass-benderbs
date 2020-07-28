@@ -4,21 +4,21 @@
 
 /* bender */
 @font-face {
-    font-family: "Osclass";
-    font-weight: normal;
-    src: url("../fonts/osclass-regular.woff");
+  font-family: "Osclass";
+  font-weight: normal;
+  src: url("../fonts/osclass-regular.woff");
 }
 @font-face {
-    font-family: "Osclass";
-    font-weight: 100;
-    src: url("../fonts/osclass-extra-light.woff");
+  font-family: "Osclass";
+  font-weight: 100;
+  src: url("../fonts/osclass-extra-light.woff");
 }
 @font-face {
-    font-family: "icons";
-    src: url("../fonts/icons.eot");
-    src: url("../fonts/icons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons.woff") format("woff"), url("../fonts/icons.ttf") format("truetype"), url("../fonts/icons.svg#untitledregular") format("svg");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "icons";
+  src: url("../fonts/icons.eot");
+  src: url("../fonts/icons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons.woff") format("woff"), url("../fonts/icons.ttf") format("truetype"), url("../fonts/icons.svg#untitledregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 /* end bender */
 
@@ -29,8 +29,7 @@ body {
 }
 
 /* bender */
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5, {
+h1, h2, h3, h4, h5 {
   font-weight: bold;
   font-family: "Osclass";
   color: #666;
@@ -38,19 +37,19 @@ h1, h2, h3, h4, h5,
   line-height: 1em;
   margin-top: 0;
 }
-h1, .h1 {
+h1 {
   font-size: 2.2em;
 }
-h2, .h2 {
+h2 {
   font-size: 1.8em;
 }
-h3, .h3 {
+h3 {
   font-size: 1.5em;
 }
-h4, .h4 {
+h4 {
   font-size: 1.3em;
 }
-h5, .h5 {
+h5 {
   font-size: 1.15em;
 }
 
@@ -72,13 +71,6 @@ a:hover, a:active {
   font-family: "Osclass";
 }
 
-/* Disabled focus effect on Bootstrap 4 buttons */
-.btn:focus, .btn.focus,
-.btn:not(:disabled):not(.disabled):active:focus, .btn:not(:disabled):not(.disabled).active:focus,
-.show > .btn.dropdown-toggle:focus {
-  box-shadow: none !important;
-}
-
 /* bender */
 #header {
   /*background-color: #35C3D9;*/
@@ -87,9 +79,9 @@ a:hover, a:active {
   height: auto;
   display: block;
   position: relative;
+  border-radius: 0px;
   margin-bottom: 15px;
   padding-bottom: 25px;
-  border-radius: 0px;
 }
 #header #logo {
   font-family: "Osclass";
@@ -122,7 +114,6 @@ a:hover, a:active {
   clear: both;
   padding-top: 5px;
 }
-
 
 .widget-box {
     background-color: #f7f7f7;
@@ -208,6 +199,16 @@ ul.r-list li ul {
     padding: 0;
 }
 /* end bender */
+
+#user-cover {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  border-radius: 0px;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
 
 #sidebar h3 {
   line-height: 1em;
@@ -967,6 +968,12 @@ footer > .container {
 @media (min-width: 768px) {  }
 
 @media (max-width: 768px) {
+  #user-cover {
+    margin-top: -20px;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
   /* Custom helpers */
   .mt-max-md-1 { margin-top: 0.25rem !important; }
   .mt-max-md-2 { margin-top: 0.5rem !important; }
