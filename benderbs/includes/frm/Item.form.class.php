@@ -1308,7 +1308,7 @@
     }
     function addNewPhoto() {
         var max = <?php echo osc_max_images_per_item(); ?>;
-        var num_img = $('input[name="photos[]"]').size() + $("a.delete").size();
+        var num_img = $('input[name="photos[]"]').length + $("a.delete").length;
         if((max!=0 && num_img<max) || max==0) {
             var id = 'p-' + photoIndex++;
 
@@ -1350,7 +1350,7 @@
             }
         });
         var max = <?php echo osc_max_images_per_item(); ?>;
-        var num_img = $('input[name="photos[]"]').size() + $("a.delete").size();
+        var num_img = $('input[name="photos[]"]').length + $("a.delete").length;
         if (count == 0 && (max==0 || (max!=0 && num_img<max))) {
             addNewPhoto();
         }
@@ -1651,7 +1651,7 @@
                         <?php if(Params::getParam('action') === 'item_edit') { ?>
                     }).on('validateBatch', function(event, fileOrBlobDataArray) {
                         // clear alert messages
-                        if($('#restricted-fine-uploader .alert-error').size()>0) {
+                        if($('#restricted-fine-uploader .alert-error').length>0) {
                             $('#restricted-fine-uploader .alert-error').remove();
                         }
 
@@ -1674,7 +1674,7 @@
                             async:false
                         });
                         var json  = JSON.parse(strReturn);
-                        var total = parseInt(json.count) + $("#restricted-fine-uploader input[name='ajax_photos[]']").size() + (numUpload);
+                        var total = parseInt(json.count) + $("#restricted-fine-uploader input[name='ajax_photos[]']").length + (numUpload);
                         <?php if($maxImages>0) { ?>
                             if(total<=<?php echo $maxImages;?>) {
                                 json.success = true;

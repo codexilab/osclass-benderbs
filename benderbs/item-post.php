@@ -89,7 +89,7 @@ osc_current_web_theme_path('header.php'); ?>
 			</div>
 		<?php endif; ?>
 
-		<?php if (osc_images_enabled_at_items()) ItemForm::ajax_photos(); ?>
+		<?php if (osc_images_enabled_at_items()) CustomItemForm::ajax_photos(); ?>
 
 			<div class="location">
 				<h2><?php _e('Listing Location', osc_current_web_theme()); ?></h2>
