@@ -37,11 +37,10 @@
 
 		</div>
 		<?php endif; ?>
-
 		
 		<div class="info text-wrap">
 
-			<div class="price">
+			<div class="content-item">
 				<a class="u" href="<?php echo osc_premium_url() ; ?>" title="<?php echo osc_esc_html(osc_premium_title()) ; ?>"><?php echo osc_premium_title(); ?></a>
 				<div class="small">
 					<span><?php echo osc_premium_category(); ?></span> 

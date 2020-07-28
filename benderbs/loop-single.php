@@ -38,10 +38,9 @@
 		</div>
 		<?php endif; ?>
 
-		
 		<div class="info text-wrap">
 
-			<div class="price">
+			<div class="content-item">
 				<a class="u" href="<?php echo osc_item_url(); ?>" title="<?php echo osc_esc_html(osc_item_title()); ?>"><?php echo osc_item_title(); ?></a>
 				<div class="small">
 					<span><?php echo osc_item_category(); ?></span> 
