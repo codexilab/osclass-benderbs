@@ -125,14 +125,6 @@
 	<?php endif; ?>
 	</div>
 
-	<?php if (osc_get_preference('sidebar-300x250', 'bender') != '') : ?>
-	<!-- sidebar ad 300x250 -->
-	<div class="ads_300 mt-2">
-	    <?php echo osc_get_preference('sidebar-300x250', 'bender'); ?>
-	</div>
-	<!-- /sidebar ad 300x250 -->
-	<?php endif; ?>
-
 	<?php if (!osc_is_web_user_logged_in() || osc_logged_user_id() != osc_item_user_id()) : ?>
 	    <form action="<?php echo osc_base_url(true); ?>" method="post" name="mask_as_form" id="mask_as_form" class="mt-2">
 	        <input type="hidden" name="id" value="<?php echo osc_item_id(); ?>" />
@@ -158,5 +150,13 @@
 		});
 		</script>
 		<?php }); ?>
+	<?php endif; ?>
+
+	<?php if (osc_get_preference('sidebar-300x250', 'bender') != '') : ?>
+	<!-- sidebar ad 300x250 -->
+	<div class="ads_300">
+	    <?php echo osc_get_preference('sidebar-300x250', 'bender'); ?>
+	</div>
+	<!-- /sidebar ad 300x250 -->
 	<?php endif; ?>
 </div>

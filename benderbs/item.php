@@ -68,8 +68,13 @@ osc_current_web_theme_path('header.php'); ?>
 
 		<div class="bg-gray-bender small mt-3 p-1 rounded">
 
-			<div><?php if (osc_item_pub_date() !== '') printf(__('<strong class="publish">Published date</strong>: %1$s', osc_current_web_theme()), osc_format_date( osc_item_pub_date())); ?></div>
-			<div><?php if (osc_item_mod_date() !== '') printf(__('<strong class="update">Modified date:</strong> %1$s', osc_current_web_theme()), osc_format_date( osc_item_mod_date())); ?></div>
+			<?php if (osc_item_pub_date() !== '') : ?>
+				<div><?php printf(__('<strong class="publish">Published date</strong>: %1$s', osc_current_web_theme()), osc_format_date( osc_item_pub_date())); ?></div>
+			<?php endif; ?>
+			
+			<?php if (osc_item_mod_date() !== '') : ?>
+				<div><?php printf(__('<strong class="update">Modified date:</strong> %1$s', osc_current_web_theme()), osc_format_date( osc_item_mod_date())); ?></div>
+			<?php endif; ?>
 			
 			<?php if (count($location)>0) : ?>
 			<div id="item_location"><strong><?php _e('Location', osc_current_web_theme()); ?></strong>: <?php echo implode(', ', $location); ?></div>
@@ -156,14 +161,14 @@ osc_current_web_theme_path('header.php'); ?>
 			<?php endif; ?>
 			<?php endif; ?>
 
-			<a href="<?php echo osc_item_send_friend_url(); ?>" rel="nofollow" class="btn btn-light btn-block-md-down"><?php _e('Share', osc_current_web_theme()); ?></a>
+			<a href="<?php echo osc_item_send_friend_url(); ?>" rel="nofollow" class="btn btn-light btn-block-md-down mb-1"><?php _e('Share', osc_current_web_theme()); ?></a>
 
 			<?php osc_run_hook('location'); ?>
 		</div>
 
 		<!-- plugins -->
 
-		<div id="useful_info" class="mt-3 small p-3 border border-bender rounded">
+		<div id="useful_info" class="mt-2 small p-3 border border-bender rounded">
 	        <h5><?php _e('Useful information', osc_current_web_theme()); ?></h5>
 	        <ul>
 	            <li><?php _e('Avoid scams by acting locally or paying with PayPal', osc_current_web_theme()); ?></li>
@@ -175,7 +180,7 @@ osc_current_web_theme_path('header.php'); ?>
 
 	    <?php related_listings(); ?>
         <?php if (osc_count_items() > 0) : ?>
-        <div class="similar_ads mt-2">
+        <div class="similar_ads mt-3">
             <h2><?php _e('Related listings', osc_current_web_theme()); ?></h2>
             <div class="row">
         	<?php
