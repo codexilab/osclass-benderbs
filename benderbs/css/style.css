@@ -778,6 +778,9 @@ ul.r-list li ul {
 .col-item .info {
   padding: 10px;
 }
+.premium .col-item .info {
+  background-color: #FCFCD7;
+}
 .list-item.col-sm-12 .col-item .info {
   padding: 0px 5px 0px 0px;
   margin-left: 34%;
