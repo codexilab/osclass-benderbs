@@ -653,42 +653,42 @@ if (!function_exists('get_user_menu')) {
         $options[] = array(
             'name'  => __('Public Profile'),
              'url'  => osc_user_public_profile_url(osc_logged_user_id()),
-           'class'  => 'far fa-user-circle fa-lg text-gray-600'
+           'class'  => 'far fa-user-circle fa-lg fa-fw text-gray-600'
         );
         $options[] = array(
             'name'  => __('Listings'),
             'url'   => osc_user_list_items_url(),
-            'class' => 'fas fa-th-list fa-lg text-gray-600'
+            'class' => 'fas fa-th-list fa-lg fa-fw text-gray-600'
         );
         $options[] = array(
             'name'  => __('Alerts'),
             'url'   => osc_user_alerts_url(),
-            'class' => 'far fa-bell fa-lg text-gray-600'
+            'class' => 'far fa-bell fa-lg fa-fw text-gray-600'
         );
         $options[] = array(
             'name'  => __('Account'),
             'url'   => osc_user_profile_url(),
-            'class' => 'fas fa-cogs fa-lg text-gray-600'
+            'class' => 'fas fa-cogs fa-lg fa-fw text-gray-600'
         );
         $options[] = array(
             'name'  => __('Change email', BENDERBS_THEME_FOLDER),
             'url'   => osc_change_user_email_url(),
-            'class' => 'far fa-envelope fa-lg text-gray-600'
+            'class' => 'far fa-envelope fa-lg fa-fw text-gray-600'
         );
         $options[] = array(
             'name'  => __('Change username', BENDERBS_THEME_FOLDER),
             'url'   => osc_change_user_username_url(),
-            'class' => 'fas fa-user-tag fa-lg text-gray-600'
+            'class' => 'fas fa-user-tag fa-lg fa-fw text-gray-600'
         );
         $options[] = array(
             'name'  => __('Change password'),
             'url'   => osc_change_user_password_url(),
-            'class' => 'fas fa-key fa-lg text-gray-600'
+            'class' => 'fas fa-key fa-lg fa-fw text-gray-600'
         );
         $options[] = array(
-            'name'  => __('Delete account', BENDERBS_THEME_FOLDER),
+            'name'  => ' ' . __('Delete account', BENDERBS_THEME_FOLDER),
             'url'   => '#delete_account',
-            'class' => 'fas fa-user-times fa-lg text-gray-600'
+            'class' => 'fas fa-user-times fa-lg fa-fw text-gray-600'
         );
 
         return $options;
