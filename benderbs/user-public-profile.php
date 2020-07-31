@@ -24,9 +24,9 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_follow_construct');
+osc_add_hook('header','benderbs_follow_construct');
 
-osc_remove_hook('before-content', 'bender_header');
+osc_remove_hook('before-content', 'benderbs_header');
 
 function benderbs_public_profile_header() {
     echo '<div id="user-cover" class="jumbotron bg-gray"></div>';
@@ -61,7 +61,7 @@ unset($location_array);
 $list 		= 'active';
 $gallery 	= '';
 $listClass 	= 'col-sm-12 list-item';
-if (bender_show_as() == 'gallery') {
+if (benderbs_show_as() == 'gallery') {
 	$list 		= '';
 	$gallery 	= 'active';
 	$listClass 	= 'col-sm-4';
@@ -97,7 +97,7 @@ osc_current_web_theme_path('header.php'); ?>
 	    </div>
 
 	    <?php if (osc_count_items() > 0) : ?>
-	    <h2><?php _e('Latest listings', osc_current_web_theme()); ?></h2>
+	    <h2><?php _e('Latest listings', BENDERBS_THEME_FOLDER); ?></h2>
 	    <div class="row">
 	    	<?php
 			View::newInstance()->_exportVariableToView("listClass", $listClass);
@@ -106,7 +106,7 @@ osc_current_web_theme_path('header.php'); ?>
 
 	    	<div class="col-md-12">
 	    		<nav aria-label="Pagination">
-	    			<?php echo bender_pagination_items(); ?>
+	    			<?php echo benderbs_pagination_items(); ?>
 	    		</nav>
 	    	</div>
 	    </div>

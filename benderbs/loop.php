@@ -33,11 +33,11 @@ if(View::newInstance()->_exists('listClass')){
 
     if ($type == 'latestItems') {
         while (osc_has_latest_items()) {
-            bender_draw_item($loopClass);
+            benderbs_draw_item($loopClass);
         }
     } elseif ($type == 'premiums') {
         while (osc_has_premiums()) {
-            bender_draw_item($loopClass, false, true);
+            benderbs_draw_item($loopClass, false, true);
         }
     } else {
         search_ads_listing_top_fn();
@@ -48,13 +48,13 @@ if(View::newInstance()->_exists('listClass')){
                 $admin = true;
             }
 
-            bender_draw_item($loopClass, $admin);
+            benderbs_draw_item($loopClass, $admin);
 
-            if(bender_show_as()=='gallery') {
+            if(benderbs_show_as()=='gallery') {
                 if($i%8 == 0){
                     osc_run_hook('search_ads_listing_medium');
                 }
-            } else if(bender_show_as()=='list') {
+            } else if(benderbs_show_as()=='list') {
                 if($i%6 == 0){
                     osc_run_hook('search_ads_listing_medium');
                 }

@@ -24,5 +24,5 @@
 	 */
 ?>
 <div id="sidebar" class="col-md-3 mb-3 pl-sm-0">
-	<?php echo bender_private_user_menu(get_user_menu()); ?>
+	<?php echo benderbs_private_user_menu(get_user_menu()); ?>
 </div>

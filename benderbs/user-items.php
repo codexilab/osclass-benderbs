@@ -24,12 +24,12 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_nofollow_construct');
+osc_add_hook('header','benderbs_nofollow_construct');
 
 $list 		= 'active';
 $gallery 	= '';
 $listClass 	= 'col-sm-12 list-item';
-if (bender_show_as() == 'gallery') {
+if (benderbs_show_as() == 'gallery') {
 	$list 		= '';
 	$gallery 	= 'active';
 	$listClass 	= 'col-sm-4';
@@ -47,7 +47,7 @@ osc_current_web_theme_path('header.php'); ?>
 		
 		<div class="row mb-3">
 			<div class="container-fluid">
-			    <p class="text-center"><?php _e('No listings have been added yet', osc_current_web_theme()); ?></p>
+			    <p class="text-center"><?php _e('No listings have been added yet', BENDERBS_THEME_FOLDER); ?></p>
 			</div>
 		</div>
 
@@ -86,7 +86,7 @@ osc_current_web_theme_path('header.php'); ?>
 			<?php endif; ?>
 
 				<nav aria-label="Pagination">
-					<?php echo bender_pagination_items(); ?>
+					<?php echo benderbs_pagination_items(); ?>
 				</nav>
 			</div>
 		</div>

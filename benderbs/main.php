@@ -24,12 +24,12 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_follow_construct');
+osc_add_hook('header','benderbs_follow_construct');
 
 $list 		= 'active';
 $gallery 	= '';
 $listClass 	= 'col-sm-12 list-item';
-if (bender_show_as() == 'gallery') {
+if (benderbs_show_as() == 'gallery') {
 	$list 		= '';
 	$gallery 	= 'active';
 	$listClass 	= 'col-sm-4';
@@ -47,7 +47,7 @@ osc_current_web_theme_path('header.php'); ?>
 		
 		<div class="p-2 mb-3 widget-box">
 			<?php if (osc_count_list_regions() > 0) : ?>
-			<h3><strong><?php _e("Location", osc_current_web_theme()) ; ?></strong></h3>
+			<h3><strong><?php _e("Location", BENDERBS_THEME_FOLDER) ; ?></strong></h3>
 			<ul class="mt-3">
 				<?php while (osc_has_list_regions()) : ?>
 				 <li><a href="<?php echo osc_list_region_url(); ?>"><?php echo osc_list_region_name() ; ?> <em>(<?php echo osc_list_region_items() ; ?>)</em></a></li>
@@ -62,7 +62,7 @@ osc_current_web_theme_path('header.php'); ?>
 		<div class="row mb-3">
 
 			<div class="col-md-6">
-			<h1><strong><?php _e('Latest Listings', osc_current_web_theme()) ; ?></strong></h1>
+			<h1><strong><?php _e('Latest Listings', BENDERBS_THEME_FOLDER) ; ?></strong></h1>
 			</div>
 
 			<?php if (osc_count_latest_items() > 0) : ?>
@@ -92,13 +92,13 @@ osc_current_web_theme_path('header.php'); ?>
 
 		<?php if (osc_count_latest_items() == osc_max_latest_items()) : ?>
 		<div class="text-md-left text-right">
-			<p><a href="<?php echo osc_search_show_all_url(); ?>"><strong><?php _e('See all listings', osc_current_web_theme()) ; ?> &raquo;</strong></a></p>	
+			<p><a href="<?php echo osc_search_show_all_url(); ?>"><strong><?php _e('See all listings', BENDERBS_THEME_FOLDER) ; ?> &raquo;</strong></a></p>	
 		</div>
 		<?php endif; ?>
 		
 	<?php else: ?>
 
-		<div class="center"><?php _e("There aren't listings available at this moment", osc_current_web_theme()); ?></div>
+		<div class="center"><?php _e("There aren't listings available at this moment", BENDERBS_THEME_FOLDER); ?></div>
 		
 	<?php endif; ?>
 

@@ -24,13 +24,13 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_nofollow_construct');
-bender_add_row_class('justify-content-md-center');
+osc_add_hook('header','benderbs_nofollow_construct');
+benderbs_add_row_class('justify-content-md-center');
 osc_current_web_theme_path('header.php'); ?>
 	<div class="col-md-10">
 
 		<div class="card border mb-3">
-			<div class="card-header"><h1><?php _e('Register an account for free', osc_current_web_theme()); ?></h1></div>
+			<div class="card-header"><h1><?php _e('Register an account for free', BENDERBS_THEME_FOLDER); ?></h1></div>
 			<div class="card-body text-secondary">
 				<div class="row">
 					<div class="col-md-11">
@@ -39,28 +39,28 @@ osc_current_web_theme_path('header.php'); ?>
             				<input type="hidden" name="action" value="register_post" />
 
 				            <div class="form-group row">
-				            	<label for="name" class="col-sm-3 col-form-label text-md-right"><?php _e('Name', osc_current_web_theme()); ?></label>
+				            	<label for="name" class="col-sm-3 col-form-label text-md-right"><?php _e('Name', BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomUserForm::name_text(); ?>
 				            	</div>
 				            </div>
 
 				            <div class="form-group row">
-				            	<label for="email" class="col-sm-3 col-form-label text-md-right"><?php _e('E-mail', osc_current_web_theme()); ?></label>
+				            	<label for="email" class="col-sm-3 col-form-label text-md-right"><?php _e('E-mail', BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomUserForm::email_text(); ?>
 				            	</div>
 				            </div>
 
 				            <div class="form-group row">
-				            	<label for="password" class="col-sm-3 col-form-label text-md-right"><?php _e('Password', osc_current_web_theme()); ?></label>
+				            	<label for="password" class="col-sm-3 col-form-label text-md-right"><?php _e('Password', BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomUserForm::password_text(); ?>
 				            	</div>
 				            </div>
 
 				            <div class="form-group row">
-				            	<label for="password-2" class="col-sm-3 col-form-label text-md-right"><?php _e('Repeat password', osc_current_web_theme()); ?></label>
+				            	<label for="password-2" class="col-sm-3 col-form-label text-md-right"><?php _e('Repeat password', BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomUserForm::check_password_text(); ?>
 				            	</div>
@@ -76,13 +76,13 @@ osc_current_web_theme_path('header.php'); ?>
 
 				            <div class="form-group row">
 							    <div class="col-md-9 ml-md-auto">
-							    	<button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Create", osc_current_web_theme()); ?></button>
+							    	<button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Create", BENDERBS_THEME_FOLDER); ?></button>
 							    </div>
 							</div>
 
 							<div class="form-group row">
 		                   		<div class="col-md-6 offset-md-3">
-		                   			<a href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', osc_current_web_theme()); ?></a><br /><a href="<?php echo osc_recover_user_password_url(); ?>"><?php _e("Forgot password?", osc_current_web_theme()); ?></a>
+		                   			<a href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', BENDERBS_THEME_FOLDER); ?></a><br /><a href="<?php echo osc_recover_user_password_url(); ?>"><?php _e("Forgot password?", BENDERBS_THEME_FOLDER); ?></a>
 		                   		</div>
 		                   	</div>
 						</form>

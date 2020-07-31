@@ -20,6 +20,7 @@
      */
 
 define('BENDERBS_THEME_VERSION', '103');
+define('BENDERBS_THEME_FOLDER', osc_current_web_theme());
 
 // CUSTOM CLASSES
 include 'includes/classes/customRowClass.php';
@@ -71,12 +72,12 @@ if(!OC_ADMIN) {
 }
 
 if ((string) osc_get_preference('keyword_placeholder', 'bender') == "") {
-    Params::setParam('keyword_placeholder', __('ie. PHP Programmer', osc_current_web_theme()));
+    Params::setParam('keyword_placeholder', __('ie. PHP Programmer', BENDERBS_THEME_FOLDER));
 }
 
 // install options
-if (!function_exists('bender_theme_install')) {
-    function bender_theme_install() {
+if (!function_exists('benderbs_theme_install')) {
+    function benderbs_theme_install() {
         osc_set_preference('keyword_placeholder', Params::getParam('keyword_placeholder'), 'bender');
         osc_set_preference('version', BENDERBS_THEME_VERSION, 'bender');
         osc_set_preference('defaultShowAs@all', 'list', 'bender');
@@ -86,28 +87,28 @@ if (!function_exists('bender_theme_install')) {
     }
 }
 
-if (!function_exists('bender_nofollow_construct')) {
+if (!function_exists('benderbs_nofollow_construct')) {
     /**
     * Hook for header, meta tags robots nofollos
     */
-    function bender_nofollow_construct() {
+    function benderbs_nofollow_construct() {
         echo '<meta name="robots" content="noindex, nofollow, noarchive" />' . PHP_EOL;
         echo '<meta name="googlebot" content="noindex, nofollow, noarchive" />' . PHP_EOL;
 
     }
 }
 
-if (!function_exists('bender_follow_construct')) {
+if (!function_exists('benderbs_follow_construct')) {
     /**
     * Hook for header, meta tags robots follow
     */
-    function bender_follow_construct() {
+    function benderbs_follow_construct() {
         echo '<meta name="robots" content="index, follow" />' . PHP_EOL;
         echo '<meta name="googlebot" content="index, follow" />' . PHP_EOL;
     }
 }
 
-function bender_add_row_class_construct($classes){
+function benderbs_add_row_class_construct($classes) {
     $customRowClass = customRowClass::newInstance();
     $classes = array_merge($classes, $customRowClass->get());
     return $classes;
@@ -119,12 +120,11 @@ function bender_add_row_class_construct($classes){
  * @param string $echo Optional parameter.
  * @return print string with all body classes concatenated
  */
-function bender_row_class($echo = true) {
-    
-    osc_add_filter('bender_rowClass','bender_add_row_class_construct');
-    $classes = osc_apply_filter('bender_rowClass', array());
+function benderbs_row_class($echo = true) {
+    osc_add_filter('benderbs_rowClass', 'benderbs_add_row_class_construct');
+    $classes = osc_apply_filter('benderbs_rowClass', array());
     if($echo && count($classes)){
-        echo 'class="'.implode(' ',$classes).'"';
+        echo 'class="'.implode(' ', $classes).'"';
     } else {
         return $classes;
     }
@@ -135,11 +135,11 @@ function bender_row_class($echo = true) {
  *
  * @param string $class required parameter.
  */
-function bender_add_row_class($class){
+function benderbs_add_row_class($class) {
     $customRowClass = customRowClass::newInstance();
     $customRowClass->add($class);
 }
-bender_add_row_class('row');
+benderbs_add_row_class('row');
 
 // ads  SEARCH
 if (!function_exists('search_ads_listing_top_fn')) {
@@ -150,8 +150,8 @@ if (!function_exists('search_ads_listing_top_fn')) {
             echo '</div></div>' . PHP_EOL;
         }
     }
+    //osc_add_hook('search_ads_listing_top', 'search_ads_listing_top_fn');
 }
-//osc_add_hook('search_ads_listing_top', 'search_ads_listing_top_fn');
 
 if (!function_exists('search_ads_listing_medium_fn')) {
     function search_ads_listing_medium_fn() {
@@ -161,12 +161,14 @@ if (!function_exists('search_ads_listing_medium_fn')) {
             echo '</div></div>' . PHP_EOL;
         }
     }
+    osc_add_hook('search_ads_listing_medium', 'search_ads_listing_medium_fn');
 }
-osc_add_hook('search_ads_listing_medium', 'search_ads_listing_medium_fn');
 
-function bender_logged_username() {
-    $user = User::newInstance()->findByPrimaryKey(osc_logged_user_id());
-    return (string) (isset($user['s_username']) && $user['s_username']) ? $user['s_username'] : '';
+if (!function_exists('benderbs_logged_username')) {
+    function benderbs_logged_username() {
+        $user = User::newInstance()->findByPrimaryKey(osc_logged_user_id());
+        return (string) (isset($user['s_username']) && $user['s_username']) ? $user['s_username'] : '';
+    }
 }
 
 if( !function_exists('osc_uploads_url')) {
@@ -179,8 +181,8 @@ if( !function_exists('osc_uploads_url')) {
     }
 }
 
-if (!function_exists('bender_logo_url')) {
-    function bender_logo_url() {
+if (!function_exists('benderbs_logo_url')) {
+    function benderbs_logo_url() {
         $logo = osc_get_preference('logo','bender');
         if($logo) {
             return osc_uploads_url($logo);
@@ -188,10 +190,10 @@ if (!function_exists('bender_logo_url')) {
         return false;
     }
 }
-function logo_nav() {
+function benderbs_logo_nav() {
      $logo = osc_get_preference('logo', 'bender');
      $html = '<a class="navbar-brand font-weight-bold" href="'.osc_base_url().'">';
-     $html .= '<img style="max-width: 150px; max-height: 40px;" src="'.bender_logo_url().'" class="d-inline-block align-top img-fluid" alt="'.osc_page_title().'">';
+     $html .= '<img style="max-width: 150px; max-height: 40px;" src="'.benderbs_logo_url().'" class="d-inline-block align-top img-fluid" alt="'.osc_page_title().'">';
      $html .= '</a>';
      if($logo!='' && file_exists(osc_uploads_path() . $logo )) {
         return $html;
@@ -199,10 +201,10 @@ function logo_nav() {
         return '<a class="navbar-brand font-weight-bold" href="'.osc_base_url().'">'.osc_page_title().'</a>';
     }
 }
-if (!function_exists('logo_header')) {
-    function logo_header() {
+if (!function_exists('benderbs_logo_header')) {
+    function benderbs_logo_header() {
          $logo = osc_get_preference('logo', 'bender');
-         $html = '<a href="'.osc_base_url().'"><img class="img-fluid" border="0" alt="' . osc_page_title() . '" src="' . bender_logo_url() . '"></a>';
+         $html = '<a href="'.osc_base_url().'"><img class="img-fluid" border="0" alt="' . osc_page_title() . '" src="' . benderbs_logo_url() . '"></a>';
          if($logo!='' && file_exists(osc_uploads_path() . $logo )) {
             return $html;
          } else {
@@ -211,8 +213,8 @@ if (!function_exists('logo_header')) {
     }
 }
 
-function bender_header() {
-    $logo = logo_header();
+function benderbs_header() {
+    $logo = benderbs_logo_header();
     $description = osc_page_description();
     echo <<<FB
     <div id="header" class="jumbotron bg-info">
@@ -224,31 +226,31 @@ function bender_header() {
     </div>
     FB;
 }
-osc_add_hook('before-content', 'bender_header');
+osc_add_hook('before-content', 'benderbs_header');
 
 if(!function_exists('get_breadcrumb_lang')) {
     function get_breadcrumb_lang() {
         $lang = array();
-        $lang['item_add']               = __('Publish a listing', osc_current_web_theme());
-        $lang['item_edit']              = __('Edit your listing', osc_current_web_theme());
-        $lang['item_send_friend']       = __('Send to a friend', osc_current_web_theme());
-        $lang['item_contact']           = __('Contact publisher', osc_current_web_theme());
-        $lang['search']                 = __('Search results', osc_current_web_theme());
-        $lang['search_pattern']         = __('Search results: %s', osc_current_web_theme());
-        $lang['user_dashboard']         = __('Dashboard', osc_current_web_theme());
-        $lang['user_dashboard_profile'] = __("%s's profile", osc_current_web_theme());
-        $lang['user_account']           = __('Account', osc_current_web_theme());
-        $lang['user_items']             = __('Listings', osc_current_web_theme());
-        $lang['user_alerts']            = __('Alerts', osc_current_web_theme());
-        $lang['user_profile']           = __('Update account', osc_current_web_theme());
-        $lang['user_change_email']      = __('Change email', osc_current_web_theme());
-        $lang['user_change_username']   = __('Change username', osc_current_web_theme());
-        $lang['user_change_password']   = __('Change password', osc_current_web_theme());
-        $lang['login']                  = __('Login', osc_current_web_theme());
-        $lang['login_recover']          = __('Recover password', osc_current_web_theme());
-        $lang['login_forgot']           = __('Change password', osc_current_web_theme());
-        $lang['register']               = __('Create a new account', osc_current_web_theme());
-        $lang['contact']                = __('Contact', osc_current_web_theme());
+        $lang['item_add']               = __('Publish a listing', BENDERBS_THEME_FOLDER);
+        $lang['item_edit']              = __('Edit your listing', BENDERBS_THEME_FOLDER);
+        $lang['item_send_friend']       = __('Send to a friend', BENDERBS_THEME_FOLDER);
+        $lang['item_contact']           = __('Contact publisher', BENDERBS_THEME_FOLDER);
+        $lang['search']                 = __('Search results', BENDERBS_THEME_FOLDER);
+        $lang['search_pattern']         = __('Search results: %s', BENDERBS_THEME_FOLDER);
+        $lang['user_dashboard']         = __('Dashboard', BENDERBS_THEME_FOLDER);
+        $lang['user_dashboard_profile'] = __("%s's profile", BENDERBS_THEME_FOLDER);
+        $lang['user_account']           = __('Account', BENDERBS_THEME_FOLDER);
+        $lang['user_items']             = __('Listings', BENDERBS_THEME_FOLDER);
+        $lang['user_alerts']            = __('Alerts', BENDERBS_THEME_FOLDER);
+        $lang['user_profile']           = __('Update account', BENDERBS_THEME_FOLDER);
+        $lang['user_change_email']      = __('Change email', BENDERBS_THEME_FOLDER);
+        $lang['user_change_username']   = __('Change username', BENDERBS_THEME_FOLDER);
+        $lang['user_change_password']   = __('Change password', BENDERBS_THEME_FOLDER);
+        $lang['login']                  = __('Login', BENDERBS_THEME_FOLDER);
+        $lang['login_recover']          = __('Recover password', BENDERBS_THEME_FOLDER);
+        $lang['login_forgot']           = __('Change password', BENDERBS_THEME_FOLDER);
+        $lang['register']               = __('Create a new account', BENDERBS_THEME_FOLDER);
+        $lang['contact']                = __('Contact', BENDERBS_THEME_FOLDER);
         return $lang;
     }
 }
@@ -260,7 +262,7 @@ if(!function_exists('get_breadcrumb_lang')) {
  *
  * @return string|void
  */
-function bender_breadcrumb($separator = '&raquo;' , $echo = true , $lang = array ()) {
+function benderbs_breadcrumb($separator = '&raquo;' , $echo = true , $lang = array ()) {
     $br = new CustomBreadcrumb($lang);
     $br->init();
     if( $echo ) {
@@ -271,32 +273,36 @@ function bender_breadcrumb($separator = '&raquo;' , $echo = true , $lang = array
 }
 
 // Add breadcrumb to all pages
-function breadcrumb() {
-    $breadcrumb = bender_breadcrumb('', false, get_breadcrumb_lang());
-    if ($breadcrumb !== '') {
-        echo <<<FB
-        <div class="row">
-            <div class="col-md-12">
-            $breadcrumb
+if (!function_exists('breadcrumb')) {
+    function breadcrumb() {
+        $breadcrumb = benderbs_breadcrumb('', false, get_breadcrumb_lang());
+        if ($breadcrumb !== '') {
+            echo <<<FB
+            <div class="row">
+                <div class="col-md-12">
+                $breadcrumb
+                </div>
             </div>
-        </div>
-        FB;
+            FB;
+        }
     }
-}
-osc_add_hook('before-main', 'breadcrumb');
-
-function user_thumb_url() {
-    return osc_current_web_theme_url('images/user-icon.png');
+    osc_add_hook('before-main', 'breadcrumb');
 }
 
-if (!function_exists('bender_default_location_show_as')) {
-    function bender_default_location_show_as() {
-        return osc_get_preference('defaultLocationShowAs','bender');
+if (!function_exists('user_thumb_url')) {
+    function user_thumb_url() {
+        return osc_current_web_theme_url('images/user-icon.png');
     }
 }
 
-if (!function_exists('bender_draw_categories_list')) {
-    function bender_draw_categories_list() { ?>
+if (!function_exists('benderbs_default_location_show_as')) {
+    function benderbs_default_location_show_as() {
+        return osc_get_preference('defaultLocationShowAs', 'bender');
+    }
+}
+
+if (!function_exists('benderbs_draw_categories_list')) {
+    function benderbs_draw_categories_list() { ?>
     <?php if (!osc_is_home_page()) echo '<div class="resp-wrapper">'; ?>
     <?php
     //cell_3
@@ -357,16 +363,16 @@ if (!function_exists('bender_draw_categories_list')) {
     }
 
     if (osc_is_home_page()) {
-        osc_add_hook('inside-main', 'bender_draw_categories_list');
+        osc_add_hook('inside-main', 'benderbs_draw_categories_list');
     }
 }
 
-if (!function_exists('bender_search_number')) {
+if (!function_exists('benderbs_search_number')) {
     /**
     *
     * @return array
     */
-    function bender_search_number() {
+    function benderbs_search_number() {
         $search_from = ((osc_search_page() * osc_default_results_per_page_at_search()) + 1);
         $search_to   = ((osc_search_page() + 1) * osc_default_results_per_page_at_search());
         if( $search_to > osc_search_total_items() ) {
@@ -384,8 +390,8 @@ if (!function_exists('bender_search_number')) {
 /*
  * Helpers used at view
  */
-if( !function_exists('bender_item_title') ) {
-    function bender_item_title() {
+if (!function_exists('benderbs_item_title')) {
+    function benderbs_item_title() {
         $title = osc_item_title();
         foreach( osc_get_locales() as $locale ) {
             if( Session::newInstance()->_getForm('title') != "" ) {
@@ -399,8 +405,8 @@ if( !function_exists('bender_item_title') ) {
     }
 }
 
-if (!function_exists('bender_item_description')) {
-    function bender_item_description() {
+if (!function_exists('benderbs_item_description')) {
+    function benderbs_item_description() {
         $description = osc_item_description();
         foreach( osc_get_locales() as $locale ) {
             if( Session::newInstance()->_getForm('description') != "" ) {
@@ -471,9 +477,9 @@ if (!function_exists('delete_user_js')) {
                 $('a[href="#delete_account"]').click(function() {
                     $('#genModal').modal('show');
                     $('#genModal').on('shown.bs.modal', function(e) {
-                        $("#genModal .modal-header").html('<h5 class="modal-title"><?php echo osc_esc_js(__('Delete account', osc_current_web_theme())); ?></h5>');
-                        $("#genModal .modal-body").html('<?php echo osc_esc_js(__('Are you sure you want to delete your account?', osc_current_web_theme())); ?>');
-                        $("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php echo osc_esc_js(__('Cancel', osc_current_web_theme())); ?></button> <button class="btn btn-primary" type="button" onClick="delete_user();return false;"><?php echo osc_esc_js(__('Delete', osc_current_web_theme())); ?></button>');
+                        $("#genModal .modal-header").html('<h5 class="modal-title"><?php echo osc_esc_js(__('Delete account', BENDERBS_THEME_FOLDER)); ?></h5>');
+                        $("#genModal .modal-body").html('<?php echo osc_esc_js(__('Are you sure you want to delete your account?', BENDERBS_THEME_FOLDER)); ?>');
+                        $("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php echo osc_esc_js(__('Cancel', BENDERBS_THEME_FOLDER)); ?></button> <button class="btn btn-primary" type="button" onClick="delete_user();return false;"><?php echo osc_esc_js(__('Delete', BENDERBS_THEME_FOLDER)); ?></button>');
                     });
                 });
             });
@@ -484,25 +490,25 @@ if (!function_exists('delete_user_js')) {
     osc_add_hook('footer', 'delete_user_js', 1);
 }
 
-if (!function_exists('bender_default_show_as')) {
-    function bender_default_show_as() {
+if (!function_exists('benderbs_default_show_as')) {
+    function benderbs_default_show_as() {
         return getPreference('defaultShowAs@all','bender');
     }
 }
 
-if (!function_exists('bender_show_as')) {
-    function bender_show_as() {
+if (!function_exists('benderbs_show_as')) {
+    function benderbs_show_as() {
         $p_sShowAs    = Params::getParam('sShowAs');
         $aValidShowAsValues = array('list', 'gallery');
         if (!in_array($p_sShowAs, $aValidShowAsValues)) {
-            $p_sShowAs = bender_default_show_as();
+            $p_sShowAs = benderbs_default_show_as();
         }
         return $p_sShowAs;
     }
 }
 
-if (!function_exists('bender_draw_item')) {
-    function bender_draw_item($class = false,$admin = false, $premium = false) {
+if (!function_exists('benderbs_draw_item')) {
+    function benderbs_draw_item($class = false,$admin = false, $premium = false) {
         $filename = 'loop-single';
         if ($premium) {
             $filename .='-premium';
@@ -521,7 +527,7 @@ function html_option_nav_menu($n) {
     switch ($n) {
         case 'publish_btn':
             return  '<div class="dropdown-row d-flex align-items-center ml-auto d-lg-none">
-                        <a class="btn btn-danger btn-lg btn-block" href="' . osc_item_post_url_in_category() . '">' . __('Publish your ad for free', osc_current_web_theme()) . '</a>
+                        <a class="btn btn-danger btn-lg btn-block" href="' . osc_item_post_url_in_category() . '">' . __('Publish your ad for free', BENDERBS_THEME_FOLDER) . '</a>
                     </div>';
             break;
 
@@ -551,7 +557,7 @@ function get_user_nav_menu() {
             );
 
             $options[] = array(
-                'name'  => __('My account', osc_current_web_theme()),
+                'name'  => __('My account', BENDERBS_THEME_FOLDER),
                 'url'   => osc_user_profile_url(),
                 'class' => 'fas fa-user-circle fa-dm fa-fw mr-2 text-gray-900'
             );
@@ -561,7 +567,7 @@ function get_user_nav_menu() {
     }
 
     $options[] = array(
-        'name'  => __('Home', osc_current_web_theme()),
+        'name'  => __('Home', BENDERBS_THEME_FOLDER),
         'url'   => osc_base_url(),
         'class' => 'fas fa-home fa-dm fa-fw mr-2 text-gray-900'
     );
@@ -599,7 +605,7 @@ function get_user_nav_menu() {
  *   'custom'           => 'custom html'
  * @return void
  */
-function bender_user_nav_menu($options = null) {
+function benderbs_user_nav_menu($options = null) {
     if($options == null) {
         $options = array();
         if (osc_users_enabled()) {
@@ -608,7 +614,7 @@ function bender_user_nav_menu($options = null) {
                 $options[] = array('custom' => '<div class="dropdown-divider"></div>');
             }
         }
-        $options[] = array('name' => __('Home', osc_current_web_theme()), 'url' => osc_base_url(), 'class' => 'fas fa-home fa-dm fa-fw mr-2 text-gray-900');
+        $options[] = array('name' => __('Home', BENDERBS_THEME_FOLDER), 'url' => osc_base_url(), 'class' => 'fas fa-home fa-dm fa-fw mr-2 text-gray-900');
         $options[] = array('name' => __('Contact'), 'url' => osc_contact_url(), 'class' => 'far fa-address-book fa-dm fa-fw mr-2 text-gray-900');
         
         $options[] = array('custom' => '<div class="dropdown-divider d-lg-none"></div>');
@@ -665,12 +671,12 @@ if (!function_exists('get_user_menu')) {
             'class' => 'fas fa-cogs fa-lg text-gray-600'
         );
         $options[] = array(
-            'name'  => __('Change email', osc_current_web_theme()),
+            'name'  => __('Change email', BENDERBS_THEME_FOLDER),
             'url'   => osc_change_user_email_url(),
             'class' => 'far fa-envelope fa-lg text-gray-600'
         );
         $options[] = array(
-            'name'  => __('Change username', osc_current_web_theme()),
+            'name'  => __('Change username', BENDERBS_THEME_FOLDER),
             'url'   => osc_change_user_username_url(),
             'class' => 'fas fa-user-tag fa-lg text-gray-600'
         );
@@ -680,7 +686,7 @@ if (!function_exists('get_user_menu')) {
             'class' => 'fas fa-key fa-lg text-gray-600'
         );
         $options[] = array(
-            'name'  => __('Delete account', osc_current_web_theme()),
+            'name'  => __('Delete account', BENDERBS_THEME_FOLDER),
             'url'   => '#delete_account',
             'class' => 'fas fa-user-times fa-lg text-gray-600'
         );
@@ -695,7 +701,7 @@ if (!function_exists('get_user_menu')) {
  * @param array $options array with options of the form array('name' => 'display name', 'url' => 'url of link')
  * @return void
  */
-function bender_private_user_menu($options = null) {
+function benderbs_private_user_menu($options = null) {
     if($options == null) {
         $options = array();
         $options[] = array('name' => __('Public Profile'), 'url' => osc_user_public_profile_url(osc_logged_user_id()), 'class' => 'opt_publicprofile');
@@ -733,8 +739,8 @@ if(!function_exists('user_dashboard_redirect')) {
     osc_add_hook('init', 'user_dashboard_redirect');
 }
 
-if (!function_exists('bender_print_sidebar_category_search')) {
-    function bender_print_sidebar_category_search($aCategories, $current_category = null, $i = 0) {
+if (!function_exists('benderbs_print_sidebar_category_search')) {
+    function benderbs_print_sidebar_category_search($aCategories, $current_category = null, $i = 0) {
         $class = 'list-unstyled';
         if(!isset($aCategories[$i])) {
             return null;
@@ -749,7 +755,7 @@ if (!function_exists('bender_print_sidebar_category_search')) {
         if(!isset($c['pk_i_id'])) {
             echo '<ul class="'.$class.'">';
             if($i==1) {
-                echo '<li><a href="'.osc_esc_html(osc_update_search_url(array('sCategory'=>null, 'iPage'=>null))).'">'.__('All categories', osc_current_web_theme())."</a></li>";
+                echo '<li><a href="'.osc_esc_html(osc_update_search_url(array('sCategory'=>null, 'iPage'=>null))).'">'.__('All categories', BENDERBS_THEME_FOLDER)."</a></li>";
             }
             foreach($c as $key => $value) {
         ?>
@@ -771,14 +777,14 @@ if (!function_exists('bender_print_sidebar_category_search')) {
         ?>
         <ul class="<?php echo $class;?>">
             <?php if($i==1) { ?>
-            <li><a href="<?php echo osc_esc_html(osc_update_search_url(array('sCategory'=>null, 'iPage'=>null))); ?>"><?php _e('All categories', osc_current_web_theme()); ?></a></li>
+            <li><a href="<?php echo osc_esc_html(osc_update_search_url(array('sCategory'=>null, 'iPage'=>null))); ?>"><?php _e('All categories', BENDERBS_THEME_FOLDER); ?></a></li>
             <?php } ?>
                 <li>
                     <a id="cat_<?php echo osc_esc_html($c['pk_i_id']);?>" href="<?php echo osc_esc_html(osc_update_search_url(array('sCategory'=> $c['pk_i_id'], 'iPage'=>null))); ?>">
                     <?php if(isset($current_category) && $current_category == $c['pk_i_id']){ echo '<strong>'.$c['s_name'].'</strong>'; }
                           else{ echo $c['s_name']; } ?>
                     </a>
-                    <?php bender_print_sidebar_category_search($aCategories, $current_category, $i); ?>
+                    <?php benderbs_print_sidebar_category_search($aCategories, $current_category, $i); ?>
                 </li>
             <?php if($i==1) { ?>
             <?php } ?>
@@ -788,8 +794,8 @@ if (!function_exists('bender_print_sidebar_category_search')) {
     }
 }
 
-if (!function_exists('bender_sidebar_category_search')) {
-    function bender_sidebar_category_search($catId = null) {
+if (!function_exists('benderbs_sidebar_category_search')) {
+    function benderbs_sidebar_category_search($catId = null) {
         $aCategories = array();
         if($catId==null) {
             $aCategories[] = Category::newInstance()->findRootCategoriesEnabled();
@@ -809,7 +815,7 @@ if (!function_exists('bender_sidebar_category_search')) {
             return "";
         }
 
-        bender_print_sidebar_category_search($aCategories, $catId);
+        benderbs_print_sidebar_category_search($aCategories, $catId);
     }
 }
 
@@ -819,7 +825,7 @@ if (!function_exists('bender_sidebar_category_search')) {
  * @return string pagination links
  * @throws \Exception
  */
-function bender_search_pagination() {
+function benderbs_search_pagination() {
     $params = array();
     if( View::newInstance()->_exists('search_uri') ) { // CANONICAL URL
         $params['url'] = osc_base_url().View::newInstance()->_get('search_uri') . '/{PAGE}';
@@ -837,7 +843,7 @@ function bender_search_pagination() {
  *
  * @return string
  */
-function bender_pagination_items($extraParams = array (), $field = false) {
+function benderbs_pagination_items($extraParams = array (), $field = false) {
     if(osc_is_public_profile()) {
         $url = osc_user_list_items_pub_profile_url('{PAGE}', $field);
         $first_url = osc_user_public_profile_url();
@@ -861,12 +867,12 @@ function bender_pagination_items($extraParams = array (), $field = false) {
     return $pagination->doPagination();
 }
 
-function bender_meta_description() {
+function benderbs_meta_description() {
     if (osc_is_public_profile()) {
         return osc_highlight( osc_user_info() , 120 );
     }
 }
-osc_add_filter('meta_description_filter', 'bender_meta_description');
+osc_add_filter('meta_description_filter', 'benderbs_meta_description');
 
 /**
  *
@@ -876,15 +882,15 @@ osc_add_filter('meta_description_filter', 'bender_meta_description');
  */
 osc_remove_hook('search_form', 'osc_meta_search');
 
-function bender_meta_search($catId = null) {
+function benderbs_meta_search($catId = null) {
     CustomFieldForm::meta_fields_search($catId);
 }
-osc_add_hook('search_form', 'bender_meta_search');
+osc_add_hook('search_form', 'benderbs_meta_search');
 
 /**
  * @param null $catId
  */
-function bender_meta_publish($catId = null) {
+function benderbs_meta_publish($catId = null) {
     //osc_enqueue_script( 'php-date' );
     CustomFieldForm::meta_fields_input( $catId );
 }
@@ -893,7 +899,7 @@ function bender_meta_publish($catId = null) {
  * @param null $catId
  * @param null $item_id
  */
-function bender_meta_edit($catId = null, $item_id = null) {
+function benderbs_meta_edit($catId = null, $item_id = null) {
     //osc_enqueue_script( 'php-date' );
     CustomFieldForm::meta_fields_input( $catId , $item_id );
 }
@@ -901,8 +907,8 @@ function bender_meta_edit($catId = null, $item_id = null) {
 osc_remove_hook('item_form', 'osc_meta_publish');
 osc_remove_hook('item_edit', 'osc_meta_edit');
 
-osc_add_hook('item_form', 'bender_meta_publish');
-osc_add_hook('item_edit', 'bender_meta_edit');
+osc_add_hook('item_form', 'benderbs_meta_publish');
+osc_add_hook('item_edit', 'benderbs_meta_edit');
 
 /**
  * Shows all the pending flash messages in session and cleans up the array.
@@ -912,7 +918,7 @@ osc_add_hook('item_edit', 'bender_meta_edit');
  * @param $id
  * @return void
  */
-function bender_show_flash_message($section = 'pubMessages', $class = 'fade show alert-dismissible alert' , $id = 'flashmessage' ) {
+function benderbs_show_flash_message($section = 'pubMessages', $class = 'fade show alert-dismissible alert' , $id = 'flashmessage' ) {
     $messages = Session::newInstance()->_getMessage($section);
     if (is_array($messages)) {
 
@@ -939,22 +945,22 @@ function bender_show_flash_message($section = 'pubMessages', $class = 'fade show
     Session::newInstance()->_dropMessage($section);
 }
 
-function bender_comment_author():string {
+function benderbs_comment_author() {
     if (osc_comment_user_id() > 0) {
        return '<a href="'.osc_user_public_profile_url(osc_comment_user_id()).'">'.osc_comment_author_name().'</a>';
     }
     return osc_comment_author_name();
 }
 
-if (!function_exists('bender_delete')) {
-    function bender_delete() {
-        Preference::newInstance()->delete(array('s_section' => 'bender'));
+if (!function_exists('benderbs_delete')) {
+    function benderbs_delete() {
+        Preference::newInstance()->delete(array('s_section' => 'benderbs'));
     }
-    osc_add_hook('theme_delete_bender', 'bender_delete');
+    osc_add_hook('theme_delete_bender', 'benderbs_delete');
 }
 
-if (!function_exists('theme_bender_actions_admin')) {
-    function theme_bender_actions_admin() {
+if (!function_exists('theme_benderbs_actions_admin')) {
+    function theme_benderbs_actions_admin() {
         //if(OC_ADMIN)
         switch (Params::getParam('action_specific')) {
             case 'settings':
@@ -973,8 +979,8 @@ if (!function_exists('theme_bender_actions_admin')) {
                 //osc_set_preference('rtl', (Params::getParam('rtl') ? '1' : '0'), 'bender');
 
                 ob_get_clean();
-                osc_add_flash_ok_message(__('Theme settings updated correctly', osc_current_web_theme()), 'admin');
-                osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/'.osc_current_web_theme().'/admin/settings.php'));
+                osc_add_flash_ok_message(__('Theme settings updated correctly', BENDERBS_THEME_FOLDER), 'admin');
+                osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/'.BENDERBS_THEME_FOLDER.'/admin/settings.php'));
             break;
             case 'upload_logo':
                 $package = Params::getFiles('logo');
@@ -995,7 +1001,7 @@ if (!function_exists('theme_bender_actions_admin')) {
                     osc_add_flash_error_message(_m("An error has occurred, please try again"), 'admin');
                 }
                 ob_get_clean();
-                osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/'.osc_current_web_theme().'/admin/header.php'));
+                osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/'.BENDERBS_THEME_FOLDER.'/admin/header.php'));
             break;
             case 'remove':
                 $logo = osc_get_preference('logo', 'bender');
@@ -1004,17 +1010,17 @@ if (!function_exists('theme_bender_actions_admin')) {
                     @unlink( $path );
                     osc_delete_preference('logo', 'bender');
                     osc_reset_preferences();
-                    osc_add_flash_ok_message(__('The logo image has been removed', osc_current_web_theme()), 'admin');
+                    osc_add_flash_ok_message(__('The logo image has been removed', BENDERBS_THEME_FOLDER), 'admin');
                 } else {
-                    osc_add_flash_error_message(__("Image not found", osc_current_web_theme()), 'admin');
+                    osc_add_flash_error_message(__("Image not found", BENDERBS_THEME_FOLDER), 'admin');
                 }
                 ob_get_clean();
-                osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/'.osc_current_web_theme().'/admin/header.php'));
+                osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/'.BENDERBS_THEME_FOLDER.'/admin/header.php'));
             break;
         }
     }
-    osc_add_hook('init_admin', 'theme_bender_actions_admin');
+    osc_add_hook('init_admin', 'theme_benderbs_actions_admin');
 }
 
-osc_admin_menu_appearance(__('Header logo', osc_current_web_theme()), osc_admin_render_theme_url('oc-content/themes/'.osc_current_web_theme().'/admin/header.php'), 'header_bender');
-osc_admin_menu_appearance(__('Theme settings', osc_current_web_theme()), osc_admin_render_theme_url('oc-content/themes/'.osc_current_web_theme().'/admin/settings.php'), 'settings_bender');
+osc_admin_menu_appearance(__('Header logo', BENDERBS_THEME_FOLDER), osc_admin_render_theme_url('oc-content/themes/'.BENDERBS_THEME_FOLDER.'/admin/header.php'), 'header_bender');
+osc_admin_menu_appearance(__('Theme settings', BENDERBS_THEME_FOLDER), osc_admin_render_theme_url('oc-content/themes/'.BENDERBS_THEME_FOLDER.'/admin/settings.php'), 'settings_bender');

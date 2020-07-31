@@ -48,18 +48,18 @@
 					<span>-</span> <span class="text-nowrap"><?php echo osc_format_date(osc_item_pub_date()); ?></span>
 					<?php if (osc_price_enabled_at_items()) : ?><span class="text-bender-price font-weight-bold text-nowrap"><?php echo osc_format_price(osc_item_price()); ?></span><?php endif; ?>
 				</div>
-				<?php if (!bender_show_as() || bender_show_as() == 'list') : ?>
+				<?php if (!benderbs_show_as() || benderbs_show_as() == 'list') : ?>
 				<div class="mt-2"><?php echo osc_highlight(osc_item_description(), 250); ?></div>
 				<?php endif; ?>
 				
 				<?php if ($admin) : ?>
 				<div class="text-right text-sm">
-					<a href="<?php echo osc_item_edit_url(); ?>" class="text-gray-600 ml-2" data-toggle="tooltip" data-placement="top" title="<?php _e('Edit item', osc_current_web_theme()); ?>"><i class="fas fa-pencil-alt"></i></a>
+					<a href="<?php echo osc_item_edit_url(); ?>" class="text-gray-600 ml-2" data-toggle="tooltip" data-placement="top" title="<?php _e('Edit item', BENDERBS_THEME_FOLDER); ?>"><i class="fas fa-pencil-alt"></i></a>
 					
-					<a href="#" onclick="modalDeleteItem('<?php echo osc_item_delete_url();?>');return false;" class="text-gray-600 ml-2 delete-item" data-toggle="tooltip" data-placement="top" title="<?php _e('Delete', osc_current_web_theme()); ?>"><i class="fas fa-trash"></i></a>
+					<a href="#" onclick="modalDeleteItem('<?php echo osc_item_delete_url();?>');return false;" class="text-gray-600 ml-2 delete-item" data-toggle="tooltip" data-placement="top" title="<?php _e('Delete', BENDERBS_THEME_FOLDER); ?>"><i class="fas fa-trash"></i></a>
 
 					<?php if (osc_item_is_inactive()) : ?>
-					<a href="<?php echo osc_item_activate_url();?>" class="text-gray-600 ml-2" data-toggle="tooltip" data-placement="top" title="<?php _e('Activate', osc_current_web_theme()); ?>"><i class="fas fa-check"></i></a>
+					<a href="<?php echo osc_item_activate_url();?>" class="text-gray-600 ml-2" data-toggle="tooltip" data-placement="top" title="<?php _e('Activate', BENDERBS_THEME_FOLDER); ?>"><i class="fas fa-check"></i></a>
 					<?php endif; ?>
 				</div>
 				<?php endif; ?>

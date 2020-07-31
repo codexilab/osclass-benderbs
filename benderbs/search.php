@@ -25,9 +25,9 @@
 	 
 // meta tag robots
 if (osc_count_items() == 0 || stripos($_SERVER['REQUEST_URI'], 'search')) {
-    osc_add_hook('header','bender_nofollow_construct');
+    osc_add_hook('header','benderbs_nofollow_construct');
 } else {
-    osc_add_hook('header','bender_follow_construct');
+    osc_add_hook('header','benderbs_follow_construct');
 }
 
 $list 		= 'active';
@@ -53,8 +53,8 @@ $(function() {
         select: function( event, ui ) {
             $("#sRegion").attr("value", ui.item.region);
             log(ui.item ?
-                "<?php echo osc_esc_html( __('Selected', osc_current_web_theme()) ); ?>: " + ui.item.value + " aka " + ui.item.id :
-                "<?php echo osc_esc_html( __('Nothing selected, input was', osc_current_web_theme()) ); ?> " + this.value );
+                "<?php echo osc_esc_html( __('Selected', BENDERBS_THEME_FOLDER) ); ?>: " + ui.item.value + " aka " + ui.item.id :
+                "<?php echo osc_esc_html( __('Nothing selected, input was', BENDERBS_THEME_FOLDER) ); ?> " + this.value );
         }
     });
 });
@@ -74,7 +74,7 @@ osc_current_web_theme_path('header.php'); ?>
 
 		<div class="row mb-3">
 			<div class="col-md-6 order-md-2 text-md-right">
-				<?php _e('Sort by', osc_current_web_theme()); ?>: 
+				<?php _e('Sort by', BENDERBS_THEME_FOLDER); ?>: 
 
 				<?php
 				$orders = osc_list_orders();
@@ -118,8 +118,8 @@ osc_current_web_theme_path('header.php'); ?>
 			</div>
 
 			<div class="col-md-6 order-md-1"><?php
-                $search_number = bender_search_number();
-                printf(__('%1$d - %2$d of %3$d listings', osc_current_web_theme()), $search_number['from'], $search_number['to'], $search_number['of']);
+                $search_number = benderbs_search_number();
+                printf(__('%1$d - %2$d of %3$d listings', BENDERBS_THEME_FOLDER), $search_number['from'], $search_number['to'], $search_number['of']);
             ?></div>
 		</div><!-- /.row -->
 
@@ -127,7 +127,7 @@ osc_current_web_theme_path('header.php'); ?>
 
 		<?php osc_get_premiums();
         if (osc_count_premiums() > 0) {
-        	echo '<div class="col-12"><h5>'.__('Premium listings', osc_current_web_theme()).'</h5></div>';
+        	echo '<div class="col-12"><h5>'.__('Premium listings', BENDERBS_THEME_FOLDER).'</h5></div>';
             View::newInstance()->_exportVariableToView("listType", 'premiums');
             View::newInstance()->_exportVariableToView("listClass", $listClass);
             osc_current_web_theme_path('loop.php');
@@ -137,7 +137,7 @@ osc_current_web_theme_path('header.php'); ?>
 		<?php if (osc_count_items() > 0) : ?>
 
 			<?php
-			echo '<div class="col-12"><h5>'.__('Listings', osc_current_web_theme()).'</h5></div>';
+			echo '<div class="col-12"><h5>'.__('Listings', BENDERBS_THEME_FOLDER).'</h5></div>';
 		    View::newInstance()->_exportVariableToView("listType", 'items');
 		    View::newInstance()->_exportVariableToView("listClass", $listClass);
 		    osc_current_web_theme_path('loop.php');
@@ -148,7 +148,7 @@ osc_current_web_theme_path('header.php'); ?>
 			<?php if (osc_rewrite_enabled()) : ?>
 				<?php $footerLinks = osc_search_footer_links(); ?>
 				<?php if (count($footerLinks) > 0) : ?>
-				<h5><?php _e('Other searches that may interest you',osc_current_web_theme()); ?></h5>
+				<h5><?php _e('Other searches that may interest you',BENDERBS_THEME_FOLDER); ?></h5>
 				<ul class="list-inline">
 					<?php foreach ($footerLinks as $f) : View::newInstance()->_exportVariableToView('footer_link', $f); ?>
 					<?php if ($f['total'] < 3) continue; ?>
@@ -159,7 +159,7 @@ osc_current_web_theme_path('header.php'); ?>
 			<?php endif; ?>
 
 				<nav aria-label="Pagination">
-				<?php echo bender_search_pagination(); ?>
+				<?php echo benderbs_search_pagination(); ?>
 				</nav>
 
 			</div>
@@ -167,7 +167,7 @@ osc_current_web_theme_path('header.php'); ?>
 		<?php else : ?>
 
 			<div class="col-sm-12">
-				<p><?php printf(__('There are no results matching "%s"', osc_current_web_theme()), osc_search_pattern()) ; ?></p>
+				<p><?php printf(__('There are no results matching "%s"', BENDERBS_THEME_FOLDER), osc_search_pattern()) ; ?></p>
 			</div>
 
 		<?php endif; ?>

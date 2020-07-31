@@ -56,8 +56,8 @@
 
 		<?php osc_run_hook('before-main'); ?>
 
-		<?php bender_show_flash_message(); ?>
+		<?php benderbs_show_flash_message(); ?>
 
-		<div <?php bender_row_class(); ?>>
+		<div <?php benderbs_row_class(); ?>>
 
 			<?php osc_run_hook('inside-main'); ?>

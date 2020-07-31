@@ -25,37 +25,37 @@
 ?>
 <div id="sidebar" class="col-md-4 order-2">
 	<div class="bg-gray-bender rounded p-3">
-		<h2><?php _e("Contact publisher", osc_current_web_theme()); ?></h2>
+		<h2><?php _e("Contact publisher", BENDERBS_THEME_FOLDER); ?></h2>
 
 	<?php if (osc_item_is_expired()) : ?>
 		
-		<?php _e("The listing is expired. You can't contact the publisher.", osc_current_web_theme()); ?>
+		<?php _e("The listing is expired. You can't contact the publisher.", BENDERBS_THEME_FOLDER); ?>
 		
 	<?php elseif ((osc_logged_user_id() == osc_item_user_id()) && osc_logged_user_id() != 0) : ?>
 		
-		<?php _e("It's your own listing, you can't contact the publisher.", osc_current_web_theme()); ?>
+		<?php _e("It's your own listing, you can't contact the publisher.", BENDERBS_THEME_FOLDER); ?>
 		
 	<?php elseif (osc_reg_user_can_contact() && !osc_is_web_user_logged_in()) : ?>
 		
-		<?php _e("You must log in or register a new account in order to contact the advertiser", osc_current_web_theme()); ?>
-		<a class="btn btn-info btn-block small" href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', osc_current_web_theme()) ; ?></a>
+		<?php _e("You must log in or register a new account in order to contact the advertiser", BENDERBS_THEME_FOLDER); ?>
+		<a class="btn btn-info btn-block small" href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', BENDERBS_THEME_FOLDER) ; ?></a>
 		<div class="m-2"></div>
-		<a class="btn btn-info btn-block small" href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', osc_current_web_theme()); ?></a>
+		<a class="btn btn-info btn-block small" href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', BENDERBS_THEME_FOLDER); ?></a>
 		
 	<?php else : ?>
 
 		<?php if (osc_item_user_id() != null) : ?>
-			<p><?php _e('Name', osc_current_web_theme()) ?>: <a href="<?php echo osc_user_public_profile_url( osc_item_user_id() ); ?>" ><?php echo osc_item_contact_name(); ?></a></p>
+			<p><?php _e('Name', BENDERBS_THEME_FOLDER) ?>: <a href="<?php echo osc_user_public_profile_url( osc_item_user_id() ); ?>" ><?php echo osc_item_contact_name(); ?></a></p>
 		<?php else : ?>
-			<p><?php printf(__('Name: %s', osc_current_web_theme()), osc_item_contact_name()); ?></p>
+			<p><?php printf(__('Name: %s', BENDERBS_THEME_FOLDER), osc_item_contact_name()); ?></p>
 		<?php endif; ?>
 
 		<?php if (osc_item_show_email()) : ?>
-			<p><?php printf(__('E-mail: %s', osc_current_web_theme()), osc_item_contact_email()); ?></p>
+			<p><?php printf(__('E-mail: %s', BENDERBS_THEME_FOLDER), osc_item_contact_email()); ?></p>
 		<?php endif; ?>
 
 		<?php if (osc_user_phone() != '') : ?>
-			<p><?php printf(__("Phone: %s", osc_current_web_theme()), osc_user_phone()); ?></p>
+			<p><?php printf(__("Phone: %s", BENDERBS_THEME_FOLDER), osc_user_phone()); ?></p>
 		<?php endif; ?>
 
 		<form action="<?php echo osc_base_url(true); ?>" method="post" name="contact_form" id="contact_form" <?php if (osc_item_attachment()) echo 'enctype="multipart/form-data"';?> >
@@ -65,28 +65,28 @@
 	        <input type="hidden" name="id" value="<?php echo osc_item_id(); ?>" />
 
 	        <div class="form-group">
-				<label for="yourName"><?php _e('Your name', osc_current_web_theme()); ?>:</label>
+				<label for="yourName"><?php _e('Your name', BENDERBS_THEME_FOLDER); ?>:</label>
 				<?php CustomContactForm::your_name(); ?>
 			</div>
 
 			<div class="form-group">
-				<label for="yourEmail"><?php _e('Your e-mail address', osc_current_web_theme()); ?>:</label>
+				<label for="yourEmail"><?php _e('Your e-mail address', BENDERBS_THEME_FOLDER); ?>:</label>
 				<?php CustomContactForm::your_email(); ?>
 			</div>
 
 			<div class="form-group">
-				<label for="phoneNumber"><?php _e('Phone number', osc_current_web_theme()); ?> (<?php _e('optional', osc_current_web_theme()); ?>):</label>
+				<label for="phoneNumber"><?php _e('Phone number', BENDERBS_THEME_FOLDER); ?> (<?php _e('optional', BENDERBS_THEME_FOLDER); ?>):</label>
 				<?php CustomContactForm::your_phone_number(); ?>
 			</div>
 
 			<div class="form-group">
-				<label for="message"><?php _e('Message', osc_current_web_theme()); ?>:</label>
+				<label for="message"><?php _e('Message', BENDERBS_THEME_FOLDER); ?>:</label>
 				<?php CustomContactForm::your_message(); ?>
 			</div>
 
 			<?php if (osc_item_attachment()) : ?>
 			<div class="form-group">
-				<label><?php _e('Attachment', osc_current_web_theme()); ?>:</label>
+				<label><?php _e('Attachment', BENDERBS_THEME_FOLDER); ?>:</label>
 				<?php CustomContactForm::your_attachment(); ?>
 			</div>
 			<?php endif; ?>
@@ -106,15 +106,15 @@
 	            </style>
 	            <div id="recaptcha_widget">
 	                <div id="recaptcha_image"><img /></div>
-	                <span class="recaptcha_only_if_image"><?php _e('Enter the words above',osc_current_web_theme()); ?>:</span>
+	                <span class="recaptcha_only_if_image"><?php _e('Enter the words above',BENDERBS_THEME_FOLDER); ?>:</span>
 	                <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-	                <div><a href="javascript:Recaptcha.showhelp()"><?php _e('Help', osc_current_web_theme()); ?></a></div>
+	                <div><a href="javascript:Recaptcha.showhelp()"><?php _e('Help', BENDERBS_THEME_FOLDER); ?></a></div>
 	            </div>
 				<?php osc_show_recaptcha(); ?>
 				<?php endif; ?>
 			</div>
 
-			<button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Send", osc_current_web_theme());?></button>
+			<button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Send", BENDERBS_THEME_FOLDER);?></button>
 		</form>
 		<?php
 		osc_add_hook('footer', function() {
@@ -133,12 +133,12 @@
 	        <input type="hidden" name="page" value="item" />
 	        <div class="form-group">
 		        <select name="as" id="as" class="form-control form-control-light">
-		            <option><?php _e("Mark as...", osc_current_web_theme()); ?></option>
-		            <option value="spam"><?php _e("Mark as spam", osc_current_web_theme()); ?></option>
-		            <option value="badcat"><?php _e("Mark as misclassified", osc_current_web_theme()); ?></option>
-		            <option value="repeated"><?php _e("Mark as duplicated", osc_current_web_theme()); ?></option>
-		            <option value="expired"><?php _e("Mark as expired", osc_current_web_theme()); ?></option>
-		            <option value="offensive"><?php _e("Mark as offensive", osc_current_web_theme()); ?></option>
+		            <option><?php _e("Mark as...", BENDERBS_THEME_FOLDER); ?></option>
+		            <option value="spam"><?php _e("Mark as spam", BENDERBS_THEME_FOLDER); ?></option>
+		            <option value="badcat"><?php _e("Mark as misclassified", BENDERBS_THEME_FOLDER); ?></option>
+		            <option value="repeated"><?php _e("Mark as duplicated", BENDERBS_THEME_FOLDER); ?></option>
+		            <option value="expired"><?php _e("Mark as expired", BENDERBS_THEME_FOLDER); ?></option>
+		            <option value="offensive"><?php _e("Mark as offensive", BENDERBS_THEME_FOLDER); ?></option>
 		        </select>
 	    	</div>
 	    </form>

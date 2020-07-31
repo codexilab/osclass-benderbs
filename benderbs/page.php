@@ -24,7 +24,7 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_nofollow_construct');
+osc_add_hook('header','benderbs_nofollow_construct');
 osc_current_web_theme_path('header.php'); ?>
 	<div class="col">
 		<h1><?php echo osc_static_page_title(); ?></h1>

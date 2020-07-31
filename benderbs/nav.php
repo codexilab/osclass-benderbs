@@ -25,7 +25,7 @@
 ?>
 <nav class="navbar navbar-expand navbar-dark bg-info topbar fixed-top">
 	
-	<?php echo logo_nav(); ?>
+	<?php echo benderbs_logo_nav(); ?>
 
 	<?php if (osc_is_home_page() || osc_is_static_page() || osc_is_contact_page()) : ?>
 	<form class="d-none d-xsm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<?php echo osc_base_url(true); ?>" method="get">
@@ -44,7 +44,7 @@
 	<?php endif; ?>
 
 	<?php if (osc_users_enabled() || (!osc_users_enabled() && !osc_reg_user_post())) : ?>
-	<a class="btn btn-danger d-none d-lg-block" href="<?php echo osc_item_post_url_in_category() ; ?>"><?php _e('Publish your ad for free', osc_current_web_theme());?></a>
+	<a class="btn btn-danger d-none d-lg-block" href="<?php echo osc_item_post_url_in_category() ; ?>"><?php _e('Publish your ad for free', BENDERBS_THEME_FOLDER);?></a>
 	<?php endif; ?>
 
 	<ul class="navbar-nav ml-max-sm-auto">
@@ -68,14 +68,14 @@
 						</div>
 					</div>
 				</form>
-				<div class="mt-2 text-right"><a href="<?php echo osc_search_category_url(); ?>"><?php _e('Go to advanced search page', osc_current_web_theme()); ?> &raquo;</a></div>
+				<div class="mt-2 text-right"><a href="<?php echo osc_search_category_url(); ?>"><?php _e('Go to advanced search page', BENDERBS_THEME_FOLDER); ?> &raquo;</a></div>
             </div>
         </li>
         <?php endif; ?>
 
         <li class="nav-item dropdown no-arrow mx-1">
 			<a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="mr-2 d-lg-inline text-white small u"><?php echo __('Menu', osc_current_web_theme()); ?></span><?php echo (osc_users_enabled() && osc_is_web_user_logged_in()) ? '<i class="fas fa-user-circle fa-lg"></i>' : '<i class="fas fa-bars"></i>'; ?>
+				<span class="mr-2 d-lg-inline text-white small u"><?php echo __('Menu', BENDERBS_THEME_FOLDER); ?></span><?php echo (osc_users_enabled() && osc_is_web_user_logged_in()) ? '<i class="fas fa-user-circle fa-lg"></i>' : '<i class="fas fa-bars"></i>'; ?>
 			</a>
 
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
@@ -86,7 +86,7 @@
 						<img class="rounded-circle" src="<?php echo user_thumb_url(); ?>" alt="">
 					</div>
 					<div>
-						<div class="font-weight-bold"><?php echo sprintf(__('Hi %s', osc_current_web_theme()), osc_logged_user_name() . '!'); ?></div>
+						<div class="font-weight-bold"><?php echo sprintf(__('Hi %s', BENDERBS_THEME_FOLDER), osc_logged_user_name() . '!'); ?></div>
 						<span class="text-gray-500"><?php echo osc_logged_user_email(); ?></span>
 					</div>
 				</a>
@@ -99,8 +99,8 @@
 						<img class="rounded-circle" src="<?php echo user_thumb_url(); ?>" alt="">
 					</div>
 					<div>
-						<div class="font-weight-bold"><?php _e('Welcome!', osc_current_web_theme()); ?></div>
-						<span class="text-gray-500"><?php _e('Register for a free account', osc_current_web_theme()); ?></span>
+						<div class="font-weight-bold"><?php _e('Welcome!', BENDERBS_THEME_FOLDER); ?></div>
+						<span class="text-gray-500"><?php _e('Register for a free account', BENDERBS_THEME_FOLDER); ?></span>
 					</div>
 				</div>
 				<?php endif; /* endif osc_user_registration_enabled() */ ?>
@@ -109,11 +109,11 @@
 
 				<div class="dropdown-row d-flex align-items-center ml-auto">
 					<div class="col">
-						<a class="btn btn-info btn-block small" href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', osc_current_web_theme()) ; ?></a>
+						<a class="btn btn-info btn-block small" href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', BENDERBS_THEME_FOLDER) ; ?></a>
 					</div>
 					<?php if(osc_user_registration_enabled()) : ?>
 					<div class="col">
-						<a class="btn btn-info btn-block small" href="<?php echo osc_register_account_url() ; ?>"><?php _e('Register', osc_current_web_theme()); ?></a>
+						<a class="btn btn-info btn-block small" href="<?php echo osc_register_account_url() ; ?>"><?php _e('Register', BENDERBS_THEME_FOLDER); ?></a>
 					</div>
 					<?php endif; ?>
 				</div>
@@ -124,7 +124,7 @@
 				<div class="dropdown-divider"></div>
 
 				<div class="dropdown-scroll">
-					<?php echo bender_user_nav_menu(get_user_nav_menu()); ?>
+					<?php echo benderbs_user_nav_menu(get_user_nav_menu()); ?>
 				</div><!-- /.dropdown-scroll -->
 
 			</div><!-- /.dropdown-menu -->

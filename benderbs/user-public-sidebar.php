@@ -25,14 +25,14 @@
 ?>
 <div id="sidebar" class="col-md-4 order-2 mb-3 pl-sm-0">
 	<?php if (osc_user_info() !== '') : ?>
-	<h2><?php _e('User description', osc_current_web_theme()); ?></h2>
+	<h2><?php _e('User description', BENDERBS_THEME_FOLDER); ?></h2>
 	<?php endif; ?>
 	<?php echo nl2br(osc_user_info()); ?>
 
 	<?php if (osc_logged_user_id() !=  osc_user_id()) : ?>
 		<?php if(osc_reg_user_can_contact() && osc_is_web_user_logged_in() || !osc_reg_user_can_contact()) : ?>
 		<div class="bg-gray-bender rounded p-3 mt-3">
-			<h2><?php _e("Contact", osc_current_web_theme()); ?></h2>
+			<h2><?php _e("Contact", BENDERBS_THEME_FOLDER); ?></h2>
 
 			<form action="<?php echo osc_base_url(true); ?>" method="post" name="contact_form" id="contact_form">
 				<input type="hidden" name="action" value="contact_post" />
@@ -40,22 +40,22 @@
 				<input type="hidden" name="id" value="<?php echo osc_user_id();?>" />
 
 				<div class="form-group">
-					<label for="yourName"><?php _e('Your name', osc_current_web_theme()); ?>:</label>
+					<label for="yourName"><?php _e('Your name', BENDERBS_THEME_FOLDER); ?>:</label>
 					<?php CustomContactForm::your_name(); ?>
 				</div>
 
 				<div class="form-group">
-					<label for="yourEmail"><?php _e('Your e-mail address', osc_current_web_theme()); ?>:</label>
+					<label for="yourEmail"><?php _e('Your e-mail address', BENDERBS_THEME_FOLDER); ?>:</label>
 					<?php CustomContactForm::your_email(); ?>
 				</div>
 
 				<div class="form-group">
-					<label for="phoneNumber"><?php _e('Phone number', osc_current_web_theme()); ?> (<?php _e('optional', osc_current_web_theme()); ?>):</label>
+					<label for="phoneNumber"><?php _e('Phone number', BENDERBS_THEME_FOLDER); ?> (<?php _e('optional', BENDERBS_THEME_FOLDER); ?>):</label>
 					<?php CustomContactForm::your_phone_number(); ?>
 				</div>
 
 				<div class="form-group">
-					<label for="message"><?php _e('Message', osc_current_web_theme()); ?>:</label>
+					<label for="message"><?php _e('Message', BENDERBS_THEME_FOLDER); ?>:</label>
 					<?php CustomContactForm::your_message(); ?>
 				</div>
 
@@ -74,15 +74,15 @@
 		            </style>
 		            <div id="recaptcha_widget">
 		                <div id="recaptcha_image"><img /></div>
-		                <span class="recaptcha_only_if_image"><?php _e('Enter the words above',osc_current_web_theme()); ?>:</span>
+		                <span class="recaptcha_only_if_image"><?php _e('Enter the words above',BENDERBS_THEME_FOLDER); ?>:</span>
 		                <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-		                <div><a href="javascript:Recaptcha.showhelp()"><?php _e('Help', osc_current_web_theme()); ?></a></div>
+		                <div><a href="javascript:Recaptcha.showhelp()"><?php _e('Help', BENDERBS_THEME_FOLDER); ?></a></div>
 		            </div>
 					<?php osc_show_recaptcha(); ?>
 					<?php endif; ?>
 				</div>
 
-				<button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Send", osc_current_web_theme());?></button>
+				<button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Send", BENDERBS_THEME_FOLDER);?></button>
 			</form>
 			<?php
 			function js_user_public_sidebar() {

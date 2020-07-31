@@ -24,10 +24,10 @@
      */
      
 // meta tag robots
-osc_add_hook('header','bender_nofollow_construct');
+osc_add_hook('header','benderbs_nofollow_construct');
 
 function custom_meta_title($data){
-    return __('Change username', osc_current_web_theme());;
+    return __('Change username', BENDERBS_THEME_FOLDER);;
 }
 osc_add_filter('meta_title_filter','custom_meta_title');
 
@@ -36,22 +36,22 @@ $osc_user = osc_user(); ?>
     <?php osc_current_web_theme_path('user-sidebar.php'); ?>
     
     <div class="col-md-9">
-        <h1><?php _e('Change username', osc_current_web_theme()); ?></h1>
+        <h1><?php _e('Change username', BENDERBS_THEME_FOLDER); ?></h1>
 
         <form action="<?php echo osc_base_url(true); ?>" method="post" id="change-username" class="mt-3">
             <input type="hidden" name="page" value="user" />
             <input type="hidden" name="action" value="change_username_post" />
             <div class="form-group row">
-                <label for="s_username" class="col-sm-3 col-form-label text-md-right"><?php _e('Username', osc_current_web_theme()); ?></label>
+                <label for="s_username" class="col-sm-3 col-form-label text-md-right"><?php _e('Username', BENDERBS_THEME_FOLDER); ?></label>
                 <div class="col-sm-8">
-                    <input type="text" name="s_username" id="s_username" value="<?php echo bender_logged_username(); ?>" class="form-control form-control-light" />
+                    <input type="text" name="s_username" id="s_username" value="<?php echo benderbs_logged_username(); ?>" class="form-control form-control-light" />
                     <div id="available" class="d-block"></div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-sm-12 col-md-9 ml-md-auto">
-                    <button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Update", osc_current_web_theme());?></button>
+                    <button type="submit" class="btn btn-info btn-block-md-down"><?php _e("Update", BENDERBS_THEME_FOLDER);?></button>
                 </div>
             </div>
         </form>
@@ -67,7 +67,7 @@ $(document).ready(function() {
         },
         messages: {
             s_username: {
-                required: '<?php echo osc_esc_js(__("Username: this field is required", osc_current_web_theme())); ?>.'
+                required: '<?php echo osc_esc_js(__("Username: this field is required", BENDERBS_THEME_FOLDER)); ?>.'
             }
         },
         highlight: function(element) {
@@ -94,10 +94,10 @@ $(document).ready(function() {
                         clearInterval(cInterval);
                         if(data.exists==0) {
                             $("#available").addClass('valid-feedback'); $("#available").removeClass('invalid-feedback');
-                            $("#available").text('<?php echo osc_esc_js(__("The username is available", osc_current_web_theme())); ?>');
+                            $("#available").text('<?php echo osc_esc_js(__("The username is available", BENDERBS_THEME_FOLDER)); ?>');
                         } else {
                             $("#available").removeClass('valid-feedback'); $("#available").addClass('invalid-feedback');
-                            $("#available").text('<?php echo osc_esc_js(__("The username is NOT available", osc_current_web_theme())); ?>');
+                            $("#available").text('<?php echo osc_esc_js(__("The username is NOT available", BENDERBS_THEME_FOLDER)); ?>');
                         }
                     }
                 );

@@ -25,16 +25,16 @@
 	 
 // meta tag robots
 if( osc_item_is_spam() || osc_premium_is_spam() ) {
-    osc_add_hook('header','bender_nofollow_construct');
+    osc_add_hook('header','benderbs_nofollow_construct');
 } else {
-    osc_add_hook('header','bender_follow_construct');
+    osc_add_hook('header','benderbs_follow_construct');
 }
 
 // For related items loop
 $list 		= 'active';
 $gallery 	= '';
 $listClass 	= 'col-sm-12 list-item';
-if (bender_show_as() == 'gallery') {
+if (benderbs_show_as() == 'gallery') {
 	$list 		= '';
 	$gallery 	= 'active';
 	$listClass 	= 'col-sm-4';
@@ -69,21 +69,21 @@ osc_current_web_theme_path('header.php'); ?>
 		<div class="bg-gray-bender small mt-3 p-1 rounded">
 
 			<?php if (osc_item_pub_date() !== '') : ?>
-				<div><?php printf(__('<strong class="publish">Published date</strong>: %1$s', osc_current_web_theme()), osc_format_date( osc_item_pub_date())); ?></div>
+				<div><?php printf(__('<strong class="publish">Published date</strong>: %1$s', BENDERBS_THEME_FOLDER), osc_format_date( osc_item_pub_date())); ?></div>
 			<?php endif; ?>
 			
 			<?php if (osc_item_mod_date() !== '') : ?>
-				<div><?php printf(__('<strong class="update">Modified date:</strong> %1$s', osc_current_web_theme()), osc_format_date( osc_item_mod_date())); ?></div>
+				<div><?php printf(__('<strong class="update">Modified date:</strong> %1$s', BENDERBS_THEME_FOLDER), osc_format_date( osc_item_mod_date())); ?></div>
 			<?php endif; ?>
 			
 			<?php if (count($location)>0) : ?>
-			<div id="item_location"><strong><?php _e('Location', osc_current_web_theme()); ?></strong>: <?php echo implode(', ', $location); ?></div>
+			<div id="item_location"><strong><?php _e('Location', BENDERBS_THEME_FOLDER); ?></strong>: <?php echo implode(', ', $location); ?></div>
 			<?php endif; ?>
 
 		</div>
 
 		<?php if (osc_is_web_user_logged_in() && osc_logged_user_id()==osc_item_user_id()) : ?>
-		<div id="edit_item_view" class="mt-1 text-right"><a href="<?php echo osc_item_edit_url(); ?>" rel="nofollow"><?php _e('Edit item', osc_current_web_theme()); ?></a></div>
+		<div id="edit_item_view" class="mt-1 text-right"><a href="<?php echo osc_item_edit_url(); ?>" rel="nofollow"><?php _e('Edit item', BENDERBS_THEME_FOLDER); ?></a></div>
 		<?php endif; ?>
 
 		<?php if (osc_images_enabled_at_items()) : ?>
@@ -156,12 +156,12 @@ osc_current_web_theme_path('header.php'); ?>
 			<?php if (!osc_item_is_expired()) : ?>
 			<?php if (!( ( osc_logged_user_id() == osc_item_user_id()) && osc_logged_user_id() != 0)) : ?>
 				<?php if (osc_reg_user_can_contact() && osc_is_web_user_logged_in() || !osc_reg_user_can_contact()) : ?>
-				<a href="#contact" class="btn btn-info btn-block d-md-none mb-2"><?php _e('Contact seller', osc_current_web_theme()); ?>r</a>
+				<a href="#contact" class="btn btn-info btn-block d-md-none mb-2"><?php _e('Contact seller', BENDERBS_THEME_FOLDER); ?>r</a>
 				<?php endif; ?>
 			<?php endif; ?>
 			<?php endif; ?>
 
-			<a href="<?php echo osc_item_send_friend_url(); ?>" rel="nofollow" class="btn btn-light btn-block-md-down mb-1"><?php _e('Share', osc_current_web_theme()); ?></a>
+			<a href="<?php echo osc_item_send_friend_url(); ?>" rel="nofollow" class="btn btn-light btn-block-md-down mb-1"><?php _e('Share', BENDERBS_THEME_FOLDER); ?></a>
 
 			<?php osc_run_hook('location'); ?>
 		</div>
@@ -169,19 +169,19 @@ osc_current_web_theme_path('header.php'); ?>
 		<!-- plugins -->
 
 		<div id="useful_info" class="mt-2 small p-3 border border-bender rounded">
-	        <h5><?php _e('Useful information', osc_current_web_theme()); ?></h5>
+	        <h5><?php _e('Useful information', BENDERBS_THEME_FOLDER); ?></h5>
 	        <ul>
-	            <li><?php _e('Avoid scams by acting locally or paying with PayPal', osc_current_web_theme()); ?></li>
-	            <li><?php _e('Never pay with Western Union, Moneygram or other anonymous payment services', osc_current_web_theme()); ?></li>
-	            <li><?php _e('Don\'t buy or sell outside of your country. Don\'t accept cashier cheques from outside your country', osc_current_web_theme()); ?></li>
-	            <li><?php _e('This site is never involved in any transaction, and does not handle payments, shipping, guarantee transactions, provide escrow services, or offer "buyer protection" or "seller certification"', osc_current_web_theme()); ?></li>
+	            <li><?php _e('Avoid scams by acting locally or paying with PayPal', BENDERBS_THEME_FOLDER); ?></li>
+	            <li><?php _e('Never pay with Western Union, Moneygram or other anonymous payment services', BENDERBS_THEME_FOLDER); ?></li>
+	            <li><?php _e('Don\'t buy or sell outside of your country. Don\'t accept cashier cheques from outside your country', BENDERBS_THEME_FOLDER); ?></li>
+	            <li><?php _e('This site is never involved in any transaction, and does not handle payments, shipping, guarantee transactions, provide escrow services, or offer "buyer protection" or "seller certification"', BENDERBS_THEME_FOLDER); ?></li>
 	        </ul>
 	    </div>
 
 	    <?php related_listings(); ?>
         <?php if (osc_count_items() > 0) : ?>
         <div class="similar_ads mt-3">
-            <h2><?php _e('Related listings', osc_current_web_theme()); ?></h2>
+            <h2><?php _e('Related listings', BENDERBS_THEME_FOLDER); ?></h2>
             <div class="row">
         	<?php
             View::newInstance()->_exportVariableToView("listType", 'items');
@@ -197,7 +197,7 @@ osc_current_web_theme_path('header.php'); ?>
     	<?php if (osc_reg_user_post_comments () && osc_is_web_user_logged_in() || !osc_reg_user_post_comments()) : ?>
 		<div id="comments" class="mt-3">
 			
-			<h2><?php _e('Comments', osc_current_web_theme()); ?></h2>
+			<h2><?php _e('Comments', BENDERBS_THEME_FOLDER); ?></h2>
 
 			<?php if (osc_count_item_comments() >= 1) : ?>
 			<div class="comments_list">
@@ -210,7 +210,7 @@ osc_current_web_theme_path('header.php'); ?>
 						</div>
 
 						<div class="media-body mw-100 scroll-h-auto">
-							<h5 class="mt-0"><?php echo osc_comment_title(); ?> <small><?php _e('by', osc_current_web_theme()); ?> <?php echo bender_comment_author(); ?></small></h5>
+							<h5 class="mt-0"><?php echo osc_comment_title(); ?> <small><?php _e('by', BENDERBS_THEME_FOLDER); ?> <?php echo benderbs_comment_author(); ?></small></h5>
 							<?php echo nl2br(osc_comment_body()); ?>
 						</div>
 
@@ -220,7 +220,7 @@ osc_current_web_theme_path('header.php'); ?>
 								<i class="fas fa-caret-down"></i>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
-								<a rel="nofollow" class="dropdown-item" href="<?php echo osc_delete_comment_url(); ?>" title="<?php _e('Delete your comment', osc_current_web_theme()); ?>"><?php _e('Delete', osc_current_web_theme()); ?></a>
+								<a rel="nofollow" class="dropdown-item" href="<?php echo osc_delete_comment_url(); ?>" title="<?php _e('Delete your comment', BENDERBS_THEME_FOLDER); ?>"><?php _e('Delete', BENDERBS_THEME_FOLDER); ?></a>
 							</div>
 						</div>
 						<?php endif; ?>
@@ -229,7 +229,7 @@ osc_current_web_theme_path('header.php'); ?>
 			</div>
 			<?php endif; ?>
 
-			<p class="font-osclass text-dark"><strong><?php _e('Leave your comment (spam and offensive messages will be removed)', osc_current_web_theme()); ?></strong></p>
+			<p class="font-osclass text-dark"><strong><?php _e('Leave your comment (spam and offensive messages will be removed)', BENDERBS_THEME_FOLDER); ?></strong></p>
 
 			<form action="<?php echo osc_base_url(true); ?>" method="post" name="comment_form" id="comment_form">
 				<input type="hidden" name="action" value="add_comment" />
@@ -243,13 +243,13 @@ osc_current_web_theme_path('header.php'); ?>
             	<?php else : ?>
 				
 				<div class="form-group row text-md-right">
-					<label for="authorName" class="col-sm-2 col-form-label"><?php _e('Your name', osc_current_web_theme()); ?></label>
+					<label for="authorName" class="col-sm-2 col-form-label"><?php _e('Your name', BENDERBS_THEME_FOLDER); ?></label>
 					<div class="col-sm-10">
 						<?php CustomCommentForm::author_input_text(); ?>
 					</div>
 				</div>
 				<div class="form-group row text-md-right">
-					<label for="authorEmail" class="col-sm-2 col-form-label"><?php _e('Your e-mail', osc_current_web_theme()); ?></label>
+					<label for="authorEmail" class="col-sm-2 col-form-label"><?php _e('Your e-mail', BENDERBS_THEME_FOLDER); ?></label>
 					<div class="col-sm-10">
 						<?php CustomCommentForm::email_input_text(); ?>
 					</div>
@@ -257,20 +257,20 @@ osc_current_web_theme_path('header.php'); ?>
             	<?php endif; ?>
 
             	<div class="form-group row text-md-right">
-					<label for="title" class="col-sm-2 col-form-label"><?php _e('Title', osc_current_web_theme()); ?></label>
+					<label for="title" class="col-sm-2 col-form-label"><?php _e('Title', BENDERBS_THEME_FOLDER); ?></label>
 					<div class="col-sm-10">
 						<?php CustomCommentForm::title_input_text(); ?>
 					</div>
 				</div>
 				<div class="form-group row text-md-right">
-					<label for="body" class="col-sm-2 col-form-label"><?php _e('Comment', osc_current_web_theme()); ?></label>
+					<label for="body" class="col-sm-2 col-form-label"><?php _e('Comment', BENDERBS_THEME_FOLDER); ?></label>
 					<div class="col-sm-10">
 						<?php CustomCommentForm::body_input_textarea(); ?>
 					</div>
 				</div>
             	<div class="form-group row">
 				    <div class="col-sm-12 col-md-10 ml-md-auto">
-				    	<button type="submit" class="btn btn-light btn-block-md-down"><?php _e('Send', osc_current_web_theme()); ?></button>
+				    	<button type="submit" class="btn btn-light btn-block-md-down"><?php _e('Send', BENDERBS_THEME_FOLDER); ?></button>
 				    </div>
 				</div>
 			</form>
