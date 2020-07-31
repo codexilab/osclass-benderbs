@@ -63,10 +63,10 @@ osc_current_web_theme_path('header.php'); ?>
 
 	<?php osc_current_web_theme_path('item-sidebar.php'); ?>
 
-	<div id="item-content" class="col-md-8 order-1 pb-3 item">
+	<article id="item-content" class="col-md-8 order-1 pb-3 item">
 		<h1><?php if (osc_price_enabled_at_items()) : ?><span class="price"><?php echo osc_item_formatted_price(); ?></span> <?php endif; ?><strong><?php echo osc_item_title() . ', ' . osc_item_city(); ?></strong></h1>
 
-		<div class="bg-gray-bender small mt-3 p-1 rounded">
+		<section class="bg-gray-bender small mt-3 p-1 rounded">
 
 			<?php if (osc_item_pub_date() !== '') : ?>
 				<div><?php printf(__('<strong class="publish">Published date</strong>: %1$s', BENDERBS_THEME_FOLDER), osc_format_date( osc_item_pub_date())); ?></div>
@@ -80,7 +80,7 @@ osc_current_web_theme_path('header.php'); ?>
 			<div id="item_location"><strong><?php _e('Location', BENDERBS_THEME_FOLDER); ?></strong>: <?php echo implode(', ', $location); ?></div>
 			<?php endif; ?>
 
-		</div>
+		</section>
 
 		<?php if (osc_is_web_user_logged_in() && osc_logged_user_id()==osc_item_user_id()) : ?>
 		<div id="edit_item_view" class="mt-1 text-right"><a href="<?php echo osc_item_edit_url(); ?>" rel="nofollow"><?php _e('Edit item', BENDERBS_THEME_FOLDER); ?></a></div>
@@ -135,7 +135,7 @@ osc_current_web_theme_path('header.php'); ?>
 
 		<?php endif; // if (osc_images_enabled_at_items()) ?>
 
-		<div id="description" class="mt-1">
+		<section id="description" class="mt-1">
 			<p><?php echo osc_item_description(); ?></p>
 			<div id="custom_fields">
 	            <?php if (osc_count_item_meta() >= 1) : ?>
@@ -164,11 +164,11 @@ osc_current_web_theme_path('header.php'); ?>
 			<a href="<?php echo osc_item_send_friend_url(); ?>" rel="nofollow" class="btn btn-light btn-block-md-down mb-1"><?php _e('Share', BENDERBS_THEME_FOLDER); ?></a>
 
 			<?php osc_run_hook('location'); ?>
-		</div>
+		</section>
 
 		<!-- plugins -->
 
-		<div id="useful_info" class="mt-2 small p-3 border border-bender rounded">
+		<section id="useful_info" class="mt-2 small p-3 border border-bender rounded">
 	        <h5><?php _e('Useful information', BENDERBS_THEME_FOLDER); ?></h5>
 	        <ul>
 	            <li><?php _e('Avoid scams by acting locally or paying with PayPal', BENDERBS_THEME_FOLDER); ?></li>
@@ -176,11 +176,11 @@ osc_current_web_theme_path('header.php'); ?>
 	            <li><?php _e('Don\'t buy or sell outside of your country. Don\'t accept cashier cheques from outside your country', BENDERBS_THEME_FOLDER); ?></li>
 	            <li><?php _e('This site is never involved in any transaction, and does not handle payments, shipping, guarantee transactions, provide escrow services, or offer "buyer protection" or "seller certification"', BENDERBS_THEME_FOLDER); ?></li>
 	        </ul>
-	    </div>
+	    </section>
 
 	    <?php related_listings(); ?>
         <?php if (osc_count_items() > 0) : ?>
-        <div class="similar_ads mt-3">
+        <section class="similar_ads mt-3">
             <h2><?php _e('Related listings', BENDERBS_THEME_FOLDER); ?></h2>
             <div class="row">
         	<?php
@@ -190,19 +190,18 @@ osc_current_web_theme_path('header.php'); ?>
             ?>
             </div>
             <div class="clear"></div>
-        </div>
+        </section>
     	<?php endif; ?>
 
     	<?php if (osc_comments_enabled()) : ?>
     	<?php if (osc_reg_user_post_comments () && osc_is_web_user_logged_in() || !osc_reg_user_post_comments()) : ?>
-		<div id="comments" class="mt-3">
+		<section id="comments" class="mt-3">
 			
 			<h2><?php _e('Comments', BENDERBS_THEME_FOLDER); ?></h2>
 
 			<?php if (osc_count_item_comments() >= 1) : ?>
-			<div class="comments_list">
 				<?php while (osc_has_item_comments()) : ?>
-					<div class="media mt-3 mb-2">
+					<article class="media mt-3 mb-2">
 						<div class="w-min-content">
 							<img width="64" src="<?php echo user_thumb_url(); ?>" class="rounded-circle mr-3" alt="...">
 							<br>
@@ -224,9 +223,8 @@ osc_current_web_theme_path('header.php'); ?>
 							</div>
 						</div>
 						<?php endif; ?>
-					</div>
+					</article>
 				<?php endwhile; ?>
-			</div>
 			<?php endif; ?>
 
 			<p class="font-osclass text-dark"><strong><?php _e('Leave your comment (spam and offensive messages will be removed)', BENDERBS_THEME_FOLDER); ?></strong></p>
@@ -274,8 +272,8 @@ osc_current_web_theme_path('header.php'); ?>
 				    </div>
 				</div>
 			</form>
-		</div>
+		</section>
 		<?php endif; ?>
 		<?php endif; // if (osc_comments_enabled()) ?>
-	</div>
+	</article>
 <?php osc_current_web_theme_path('footer.php') ; ?>

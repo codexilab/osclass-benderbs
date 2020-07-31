@@ -23,11 +23,11 @@
 	 * SOFTWARE.
 	 */
 ?>
-<div class="mb-3 <?php echo $class; ?> premium">
+<article class="mb-3 <?php echo $class; ?> premium">
 	<div class="col-item">
 		
 		<?php if (osc_images_enabled_at_items()) : ?>
-		<div class="photo">
+		<section class="photo">
 			
 			<?php if (osc_count_premium_resources()) : ?>
 			<a href="<?php echo osc_premium_url() ; ?>" title="<?php echo osc_esc_html(osc_premium_title()) ; ?>"><img src="<?php echo osc_resource_thumbnail_url(); ?>" class="img-responsive" alt="<?php echo osc_esc_html(osc_premium_title()); ?>" /></a>
@@ -35,10 +35,10 @@
 			<a href="<?php echo osc_premium_url() ; ?>" title="<?php echo osc_esc_html(osc_premium_title()) ; ?>"><img src="<?php echo osc_current_web_theme_url('images/no_photo.gif'); ?>" class="img-responsive" alt="<?php echo osc_esc_html(osc_premium_title()) ; ?>" /></a>
 			<?php endif; ?>
 
-		</div>
+		</section>
 		<?php endif; ?>
 		
-		<div class="info text-wrap">
+		<section class="info text-wrap">
 
 			<div class="content-item">
 				<a class="u" href="<?php echo osc_premium_url() ; ?>" title="<?php echo osc_esc_html(osc_premium_title()) ; ?>"><?php echo osc_premium_title(); ?></a>
@@ -66,7 +66,7 @@
 			</div>
 
 			<div class="clearfix"></div>
-		</div>
+		</section>
 
 	</div>
-</div>
+</article>

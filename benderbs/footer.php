@@ -24,7 +24,7 @@
 	 */
 ?>
 		</div><!-- /.row -->
-	</div><!-- /.container -->
+	</main><!-- /.container -->
 
 	<?php osc_run_hook('after-main'); ?>
 

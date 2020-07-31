@@ -36,7 +36,7 @@ if (benderbs_show_as() == 'gallery') {
 }
 
 osc_current_web_theme_path('header.php'); ?>
-	<div id="sidebar" class="col-md-3 mt-3">
+	<aside id="sidebar" class="col-md-3 mt-3">
 		<?php if (osc_get_preference('sidebar-300x250', 'bender') != '') : ?>
 		<!-- sidebar ad 300x250 -->
 		<div class="ads_300 mb-2">
@@ -55,9 +55,9 @@ osc_current_web_theme_path('header.php'); ?>
 			</ul>
 			<?php endif; ?>
 		</div><!-- /.widget-box -->
-	</div>
+	</aside>
 
-	<div class="col-md-9 mt-max-sm-2 mt-3">
+	<section class="col-md-9 mt-max-sm-2 mt-3">
 
 		<div class="row mb-3">
 
@@ -102,7 +102,7 @@ osc_current_web_theme_path('header.php'); ?>
 		
 	<?php endif; ?>
 
-	</div><!-- /.col-md-9 -->
+	</section><!-- /.col-md-9 -->
 
 	<?php if (osc_get_preference('homepage-728x90', 'bender') != '') : ?>
 	<div class="col-sm-12 text-center">

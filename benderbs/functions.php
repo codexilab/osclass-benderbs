@@ -217,13 +217,13 @@ function benderbs_header() {
     $logo = benderbs_logo_header();
     $description = osc_page_description();
     echo <<<FB
-    <div id="header" class="jumbotron bg-info">
+    <header id="header" class="jumbotron bg-info">
         <div class="container">
             <div id="logo">
                 $logo <span id="description">$description</span>
             </div>
         </div>
-    </div>
+    </header>
     FB;
 }
 osc_add_hook('before-content', 'benderbs_header');

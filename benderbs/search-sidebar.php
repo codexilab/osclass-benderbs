@@ -28,7 +28,7 @@ if (!isset($category['pk_i_id'])) {
 	$category = array('pk_i_id' => null);
 }
 ?>
-<div id="sidebar" class="col">
+<aside id="sidebar" class="col">
 	<?php osc_alert_form(); ?>
 
 	<form action="<?php echo osc_base_url(true); ?>" method="get" class="pt-3">
@@ -89,4 +89,4 @@ if (!isset($category['pk_i_id'])) {
 	</form>
 	<h3 class="pt-3"><?php _e('Refine category', BENDERBS_THEME_FOLDER) ; ?></h3>
 	<?php benderbs_sidebar_category_search($category['pk_i_id']); ?>
-</div>
+</aside>

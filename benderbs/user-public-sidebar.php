@@ -23,7 +23,7 @@
 	 * SOFTWARE.
 	 */
 ?>
-<div id="sidebar" class="col-md-4 order-2 mb-3 pl-sm-0">
+<aside id="sidebar" class="col-md-4 order-2 mb-3 pl-sm-0">
 	<?php if (osc_user_info() !== '') : ?>
 	<h2><?php _e('User description', BENDERBS_THEME_FOLDER); ?></h2>
 	<?php endif; ?>
@@ -31,7 +31,7 @@
 
 	<?php if (osc_logged_user_id() !=  osc_user_id()) : ?>
 		<?php if(osc_reg_user_can_contact() && osc_is_web_user_logged_in() || !osc_reg_user_can_contact()) : ?>
-		<div class="bg-gray-bender rounded p-3 mt-3">
+		<section class="bg-gray-bender rounded p-3 mt-3">
 			<h2><?php _e("Contact", BENDERBS_THEME_FOLDER); ?></h2>
 
 			<form action="<?php echo osc_base_url(true); ?>" method="post" name="contact_form" id="contact_form">
@@ -90,7 +90,7 @@
 			}
 			osc_add_hook('footer', 'js_user_public_sidebar');
 			?>
-		</div>
+		</section>
 		<?php endif; ?>
 	<?php endif; ?>
-</div><!-- /#sidebar -->
+</aside><!-- /#sidebar -->

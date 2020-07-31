@@ -52,7 +52,7 @@
 
     <?php osc_show_widgets('header'); ?>
 
-	<div class="container">
+	<main class="container">
 
 		<?php osc_run_hook('before-main'); ?>
 

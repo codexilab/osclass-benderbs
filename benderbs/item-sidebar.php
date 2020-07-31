@@ -23,8 +23,8 @@
 	 * SOFTWARE.
 	 */
 ?>
-<div id="sidebar" class="col-md-4 order-2">
-	<div class="bg-gray-bender rounded p-3">
+<aside id="sidebar" class="col-md-4 order-2">
+	<section class="bg-gray-bender rounded p-3">
 		<h2><?php _e("Contact publisher", BENDERBS_THEME_FOLDER); ?></h2>
 
 	<?php if (osc_item_is_expired()) : ?>
@@ -123,7 +123,7 @@
 		?>
 		
 	<?php endif; ?>
-	</div>
+	</section>
 
 	<?php if (!osc_is_web_user_logged_in() || osc_logged_user_id() != osc_item_user_id()) : ?>
 	    <form action="<?php echo osc_base_url(true); ?>" method="post" name="mask_as_form" id="mask_as_form" class="mt-2">
@@ -154,9 +154,9 @@
 
 	<?php if (osc_get_preference('sidebar-300x250', 'bender') != '') : ?>
 	<!-- sidebar ad 300x250 -->
-	<div class="ads_300">
+	<div class="ads_300 mt-2">
 	    <?php echo osc_get_preference('sidebar-300x250', 'bender'); ?>
 	</div>
 	<!-- /sidebar ad 300x250 -->
 	<?php endif; ?>
-</div>
+</aside>
