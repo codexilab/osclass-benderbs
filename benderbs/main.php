@@ -82,13 +82,13 @@ osc_current_web_theme_path('header.php'); ?>
 
 	<?php if (osc_count_latest_items() > 0) : ?>
 
-		<div class="row">
+		<section class="row">
 		<?php
 		View::newInstance()->_exportVariableToView("listType", 'latestItems');
 	    View::newInstance()->_exportVariableToView("listClass", $listClass);
 	    osc_current_web_theme_path('loop.php');
 		?>
-		</div>
+		</section>
 
 		<?php if (osc_count_latest_items() == osc_max_latest_items()) : ?>
 		<div class="text-md-left text-right">
