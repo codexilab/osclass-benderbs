@@ -37,7 +37,7 @@
     <?php osc_run_hook('before-content'); ?>
 
     <?php if (osc_get_preference('header-728x90', 'bender') != '' && !osc_is_public_profile()) : ?>
-	<!-- header ad 728x60-->
+	<!-- header ad 728x90-->
 	<div class="container">
 		<div class="row mb-2">
 			<div class="col-sm-12 text-center">
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- /header ad 728x60-->
+	<!-- /header ad 728x90-->
 	<?php endif; ?>
 
     <?php osc_show_widgets('header'); ?>

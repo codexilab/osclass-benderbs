@@ -106,7 +106,7 @@ osc_current_web_theme_path('header.php'); ?>
 
 	<?php if (osc_get_preference('homepage-728x90', 'bender') != '') : ?>
 	<div class="col-sm-12 text-center">
-		<!-- homepage ad 728x60-->
+		<!-- homepage ad 728x90-->
 		<div class="ads_728">
 			<?php echo osc_get_preference('homepage-728x90', 'bender'); ?>
 		</div>
