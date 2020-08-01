@@ -41,6 +41,9 @@ if(!OC_ADMIN) {
     osc_enqueue_style('fonts-googleapis', 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i');
 
     // Custom styles for this template
+    osc_enqueue_style('sb-admin-2', osc_current_web_theme_url('css/sb-admin-2.min.css'));
+    osc_enqueue_style('datepicker', osc_current_web_theme_url('vendor/datepicker/css/bootstrap-datepicker3.min.css'));
+    osc_enqueue_style('jquery-ui', osc_current_web_theme_url('css/jquery-ui.custom.css'));
     osc_enqueue_style('css-style', osc_current_web_theme_url('css/style.css'));
 
     // Bootstrap core JavaScript
