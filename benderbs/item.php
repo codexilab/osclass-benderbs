@@ -137,19 +137,20 @@ osc_current_web_theme_path('header.php'); ?>
 
 		<section id="description" class="mt-1">
 			<p><?php echo osc_item_description(); ?></p>
-			<div id="custom_fields">
-	            <?php if (osc_count_item_meta() >= 1) : ?>
-	                <div class="meta_list">
-	                    <?php while (osc_has_item_meta()) : ?>
-	                        <?php if (osc_item_meta_value()!='') : ?>
-	                            <p class="meta">
-	                                <strong><?php echo osc_item_meta_name(); ?>:</strong> <?php echo osc_item_meta_value(); ?>
-	                            </p>
-	                        <?php endif; ?>
-	                    <?php endwhile; ?>
-	                </div>
-	            <?php endif; ?>
+			
+			<?php if (osc_count_item_meta() >= 1) : ?>
+			<div id="custom_fields" class="clearfix">
+                <ul class="list-unstyled meta_list">
+                    <?php while (osc_has_item_meta()) : ?>
+                        <?php if (osc_item_meta_value()!='') : ?>
+                            <li class="w-50 float-left meta meta">
+                                <b><?php echo osc_item_meta_name(); ?>:</b> <span class="float-right mr-1"><?php echo osc_item_meta_value(); ?></span>
+                            </li>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
+                </ul>
 	        </div>
+	        <?php endif; ?>
 
 	        <?php osc_run_hook('item_detail', osc_item()); ?>
 
