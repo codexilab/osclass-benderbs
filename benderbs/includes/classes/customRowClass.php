@@ -19,7 +19,7 @@
 /**
  * benderBodyClass
  */
-class benderRowClass
+class customRowClass
 {
     /**
     * Custom Class for add, remove or get body classes.

@@ -24,12 +24,12 @@
      */
      
 // meta tag robots
-osc_add_hook('header','bender_nofollow_construct');
-bender_add_row_class('justify-content-md-center');
+osc_add_hook('header','benderbs_nofollow_construct');
+benderbs_add_row_class('justify-content-md-center');
 osc_current_web_theme_path('header.php'); ?>
     <div class="col-md-8">
         <div class="card border mb-3">
-            <div class="card-header"><h1><?php _e('Recover your password', osc_current_web_theme()); ?></h1></div>
+            <div class="card-header"><h1><?php _e('Recover your password', BENDERBS_THEME_FOLDER); ?></h1></div>
             <div class="card-body text-secondary">
                 <form action="<?php echo osc_base_url(true); ?>" method="post" >
                 	<input type="hidden" name="page" value="login" />
@@ -38,14 +38,14 @@ osc_current_web_theme_path('header.php'); ?>
             		<input type="hidden" name="code" value="<?php echo osc_esc_html(Params::getParam('code')); ?>" />
 
                     <div class="form-group row">
-                        <label for="new_password" class="col-md-4 col-form-label text-md-right"><?php _e('New password', osc_current_web_theme()); ?></label>
+                        <label for="new_password" class="col-md-4 col-form-label text-md-right"><?php _e('New password', BENDERBS_THEME_FOLDER); ?></label>
                         <div class="col-md-6">
                             <input type="password" name="new_password" value="" autocomplete="off" class="form-control form-control-light" />
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right"><?php _e('Repeat new password', osc_current_web_theme()); ?></label>
+                        <label for="password" class="col-md-4 col-form-label text-md-right"><?php _e('Repeat new password', BENDERBS_THEME_FOLDER); ?></label>
                         <div class="col-md-6">
                             <input type="password" name="new_password2" value="" autocomplete="off" class="form-control form-control-light" />
                         </div>
@@ -54,14 +54,14 @@ osc_current_web_theme_path('header.php'); ?>
                     <div class="form-group row">
 	                    <div class="col-md-6 offset-md-4">
 	                        <button type="submit" class="btn btn-info btn-block-md-down">
-	                            <?php _e("Change password", osc_current_web_theme());?>
+	                            <?php _e("Change password", BENDERBS_THEME_FOLDER);?>
 	                        </button>
 	                    </div>
                    	</div>
 
                    	<div class="form-group row">
                    		<div class="col-md-6 offset-md-4">
-                   			<a href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', osc_current_web_theme()); ?></a><br /><a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', osc_current_web_theme()); ?></a>
+                   			<a href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', BENDERBS_THEME_FOLDER); ?></a><br /><a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', BENDERBS_THEME_FOLDER); ?></a>
                    		</div>
                    	</div>
             	</form>

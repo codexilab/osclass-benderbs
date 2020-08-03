@@ -24,7 +24,7 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_nofollow_construct');
+osc_add_hook('header','benderbs_nofollow_construct');
 
 function custom_meta_title($data){
     return __('Alerts');;
@@ -34,7 +34,7 @@ osc_add_filter('meta_title_filter','custom_meta_title');
 $list 		= 'active';
 $gallery 	= '';
 $listClass 	= 'col-sm-12 list-item';
-if (bender_show_as() == 'gallery') {
+if (benderbs_show_as() == 'gallery') {
 	$list 		= '';
 	$gallery 	= 'active';
 	$listClass 	= 'col-sm-4';
@@ -51,7 +51,7 @@ $osc_user = osc_user(); ?>
 		<?php if (osc_count_alerts() == 0) : ?>
 		<div class="row mb-3">
 			<div class="container-fluid">
-			    <p class="text-center"><?php _e('You do not have any alerts yet', osc_current_web_theme()); ?>.</p>
+			    <p class="text-center"><?php _e('You do not have any alerts yet', BENDERBS_THEME_FOLDER); ?>.</p>
 			</div>
 		</div>
 		<?php else : ?>
@@ -60,7 +60,7 @@ $osc_user = osc_user(); ?>
 			<?php while (osc_has_alerts()) : ?>
 
 			<div class="col-md-12">
-				<h3><?php _e('Alert'); ?> <?php echo $i; ?> <small><a href="#" onclick="modalDeleteItem('<?php echo osc_user_unsubscribe_alert_url();?>');return false;" class="text-gray-600 ml-2 delete-item" data-toggle="tooltip" data-placement="top" title="<?php _e('Delete this alert', osc_current_web_theme()); ?>"><i class="fas fa-trash"></i></a></small></h3>
+				<h3><?php _e('Alert'); ?> <?php echo $i; ?> <small><a href="#" onclick="modalDeleteItem('<?php echo osc_user_unsubscribe_alert_url();?>');return false;" class="text-gray-600 ml-2 delete-item" data-toggle="tooltip" data-placement="top" title="<?php _e('Delete this alert', BENDERBS_THEME_FOLDER); ?>"><i class="fas fa-trash"></i></a></small></h3>
 			</div>
 
 			<?php

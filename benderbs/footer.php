@@ -24,7 +24,7 @@
 	 */
 ?>
 		</div><!-- /.row -->
-	</div><!-- /.container -->
+	</main><!-- /.container -->
 
 	<?php osc_run_hook('after-main'); ?>
 
@@ -60,15 +60,15 @@
 					<?php if (osc_users_enabled()) : ?>
         				<?php if (osc_is_web_user_logged_in()) : ?>
 						
-						<li class="list-inline-item"><?php echo sprintf(__('Hi %s', osc_current_web_theme()), osc_logged_user_name() . '!'); ?></li>
-						<li class="list-inline-item"><strong><a href="<?php echo osc_user_dashboard_url(); ?>"><?php _e('My account', osc_current_web_theme()); ?></a></strong></li>
-						<li class="list-inline-item"><a href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', osc_current_web_theme()); ?></a></li>
+						<li class="list-inline-item"><?php echo sprintf(__('Hi %s', BENDERBS_THEME_FOLDER), osc_logged_user_name() . '!'); ?></li>
+						<li class="list-inline-item"><strong><a href="<?php echo osc_user_dashboard_url(); ?>"><?php _e('My account', BENDERBS_THEME_FOLDER); ?></a></strong></li>
+						<li class="list-inline-item"><a href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', BENDERBS_THEME_FOLDER); ?></a></li>
 					
 						<?php else: ?>
 					
-						<li class="list-inline-item"><a href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', osc_current_web_theme()); ?></a></li>
+						<li class="list-inline-item"><a href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', BENDERBS_THEME_FOLDER); ?></a></li>
 						<?php if (osc_user_registration_enabled()) : ?>
-						<li class="list-inline-item"><a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', osc_current_web_theme()); ?></a></li>
+						<li class="list-inline-item"><a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', BENDERBS_THEME_FOLDER); ?></a></li>
 						<?php endif; ?>
 
 						<?php endif; ?>
@@ -78,10 +78,10 @@
 				</div>
 				<div class="col-md-6 col-sm-12 text-center text-md-right">
 					<?php if (osc_users_enabled() || (!osc_users_enabled() && !osc_reg_user_post())) : ?>
-					<a href="<?php echo osc_item_post_url_in_category(); ?>" class="btn btn-danger btn-lg btn-block d-md-none"><?php _e("Publish your ad for free", osc_current_web_theme());?></a>
+					<a href="<?php echo osc_item_post_url_in_category(); ?>" class="btn btn-danger btn-lg btn-block d-md-none"><?php _e("Publish your ad for free", BENDERBS_THEME_FOLDER);?></a>
 					<?php endif; ?>
 
-					<a href="<?php echo osc_contact_url(); ?>"><?php _e('Contact', osc_current_web_theme()); ?></a>
+					<a href="<?php echo osc_contact_url(); ?>"><?php _e('Contact', BENDERBS_THEME_FOLDER); ?></a>
 
 					<?php osc_reset_static_pages(); while( osc_has_static_pages()) : ?>
 					<a href="<?php echo osc_static_page_url(); ?>"><?php echo osc_static_page_title(); ?></a>
@@ -89,7 +89,7 @@
 
 					<?php if (osc_count_web_enabled_locales() > 1) { ?>
 			            <?php osc_goto_first_locale(); ?>
-			            <strong><?php _e('Language:', osc_current_web_theme()); ?></strong>
+			            <strong><?php _e('Language:', BENDERBS_THEME_FOLDER); ?></strong>
 			            <?php $i = 0;  ?>
 			            <?php while ( osc_has_web_enabled_locales() ) { ?>
 			            <span><a id="<?php echo osc_locale_code(); ?>" href="<?php echo osc_change_language_url (osc_locale_code()); ?>"><?php echo osc_locale_name(); ?></a></span><?php if( $i == 0 ) { echo " &middot; "; } ?>
@@ -108,9 +108,9 @@
 		$(".logout").click(function() {
 		    $('#genModal').modal('show');
 		    $('#genModal').on('shown.bs.modal', function(e) {
-	            $("#genModal .modal-header").html('<h5 class="modal-title"><?php _e('Ready to Leave?', osc_current_web_theme()); ?></h5>');
-	            $("#genModal .modal-body").html('<?php _e('Select "Logout" below if you are ready to end your current session.', osc_current_web_theme()); ?>');
-	            $("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php _e('Cancel'); ?></button> <a class="btn btn-primary" href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', osc_current_web_theme()); ?></a>');
+	            $("#genModal .modal-header").html('<h5 class="modal-title"><?php _e('Ready to Leave?', BENDERBS_THEME_FOLDER); ?></h5>');
+	            $("#genModal .modal-body").html('<?php _e('Select "Logout" below if you are ready to end your current session.', BENDERBS_THEME_FOLDER); ?>');
+	            $("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php _e('Cancel'); ?></button> <a class="btn btn-primary" href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', BENDERBS_THEME_FOLDER); ?></a>');
 		    });
 		});
 	});
@@ -118,9 +118,9 @@
 	function modalDeleteItem(url) {
 		$('#genModal').modal('show');
 		$('#genModal').on('shown.bs.modal', function(e) {
-			$("#genModal .modal-header").html('<h5 class="modal-title"><?php echo osc_esc_js(__('Message', osc_current_web_theme())); ?></h5>');
-			$("#genModal .modal-body").html('<?php echo osc_esc_js(__('This action can not be undone. Are you sure you want to continue?', osc_current_web_theme())) ?>');
-			$("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php echo osc_esc_js(__('Cancel')); ?></button> <a class="btn btn-primary" href="'+url+'"><?php echo osc_esc_js(__('Delete', osc_current_web_theme())); ?></a>');
+			$("#genModal .modal-header").html('<h5 class="modal-title"><?php echo osc_esc_js(__('Message', BENDERBS_THEME_FOLDER)); ?></h5>');
+			$("#genModal .modal-body").html('<?php echo osc_esc_js(__('This action can not be undone. Are you sure you want to continue?', BENDERBS_THEME_FOLDER)) ?>');
+			$("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php echo osc_esc_js(__('Cancel')); ?></button> <a class="btn btn-primary" href="'+url+'"><?php echo osc_esc_js(__('Delete', BENDERBS_THEME_FOLDER)); ?></a>');
 		});
 	}
 	</script>
@@ -128,6 +128,25 @@
 <?php endif; ?>
 
 	<?php osc_run_hook('footer'); ?>
+
+	<script>
+		function copyPriceToClipboard(itemId, type) {
+			var btnPrice 	= 'price-'+type+'-'+itemId
+			var msgCopyTo 	= '<?php echo osc_esc_js(__('Copy to Clipboard', BENDERBS_THEME_FOLDER)); ?>'
+			var msgCopied 	= '<?php echo osc_esc_js(__('Copied!', BENDERBS_THEME_FOLDER)); ?>'
+
+			if (copyToClipboard(btnPrice) === true) {
+				$('#'+btnPrice).attr('data-original-title', msgCopied)
+					.tooltip('show')
+					.attr('data-original-title', msgCopyTo);
+			} else {
+				$('#'+btnPrice).attr('data-original-title', 'Copy with Ctrl-c')
+					.tooltip('show')
+					.attr('data-original-title', msgCopyTo);
+			}
+
+		}
+	</script>
 
 </body>
 </html>

@@ -24,21 +24,21 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_nofollow_construct');
+osc_add_hook('header','benderbs_nofollow_construct');
 
 function js_item_send_friend() {
 	CustomSendFriendForm::js_validation();
 }
 osc_add_hook('footer', 'js_item_send_friend');
 
-bender_add_row_class('justify-content-md-center');
+benderbs_add_row_class('justify-content-md-center');
 
 osc_current_web_theme_path('header.php');
 ?>
 	<div class="col-md-10">
 
 		<div class="card border mb-3">
-			<div class="card-header"><h1><?php _e('Send to a friend', osc_current_web_theme()); ?></h1></div>
+			<div class="card-header"><h1><?php _e('Send to a friend', BENDERBS_THEME_FOLDER); ?></h1></div>
 			<div class="card-body text-secondary">
 				<div class="row">
 					<div class="col-md-11">
@@ -51,38 +51,38 @@ osc_current_web_theme_path('header.php');
                         	<input type="hidden" name="yourEmail" value="<?php echo osc_logged_user_email();?>" />
 			            <?php else : ?>
 			            	<div class="form-group row">
-				            	<label for="yourName" class="col-sm-3 col-form-label text-md-right"><?php _e("Your name",osc_current_web_theme()); ?></label>
+				            	<label for="yourName" class="col-sm-3 col-form-label text-md-right"><?php _e("Your name",BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomSendFriendForm::your_name(); ?>
 				            	</div>
 				            </div>
 				            <div class="form-group row">
-				            	<label for="yourEmail" class="col-sm-3 col-form-label text-md-right"><?php _e("Your e-mail",osc_current_web_theme()); ?></label>
+				            	<label for="yourEmail" class="col-sm-3 col-form-label text-md-right"><?php _e("Your e-mail",BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomSendFriendForm::your_email(); ?>
 				            	</div>
 				            </div>
 			            <?php endif; ?>
 			            	<div class="form-group row">
-				            	<label for="friendName" class="col-sm-3 col-form-label text-md-right"><?php _e("Your friend's name",osc_current_web_theme()); ?></label>
+				            	<label for="friendName" class="col-sm-3 col-form-label text-md-right"><?php _e("Your friend's name",BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomSendFriendForm::friend_name(); ?>
 				            	</div>
 				            </div>
 				            <div class="form-group row">
-				            	<label for="friendEmail" class="col-sm-3 col-form-label text-md-right"><?php _e("Your friend's e-mail address", osc_current_web_theme()); ?></label>
+				            	<label for="friendEmail" class="col-sm-3 col-form-label text-md-right"><?php _e("Your friend's e-mail address", BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomSendFriendForm::friend_email(); ?>
 				            	</div>
 				            </div>
 				            <div class="form-group row">
-				            	<label for="subject" class="col-sm-3 col-form-label text-md-right"><?php _e('Subject (optional)', osc_current_web_theme()); ?></label>
+				            	<label for="subject" class="col-sm-3 col-form-label text-md-right"><?php _e('Subject (optional)', BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomContactForm::the_subject(); ?>
 				            	</div>
 				            </div>
 				            <div class="form-group row">
-				            	<label for="message" class="col-sm-3 col-form-label text-md-right"><?php _e('Message', osc_current_web_theme()); ?></label>
+				            	<label for="message" class="col-sm-3 col-form-label text-md-right"><?php _e('Message', BENDERBS_THEME_FOLDER); ?></label>
 								<div class="col-sm-9">
 				            		<?php CustomSendFriendForm::your_message(); ?>
 				            	</div>
@@ -91,7 +91,7 @@ osc_current_web_theme_path('header.php');
 				            	<?php osc_run_hook('contact_form'); ?>
 				            	<?php osc_show_recaptcha(); ?>
 							    <div class="col-md-9 ml-md-auto">
-							    	<button type="submit" class="btn btn-info btn-block-md-down"><?php _e('Send', osc_current_web_theme()); ?></button>
+							    	<button type="submit" class="btn btn-info btn-block-md-down"><?php _e('Send', BENDERBS_THEME_FOLDER); ?></button>
 							    </div>
 							    <?php osc_run_hook('admin_contact_form'); ?>
 							</div>

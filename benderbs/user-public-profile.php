@@ -24,22 +24,14 @@
 	 */
 	 
 // meta tag robots
-osc_add_hook('header','bender_follow_construct');
+osc_add_hook('header','benderbs_follow_construct');
 
-osc_remove_hook('before-content', 'bender_header');
+osc_remove_hook('before-content', 'benderbs_header');
 
-function custom_bender_header() {
-    $logo = logo_header();
-    $description = osc_page_description();
-    echo <<<FB
-    <div id="header" class="jumbotron bg-info">
-        <div class="container">
-            <div id="logo"></div>
-        </div>
-    </div>
-    FB;
+function benderbs_public_profile_header() {
+    echo '<header id="user-cover" class="jumbotron bg-gray"></header>';
 }
-osc_add_hook('before-content', 'custom_bender_header');
+osc_add_hook('before-content', 'benderbs_public_profile_header');
 
 osc_remove_hook('before-main', 'breadcrumb');
 
@@ -69,7 +61,7 @@ unset($location_array);
 $list 		= 'active';
 $gallery 	= '';
 $listClass 	= 'col-sm-12 list-item';
-if (bender_show_as() == 'gallery') {
+if (benderbs_show_as() == 'gallery') {
 	$list 		= '';
 	$gallery 	= 'active';
 	$listClass 	= 'col-sm-4';
@@ -79,16 +71,16 @@ osc_current_web_theme_path('header.php'); ?>
 
 	<?php osc_current_web_theme_path('user-public-sidebar.php'); ?>
 
-	<div class="col-md-8 order-1">
-		<div class="fb-profile clearfix">
+	<article class="col-md-8 order-1">
+		<section class="fb-profile clearfix">
 			<!-- <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/> -->
-	        <img align="left" class="fb-image-profile img-fluid img-thumbnail" src="<?php echo osc_current_web_theme_url('img/user_default.gif'); ?>" alt="Profile image example"/>
+	        <img align="left" class="fb-image-profile img-fluid img-thumbnail" src="<?php echo osc_current_web_theme_url('images/user_default.gif'); ?>" alt="Profile image example"/>
 	        <div class="fb-profile-text">
 	            <h1><?php echo osc_user_name(); ?></h1>
 	        </div>
-	    </div>
+	    </section>
 
-	    <div class="center mt-3">
+	    <section class="center mt-3">
 	    	<ul class="list-unstyled">
 	    		<?php if (osc_user_website() !== '') : ?>
 	    		<li><a href="<?php echo osc_user_website(); ?>"><?php echo osc_user_website(); ?></a></li>
@@ -102,22 +94,24 @@ osc_current_web_theme_path('header.php'); ?>
 	    		<li><?php echo $address; ?></li>
 	    		<?php endif; ?>
 	    	</ul>
-	    </div>
+	    </section>
 
 	    <?php if (osc_count_items() > 0) : ?>
-	    <h2><?php _e('Latest listings', osc_current_web_theme()); ?></h2>
-	    <div class="row">
-	    	<?php
-			View::newInstance()->_exportVariableToView("listClass", $listClass);
-			osc_current_web_theme_path('loop.php');
-			?>
+	   	<section>
+		    <h2><?php _e('Latest listings', BENDERBS_THEME_FOLDER); ?></h2>
+		    <div class="row">
+		    	<?php
+				View::newInstance()->_exportVariableToView("listClass", $listClass);
+				osc_current_web_theme_path('loop.php');
+				?>
 
-	    	<div class="col-md-12">
-	    		<nav aria-label="Pagination">
-	    			<?php echo bender_pagination_items(); ?>
-	    		</nav>
-	    	</div>
-	    </div>
-		<?php endif; ?>
-	</div>
+		    	<div class="col-md-12">
+		    		<nav aria-label="Pagination">
+		    			<?php echo benderbs_pagination_items(); ?>
+		    		</nav>
+		    	</div>
+		    </div>
+			<?php endif; ?>
+		</section>
+	</article>
 <?php osc_current_web_theme_path('footer.php'); ?>

@@ -24,13 +24,13 @@
 	 */
 
 // meta tag robots
-osc_add_hook('header', 'bender_nofollow_construct');
-bender_add_row_class('border border-warning rounded alert alert-warning mt-4');
+osc_add_hook('header', 'benderbs_nofollow_construct');
+benderbs_add_row_class('border border-warning rounded alert alert-warning mt-4');
 osc_current_web_theme_path('header.php'); ?>
 	<div class="col mt-3">
-		<h1><?php _e("Sorry but I can't find the page you're looking for", osc_current_web_theme()) ; ?></h1>
+		<h1><?php _e("Sorry but I can't find the page you're looking for", BENDERBS_THEME_FOLDER) ; ?></h1>
 
-		<p><?php _e("Let us help you, we have got a few tips for you to find it.", osc_current_web_theme()) ; ?></p>
+		<p><?php _e("Let us help you, we have got a few tips for you to find it.", BENDERBS_THEME_FOLDER) ; ?></p>
 		<ul class="list-unstyled">
 			<li>
 				<?php _e("<strong>Search</strong> for it:", 'bender') ; ?>
@@ -41,13 +41,13 @@ osc_current_web_theme_path('header.php'); ?>
 							<input type="text" name="sPattern" class="form-control form-control-light" id="query" value="">
 						</div>
 						<div class="col-sm-10 mt-max-sm-2 col-md-2">
-							<button type="submit" class="btn btn-light btn-block-md-down"><?php _e('Search', osc_current_web_theme()) ; ?></button>
+							<button type="submit" class="btn btn-light btn-block-md-down"><?php _e('Search', BENDERBS_THEME_FOLDER) ; ?></button>
 						</div>
 					</div>
 				</form>
 			</li>
 			<li class="mt-3">
-				<?php _e("<strong>Look</strong> for it in the most popular categories.", osc_current_web_theme()) ; ?>
+				<?php _e("<strong>Look</strong> for it in the most popular categories.", BENDERBS_THEME_FOLDER) ; ?>
 				<?php osc_goto_first_category(); ?>
 				<ul class="list-inline">
 				<?php while (osc_has_categories()) : ?>
