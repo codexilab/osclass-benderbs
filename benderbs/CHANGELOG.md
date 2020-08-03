@@ -1,9 +1,29 @@
 # Bender Bootstrap
 ====================
 
+## [1.1.4] 2020-08-03
+
+### Added
+
+- Copy to Clipboard on the item prices.
+- CSS media styles for ads (banners).
+
+### Fixed
+
+- Two bad indentation fixeds.
+- Changed .size() to .length for jQuery 3+ compatibility with Fine Uploader.
+
+### Changed
+
+- Renamed custom.css to style.css.
+- img/ folder renamed to images/ .
+- Renamed benderbsRowClass to customRowClass
+- Ordering some things in CSS and HTML (now with HTML5 semantic code for SEO).
+- Replaced osc_cuurent_web_theme() by BENDERBS_THEME_FOLDER constant.
+
 ## [1.0.3] 2020-07-13
 
-## Added
+### Added
 
 - Description meta tag added in Public profile.
 

@@ -19,7 +19,7 @@
      * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-define('BENDERBS_THEME_VERSION', '103');
+define('BENDERBS_THEME_VERSION', '114');
 define('BENDERBS_THEME_FOLDER', osc_current_web_theme());
 
 // CUSTOM CLASSES
