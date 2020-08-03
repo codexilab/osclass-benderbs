@@ -219,15 +219,15 @@ if (!function_exists('benderbs_logo_header')) {
 function benderbs_header() {
     $logo = benderbs_logo_header();
     $description = osc_page_description();
-    echo <<<FB
-    <header id="header" class="jumbotron bg-info">
-        <div class="container">
-            <div id="logo">
-                $logo <span id="description">$description</span>
-            </div>
-        </div>
-    </header>
-    FB;
+echo <<<FB
+            <header id="header" class="jumbotron bg-info">
+                <div class="container">
+                    <div id="logo">
+                        $logo <span id="description">$description</span>
+                    </div>
+                </div>
+            </header>
+FB;
 }
 osc_add_hook('before-content', 'benderbs_header');
 
