@@ -46,7 +46,15 @@
 					<span><?php echo osc_item_category(); ?></span> 
 					<span><?php echo osc_item_city(); ?> <?php if (osc_item_region() != '') echo '('.osc_item_region().')'; ?></span> 
 					<span>-</span> <span class="text-nowrap"><?php echo osc_format_date(osc_item_pub_date()); ?></span>
-					<?php if (osc_price_enabled_at_items()) : ?><span class="text-bender-price font-weight-bold text-nowrap"><?php echo osc_format_price(osc_item_price()); ?></span><?php endif; ?>
+					<?php if (osc_price_enabled_at_items()) : ?>
+					<span id="price-item-<?php echo osc_item_id(); ?>" class="text-bender-price<?php if (osc_item_price() !== null) echo ' cursor-pointer'; ?> font-weight-bold text-nowrap"
+						<?php if (osc_item_price() !== null) : ?>
+						data-toggle="tooltip" data-placement="top" title="<?php _e('Copy to Clipboard', BENDERBS_THEME_FOLDER); ?>" onclick="copyPriceToClipboard(<?php echo osc_item_id(); ?>, 'item');return false;"
+						<?php endif; ?>
+					>
+						<?php echo osc_format_price(osc_item_price()); ?>
+					</span>
+					<?php endif; ?>
 				</div>
 				<?php if (!benderbs_show_as() || benderbs_show_as() == 'list') : ?>
 				<div class="mt-2"><?php echo osc_highlight(osc_item_description(), 250); ?></div>

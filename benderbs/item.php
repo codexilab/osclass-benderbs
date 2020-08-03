@@ -64,7 +64,18 @@ osc_current_web_theme_path('header.php'); ?>
 	<?php osc_current_web_theme_path('item-sidebar.php'); ?>
 
 	<article id="item-content" class="col-md-8 order-1 pb-3 item">
-		<h1><?php if (osc_price_enabled_at_items()) : ?><span class="price"><?php echo osc_item_formatted_price(); ?></span> <?php endif; ?><strong><?php echo osc_item_title() . ', ' . osc_item_city(); ?></strong></h1>
+		<h1>
+			<?php if (osc_price_enabled_at_items()) : ?>
+			<span id="price-item-<?php echo osc_item_id(); ?>" class="price<?php if (osc_item_price() !== null) echo ' cursor-pointer'; ?>" 
+				<?php if (osc_item_price() !== null) : ?>
+				data-toggle="tooltip" data-placement="top" title="<?php _e('Copy to Clipboard', BENDERBS_THEME_FOLDER); ?>" onclick="copyPriceToClipboard(<?php echo osc_item_id(); ?>, 'item');return false;"
+				<?php endif; ?>
+			>
+				<?php echo osc_item_formatted_price(); ?>
+			</span> 
+			<?php endif; ?>
+			<strong><?php echo osc_item_title() . ', ' . osc_item_city(); ?></strong>
+		</h1>
 
 		<section class="bg-gray-bender small mt-3 p-1 rounded">
 

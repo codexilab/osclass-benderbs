@@ -129,5 +129,24 @@
 
 	<?php osc_run_hook('footer'); ?>
 
+	<script>
+		function copyPriceToClipboard(itemId, type) {
+			var btnPrice 	= 'price-'+type+'-'+itemId
+			var msgCopyTo 	= '<?php echo osc_esc_js(__('Copy to Clipboard', BENDERBS_THEME_FOLDER)); ?>'
+			var msgCopied 	= '<?php echo osc_esc_js(__('Copied!', BENDERBS_THEME_FOLDER)); ?>'
+
+			if (copyToClipboard(btnPrice) === true) {
+				$('#'+btnPrice).attr('data-original-title', msgCopied)
+					.tooltip('show')
+					.attr('data-original-title', msgCopyTo);
+			} else {
+				$('#'+btnPrice).attr('data-original-title', 'Copy with Ctrl-c')
+					.tooltip('show')
+					.attr('data-original-title', msgCopyTo);
+			}
+
+		}
+	</script>
+
 </body>
 </html>

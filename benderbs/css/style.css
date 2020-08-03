@@ -697,6 +697,8 @@ ul.r-list li ul {
 
 .w-min-content { width: min-content; }
 
+.cursor-pointer { cursor: pointer; }
+
 .center {
   display: block;
   text-align: center;
