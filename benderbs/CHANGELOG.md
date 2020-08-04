@@ -1,6 +1,12 @@
 # Bender Bootstrap
 ====================
 
+## [1.1.5] 2020-08-04
+
+### Fixed
+
+- Fixed indentation level.
+
 ## [1.1.4] 2020-08-03
 
 ### Added

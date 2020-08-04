@@ -19,7 +19,7 @@
      * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-define('BENDERBS_THEME_VERSION', '114');
+define('BENDERBS_THEME_VERSION', '115');
 define('BENDERBS_THEME_FOLDER', osc_current_web_theme());
 
 // CUSTOM CLASSES
@@ -280,13 +280,13 @@ if (!function_exists('breadcrumb')) {
     function breadcrumb() {
         $breadcrumb = benderbs_breadcrumb('', false, get_breadcrumb_lang());
         if ($breadcrumb !== '') {
-            echo <<<FB
-            <div class="row">
-                <div class="col-md-12">
-                $breadcrumb
-                </div>
+echo <<<FB
+        <div class="row">
+            <div class="col-md-12">
+            $breadcrumb
             </div>
-            FB;
+        </div>
+FB;
         }
     }
     osc_add_hook('before-main', 'breadcrumb');
