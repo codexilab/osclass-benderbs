@@ -21,21 +21,15 @@
 
 define('BENDERBS_THEME_VERSION', '1.1.5');
 define('BENDERBS_THEME_FOLDER', osc_current_web_theme());
+define('BENDERBS_THEME_PATH', osc_themes_path() . BENDERBS_THEME_FOLDER);
 
 // CUSTOM CLASSES
-include 'includes/classes/customRowClass.php';
-include 'includes/classes/Breadcrumb.php';
-include 'includes/classes/Pagination.php';
-include 'includes/frm/Form.form.class.php';
-include 'includes/frm/Alert.form.class.php';
-include 'includes/frm/Field.form.class.php';
-include 'includes/frm/Comment.form.class.php';
-include 'includes/frm/Contact.form.class.php';
-include 'includes/frm/SendFriend.form.class.php';
-include 'includes/frm/User.form.class.php';
-include 'includes/frm/Item.form.class.php';
+require BENDERBS_THEME_PATH . '/includes/classes/BenderBSAutoLoader.php';
+BenderBSAutoLoader::addFolder(BENDERBS_THEME_PATH . '/includes/classes');
+BenderBSAutoLoader::addFolder(BENDERBS_THEME_PATH . '/includes/frm');
+BenderBSAutoLoader::register();
 
-if(!OC_ADMIN) {
+if (!OC_ADMIN) {
     // Custom fonts for this template
     osc_enqueue_style('fontawesome', 'https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.12.0/css/all.min.css');
     osc_enqueue_style('fonts-googleapis', 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i');
@@ -112,8 +106,8 @@ if (!function_exists('benderbs_follow_construct')) {
 }
 
 function benderbs_add_row_class_construct($classes) {
-    $customRowClass = customRowClass::newInstance();
-    $classes = array_merge($classes, $customRowClass->get());
+    $CustomRowClass = CustomRowClass::newInstance();
+    $classes = array_merge($classes, $CustomRowClass->get());
     return $classes;
 }
 
@@ -139,8 +133,8 @@ function benderbs_row_class($echo = true) {
  * @param string $class required parameter.
  */
 function benderbs_add_row_class($class) {
-    $customRowClass = customRowClass::newInstance();
-    $customRowClass->add($class);
+    $CustomRowClass = CustomRowClass::newInstance();
+    $CustomRowClass->add($class);
 }
 benderbs_add_row_class('row');
 
