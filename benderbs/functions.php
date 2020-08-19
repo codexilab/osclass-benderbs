@@ -21,12 +21,12 @@
 
 define('BENDERBS_THEME_VERSION', '1.1.5');
 define('BENDERBS_THEME_FOLDER', osc_current_web_theme());
-define('BENDERBS_THEME_PATH', osc_themes_path() . BENDERBS_THEME_FOLDER);
+define('BENDERBS_THEME_PATH', osc_themes_path() . BENDERBS_THEME_FOLDER . '/');
 
 // CUSTOM CLASSES
-require BENDERBS_THEME_PATH . '/includes/classes/BenderBSAutoLoader.php';
-BenderBSAutoLoader::addFolder(BENDERBS_THEME_PATH . '/includes/classes');
-BenderBSAutoLoader::addFolder(BENDERBS_THEME_PATH . '/includes/frm');
+require BENDERBS_THEME_PATH . 'includes/classes/BenderBSAutoLoader.php';
+BenderBSAutoLoader::addFolder(BENDERBS_THEME_PATH . 'includes/classes');
+BenderBSAutoLoader::addFolder(BENDERBS_THEME_PATH . 'includes/frm');
 BenderBSAutoLoader::register();
 
 if (!OC_ADMIN) {
