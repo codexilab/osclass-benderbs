@@ -105,9 +105,15 @@ if (!function_exists('benderbs_follow_construct')) {
     }
 }
 
-function benderbs_add_row_class_construct($classes) {
-    $CustomRowClass = CustomRowClass::newInstance();
-    $classes = array_merge($classes, $CustomRowClass->get());
+function benderbs_add_body_class_construct($classes) {
+    $customBodyClass = customBodyClass::newInstance();
+    $classes = array_merge($classes, $customBodyClass->get());
+    return $classes;
+}
+
+function benderbs_add_wrapper_class_construct($classes) {
+    $customWrapperClass = customWrapperClass::newInstance();
+    $classes = array_merge($classes, $customWrapperClass->get());
     return $classes;
 }
 
@@ -117,10 +123,26 @@ function benderbs_add_row_class_construct($classes) {
  * @param string $echo Optional parameter.
  * @return print string with all body classes concatenated
  */
-function benderbs_row_class($echo = true) {
-    osc_add_filter('benderbs_rowClass', 'benderbs_add_row_class_construct');
-    $classes = osc_apply_filter('benderbs_rowClass', array());
-    if($echo && count($classes)){
+function benderbs_body_class($echo = true) {
+    osc_add_filter('benderbs_bodyClass', 'benderbs_add_body_class_construct');
+    $classes = osc_apply_filter('benderbs_bodyClass', array());
+    if ($echo && count($classes)) {
+        echo 'class="'.implode(' ', $classes).'"';
+    } else {
+        return $classes;
+    }
+}
+
+/**
+ * Print wrapper classes.
+ *
+ * @param string $echo Optional parameter.
+ * @return print string with all classes concatenated
+ */
+function benderbs_wrapper_class($echo = true) {
+    osc_add_filter('benderbs_wrapperClass', 'benderbs_add_wrapper_class_construct');
+    $classes = osc_apply_filter('benderbs_wrapperClass', array());
+    if ($echo && count($classes)) {
         echo 'class="'.implode(' ', $classes).'"';
     } else {
         return $classes;
@@ -132,11 +154,17 @@ function benderbs_row_class($echo = true) {
  *
  * @param string $class required parameter.
  */
-function benderbs_add_row_class($class) {
-    $CustomRowClass = CustomRowClass::newInstance();
-    $CustomRowClass->add($class);
+function benderbs_add_body_class($class) {
+    $customBodyClass = customBodyClass::newInstance();
+    $customBodyClass->add($class);
 }
-benderbs_add_row_class('row');
+
+// For add  new classes after .row
+function benderbs_add_wrapper_class($class) {
+    $customWrapperClass = customWrapperClass::newInstance();
+    $customWrapperClass->add($class);
+}
+benderbs_add_wrapper_class('row');
 
 /**
  * Detect if a string is PHP script
@@ -151,9 +179,9 @@ if (!function_exists('check_php_tags')) {
         $str = str_replace("\r", "", $str); // Minify
 
         $opened_php_tag = preg_match('/^<\?php/i', $str);
-        $closed_php_Tag = preg_match('/\?>$/i', $str);
+        $closed_php_tag = preg_match('/\?>$/i', $str);
 
-        return (bool) $opened_php_tag && (bool) $closed_php_Tag;
+        return (bool) $opened_php_tag && (bool) $closed_php_tag;
     }
 }
 

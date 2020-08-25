@@ -29,7 +29,7 @@
     <?php osc_current_web_theme_path('common/head.php'); ?>
 </head>
 
-<body id="page-top">
+<body id="page-top" <?php benderbs_body_class(); ?>>
 		
 	<!-- nav -->
 	<?php osc_current_web_theme_path('nav.php'); ?>
@@ -58,6 +58,6 @@
 
 		<?php benderbs_show_flash_message(); ?>
 
-		<div <?php benderbs_row_class(); ?>>
+		<div <?php benderbs_wrapper_class(); ?>>
 
 			<?php osc_run_hook('inside-main'); ?>

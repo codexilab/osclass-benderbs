@@ -31,7 +31,7 @@ function js_contact() {
 }
 osc_add_hook('footer', 'js_contact');
 
-benderbs_add_row_class('justify-content-md-center');
+benderbs_add_wrapper_class('justify-content-md-center');
 
 osc_current_web_theme_path('header.php'); ?>
 	<div class="col-md-10">
