@@ -155,7 +155,7 @@
 	<?php if (osc_get_preference('sidebar-300x250', 'bender') != '') : ?>
 	<!-- sidebar ad 300x250 -->
 	<div class="ads_300 mt-2">
-	    <?php echo osc_get_preference('sidebar-300x250', 'bender'); ?>
+	    <?php echo apply_eval_nice(osc_get_preference('sidebar-300x250', 'bender')); ?>
 	</div>
 	<!-- /sidebar ad 300x250 -->
 	<?php endif; ?>

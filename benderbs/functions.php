@@ -138,12 +138,57 @@ function benderbs_add_row_class($class) {
 }
 benderbs_add_row_class('row');
 
+/**
+ * Detect if a string is PHP script
+ * with only the PHP tags is opened and closed
+ * and without white spaces blank before or after of string
+ *
+ * @param $str
+ * @return bool
+ */
+if (!function_exists('check_php_tags')) {
+    function check_php_tags($str) {
+        $str = str_replace("\r", "", $str); // Minify
+
+        $opened_php_tag = preg_match('/^<\?php/i', $str);
+        $closed_php_Tag = preg_match('/\?>$/i', $str);
+
+        return (bool) $opened_php_tag && (bool) $closed_php_Tag;
+    }
+}
+
+/**
+ * Remove PHP tags for eval,
+ * prevent it print errors/warnings
+ *
+ * @param $php
+ */
+if (!function_exists('eval_nice')) {
+    function eval_nice($php) {
+        $code_str = preg_replace('/<\?php(.+?)\?>/is', '$1', $php);
+
+        try {
+            $result = @eval($code_str);
+            return eval($result);
+        } catch (ParseError $e) {
+            return '<!-- PHP Error -->';
+        }
+
+    }
+}
+
+if (!function_exists('apply_eval_nice')) {
+    function apply_eval_nice($preference) {
+        return check_php_tags($preference) ? eval_nice($preference) : $preference;
+    }
+}
+
 // ads  SEARCH
 if (!function_exists('search_ads_listing_top_fn')) {
     function search_ads_listing_top_fn() {
         if(osc_get_preference('search-results-top-728x90', 'bender')!='') {
             echo '<div class="col-md-12 text-center mb-2"><div class="ads_728">' . PHP_EOL;
-            echo osc_get_preference('search-results-top-728x90', 'bender');
+            echo apply_eval_nice(osc_get_preference('search-results-top-728x90', 'bender'));
             echo '</div></div>' . PHP_EOL;
         }
     }
@@ -154,7 +199,7 @@ if (!function_exists('search_ads_listing_medium_fn')) {
     function search_ads_listing_medium_fn() {
         if(osc_get_preference('search-results-middle-728x90', 'bender')!='') {
             echo '<div class="col-md-12 text-center mt-2 mb-2"><div class="ads_728">' . PHP_EOL;
-            echo osc_get_preference('search-results-middle-728x90', 'bender');
+            echo apply_eval_nice(osc_get_preference('search-results-middle-728x90', 'bender'));
             echo '</div></div>' . PHP_EOL;
         }
     }

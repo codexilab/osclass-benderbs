@@ -42,7 +42,7 @@
 		<div class="row mb-2">
 			<div class="col-sm-12 text-center">
 				<div class="ads_header">
-			    <?php echo osc_get_preference('header-728x90', 'bender'); ?> 
+			    <?php echo apply_eval_nice(osc_get_preference('header-728x90', 'bender')); ?> 
 			    </div>
 			</div>
 		</div>
