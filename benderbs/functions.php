@@ -1054,12 +1054,21 @@ if (!function_exists('theme_benderbs_actions_admin')) {
             break;
             case 'upload_logo':
                 $package = Params::getFiles('logo');
+
                 if ($package['error'] == UPLOAD_ERR_OK) {
-                    $img = ImageResizer::fromFile($package['tmp_name']);
+                    if (osc_version() < 5 ) {
+                        $img = ImageResizer::fromFile($package['tmp_name']);
+                    }
+
+                    if (osc_version() >= 5 ) {
+                        $img = ImageProcessing::fromFile($package['tmp_name']);
+                    }
+
                     $ext = $img->getExt();
-                    $logo_name     = 'bender_logo';
-                    $logo_name    .= '.'.$ext;
+                    $logo_name = 'bender_logo';
+                    $logo_name .= '.'.$ext;
                     $path = osc_uploads_path() . $logo_name;
+                    
                     //$img->saveToFile($path);
                     if (move_uploaded_file($package['tmp_name'], $path)) {
                         osc_set_preference('logo', $logo_name, 'bender');
@@ -1070,6 +1079,7 @@ if (!function_exists('theme_benderbs_actions_admin')) {
                 } else {
                     osc_add_flash_error_message(_m("An error has occurred, please try again"), 'admin');
                 }
+                
                 ob_get_clean();
                 osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/'.BENDERBS_THEME_FOLDER.'/admin/header.php'));
             break;
