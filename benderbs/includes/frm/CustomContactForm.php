@@ -19,7 +19,7 @@
  */
 
 	/**
-	 * Class ContactForm
+	 * Contact.form.class.php
 	 */
 	class CustomContactForm extends CustomForm {
 

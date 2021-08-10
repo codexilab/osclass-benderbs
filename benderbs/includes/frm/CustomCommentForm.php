@@ -19,7 +19,7 @@
  */
 
 	/**
-	 * Class CommentForm
+	 * Comment.form.class.php
 	 */
 	class CustomCommentForm extends CustomForm
     {

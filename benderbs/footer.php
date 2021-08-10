@@ -101,35 +101,57 @@
 		</div>
 	</footer>
 
-<?php if (osc_users_enabled()) : ?>
-	<?php if (osc_is_web_user_logged_in()) : ?>
 	<script>
-	$(document).ready(function() {
-		$(".logout").click(function() {
-		    $('#genModal').modal('show');
-		    $('#genModal').on('shown.bs.modal', function(e) {
-	            $("#genModal .modal-header").html('<h5 class="modal-title"><?php _e('Ready to Leave?', BENDERBS_THEME_FOLDER); ?></h5>');
-	            $("#genModal .modal-body").html('<?php _e('Select "Logout" below if you are ready to end your current session.', BENDERBS_THEME_FOLDER); ?>');
-	            $("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php _e('Cancel'); ?></button> <a class="btn btn-primary" href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', BENDERBS_THEME_FOLDER); ?></a>');
-		    });
-		});
-	});
+	<?php if (osc_users_enabled()) : ?>
+		<?php if (osc_is_web_user_logged_in()) : ?>
+		$(document).ready(function() {
+			$(".logout").click(function() {
+			    $('#genModal').modal('show');
+			    $('#genModal').on('shown.bs.modal', function(e) {
+		            $("#genModal .modal-header").html('<h5 class="modal-title"><?php _e('Ready to Leave?', BENDERBS_THEME_FOLDER); ?></h5>');
+		            $("#genModal .modal-body").html('<?php _e('Select "Logout" below if you are ready to end your current session.', BENDERBS_THEME_FOLDER); ?>');
+		            
+		            let btnCancel = `
+			    		<button class="btn btn-secondary" type="button" onclick="genModalHide();return false;">
+			    			<?php _e('Cancel'); ?>
+			    		</button>
+			    	`
 
-	function modalDeleteItem(url) {
-		$('#genModal').modal('show');
-		$('#genModal').on('shown.bs.modal', function(e) {
-			$("#genModal .modal-header").html('<h5 class="modal-title"><?php echo osc_esc_js(__('Message', BENDERBS_THEME_FOLDER)); ?></h5>');
-			$("#genModal .modal-body").html('<?php echo osc_esc_js(__('This action can not be undone. Are you sure you want to continue?', BENDERBS_THEME_FOLDER)) ?>');
-			$("#genModal .modal-footer").html('<button class="btn btn-secondary" type="button" onClick="genModalHide();return false;"><?php echo osc_esc_js(__('Cancel')); ?></button> <a class="btn btn-primary" href="'+url+'"><?php echo osc_esc_js(__('Delete', BENDERBS_THEME_FOLDER)); ?></a>');
+			    	let btnLogout = `
+				    	<a class="btn btn-primary" href="<?php echo osc_user_logout_url(); ?>">
+				    		<?php _e('Logout', BENDERBS_THEME_FOLDER); ?>
+				    	</a>
+			    	`
+
+		            $("#genModal .modal-footer").html(btnCancel+btnLogout);
+			    });
+			});
 		});
-	}
-	</script>
+
+		function modalDeleteItem(url) {
+			$('#genModal').modal('show');
+			$('#genModal').on('shown.bs.modal', function(e) {
+				$("#genModal .modal-header").html('<h5 class="modal-title"><?php echo osc_esc_js(__('Message', BENDERBS_THEME_FOLDER)); ?></h5>');
+				$("#genModal .modal-body").html('<?php echo osc_esc_js(__('This action can not be undone. Are you sure you want to continue?', BENDERBS_THEME_FOLDER)) ?>');
+				
+				let btnCancel = `
+					<button class="btn btn-secondary" type="button" onclick="genModalHide();return false;">
+						<?php echo osc_esc_js(__('Cancel')); ?>
+					</button>
+				`
+
+				let btnDelete = `
+					<a class="btn btn-primary" href="`+url+`">
+						<?php echo osc_esc_js(__('Delete', BENDERBS_THEME_FOLDER)); ?>
+					</a>
+				`
+
+				$("#genModal .modal-footer").html(btnCancel+btnDelete);
+			});
+		}
+		<?php endif; ?>
 	<?php endif; ?>
-<?php endif; ?>
 
-	<?php osc_run_hook('footer'); ?>
-
-	<script>
 		function copyPriceToClipboard(itemId, type) {
 			var btnPrice 	= 'price-'+type+'-'+itemId
 			var msgCopyTo 	= '<?php echo osc_esc_js(__('Copy to Clipboard', BENDERBS_THEME_FOLDER)); ?>'
@@ -147,6 +169,8 @@
 
 		}
 	</script>
+
+	<?php osc_run_hook('footer'); ?>
 
 </body>
 </html>

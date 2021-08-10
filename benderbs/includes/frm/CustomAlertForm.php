@@ -19,7 +19,7 @@
  */
 
     /**
-     * Class AlertForm
+     * Alert.form.class.php
      */
     class CustomAlertForm extends CustomForm {
 

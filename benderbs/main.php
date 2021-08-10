@@ -40,7 +40,7 @@ osc_current_web_theme_path('header.php'); ?>
 		<?php if (osc_get_preference('sidebar-300x250', 'bender') != '') : ?>
 		<!-- sidebar ad 300x250 -->
 		<div class="ads_300 mb-2">
-		<?php echo osc_get_preference('sidebar-300x250', 'bender'); ?>
+		<?php echo apply_eval_nice(osc_get_preference('sidebar-300x250', 'bender')); ?>
 		</div>
 		<!-- /sidebar ad 300x250 -->
 		<?php endif; ?>
@@ -108,7 +108,7 @@ osc_current_web_theme_path('header.php'); ?>
 	<div class="col-sm-12 text-center">
 		<!-- homepage ad 728x90-->
 		<div class="ads_728">
-			<?php echo osc_get_preference('homepage-728x90', 'bender'); ?>
+			<?php echo apply_eval_nice(osc_get_preference('homepage-728x90', 'bender')); ?>
 		</div>
 	</div>
 	<?php endif; ?>

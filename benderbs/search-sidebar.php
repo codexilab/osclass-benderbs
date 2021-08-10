@@ -66,8 +66,8 @@ if (!isset($category['pk_i_id'])) {
 		<div class="form-group">
 			<h3><label><?php _e('Price', BENDERBS_THEME_FOLDER) ; ?></label></h3>
 			<div class="row">
-				<div class="col-6"><input type="text" class="form-control form-control-light" id="priceMin" name="sPriceMin" value="<?php echo osc_esc_html(osc_search_price_min()); ?>" placeholder="<?php _e('Min', BENDERBS_THEME_FOLDER) ; ?>." maxlength="6"></div>
-				<div class="col-6"><input type="text" class="form-control form-control-light" id="priceMax" name="sPriceMax" value="<?php echo osc_esc_html(osc_search_price_max()); ?>" placeholder="<?php _e('Max', BENDERBS_THEME_FOLDER) ; ?>." maxlength="6"></div>  
+				<div class="col-6"><input type="text" class="form-control form-control-light" id="priceMin" name="sPriceMin" value="<?php echo osc_esc_html(osc_search_price_min()); ?>" placeholder="<?php _e('Min', BENDERBS_THEME_FOLDER) ; ?>." maxlength="10"></div>
+				<div class="col-6"><input type="text" class="form-control form-control-light" id="priceMax" name="sPriceMax" value="<?php echo osc_esc_html(osc_search_price_max()); ?>" placeholder="<?php _e('Max', BENDERBS_THEME_FOLDER) ; ?>." maxlength="10"></div>  
 			</div>
 		</div>
 		<?php endif; ?>

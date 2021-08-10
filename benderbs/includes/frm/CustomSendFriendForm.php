@@ -19,7 +19,7 @@
  */
 
     /**
-     * Class SendFriendForm
+     * SendFriend.form.class.php
      */
     class CustomSendFriendForm extends CustomForm {
 

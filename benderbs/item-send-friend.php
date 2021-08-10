@@ -31,7 +31,7 @@ function js_item_send_friend() {
 }
 osc_add_hook('footer', 'js_item_send_friend');
 
-benderbs_add_row_class('justify-content-md-center');
+benderbs_add_wrapper_class('justify-content-md-center');
 
 osc_current_web_theme_path('header.php');
 ?>

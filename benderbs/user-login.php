@@ -25,7 +25,7 @@
      
 // meta tag robots
 osc_add_hook('header','benderbs_nofollow_construct');
-benderbs_add_row_class('justify-content-md-center');
+benderbs_add_wrapper_class('justify-content-md-center');
 osc_current_web_theme_path('header.php'); ?>
     <div class="col-md-8">
         <div class="card border mb-3">

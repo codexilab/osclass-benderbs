@@ -16,6 +16,9 @@
  * limitations under the License.
  */
 
+    /**
+     * User.form.class.php
+     */
     class CustomUserForm extends CustomForm {
 
         static public function primary_input_hidden($user) {

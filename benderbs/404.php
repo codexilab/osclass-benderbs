@@ -25,7 +25,7 @@
 
 // meta tag robots
 osc_add_hook('header', 'benderbs_nofollow_construct');
-benderbs_add_row_class('border border-warning rounded alert alert-warning mt-4');
+benderbs_add_wrapper_class('border border-warning rounded alert alert-warning mt-4');
 osc_current_web_theme_path('header.php'); ?>
 	<div class="col mt-3">
 		<h1><?php _e("Sorry but I can't find the page you're looking for", BENDERBS_THEME_FOLDER) ; ?></h1>

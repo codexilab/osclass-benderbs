@@ -1,6 +1,21 @@
 # Bender Bootstrap
 ====================
 
+## [1.1.6] 2021-08-10
+
+### Added
+
+- AutoLoader for PHP classes.
+
+### Feature
+
+- You can safely add PHP code in fields of Ads management section.
+- Maxlength of price search field can be increased.
+
+### Fixed
+
+- Little bugs.
+
 ## [1.1.5] 2020-08-04
 
 ### Fixed

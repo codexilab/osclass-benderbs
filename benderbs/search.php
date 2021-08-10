@@ -30,6 +30,8 @@ if (osc_count_items() == 0 || stripos($_SERVER['REQUEST_URI'], 'search')) {
     osc_add_hook('header','benderbs_follow_construct');
 }
 
+benderbs_add_body_class('search');
+
 $list 		= 'active';
 $gallery 	= '';
 $listClass 	= 'col-sm-12 list-item';

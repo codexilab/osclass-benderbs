@@ -25,7 +25,7 @@
      */
 
 /**
- * class Form
+ * Form.form.class.php
  */
 class CustomForm {
     

@@ -17,7 +17,7 @@
  */
 
 /**
- * Custom Class FieldForm
+ * Field.form.class.php
  */
 class CustomFieldForm extends CustomForm
 {
