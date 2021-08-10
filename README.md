@@ -11,7 +11,7 @@ A Bootstrap theme inspired in Bender from Osclass.
 
 ## About
 
-Bender Bootstrap is created and maintained by CodexiLab.
+Bender Bootstrap is created and maintained by CodexiLab ([@adrianolmedo](https://github.com/adrianolmedo)).
 
 Bender Bootstrap is based on [SB Admin 2](https://startbootstrap.com/template-overviews/sb-admin-2/) v4.1.0 an open source admin dashboard theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
