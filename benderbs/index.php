@@ -37,7 +37,7 @@ Theme update URI: benderbs
     function benderbs_theme_info() {
         return array(
              'name'        => 'Bender Bootstrap'
-            ,'version'     => '1.1.5'
+            ,'version'     => '1.1.6'
             ,'description' => 'Bootstrap 4 theme inspired in Bender'
             ,'author_name' => 'CodexiLab'
             ,'author_url'  => 'https://github.com/codexilab/osclass-benderbs'
