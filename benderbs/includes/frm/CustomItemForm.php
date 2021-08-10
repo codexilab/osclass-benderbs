@@ -608,22 +608,23 @@
          */
         public static function region_select( $regions = null , $item = null ) {
 
-            if($item==null) { $item = osc_item(); }
+            if($item == null)
+                $item = osc_item();
 
-            if( Session::newInstance()->_getForm('countryId') != '' ) {
+            if (Session::newInstance()->_getForm('countryId') != '') {
                 $regions = Region::newInstance()->findByCountry(Session::newInstance()->_getForm('countryId'));
-            } else if($regions==null) {
-                $regions = Region::newInstance()->findByCountry($item['fk_c_country_code']);
+            } else if ($regions == null) {
+                $regions = Region::newInstance()->findByCountry(isset($item['fk_c_country_code']) ? $item['fk_c_country_code'] : 0);
             }
 
-            if( count($regions) >= 1 ) {
-                if( Session::newInstance()->_getForm('regionId') != '' ) {
+            if (count($regions) >= 1) {
+                if (Session::newInstance()->_getForm('regionId') != '' ) {
                     $item['fk_i_region_id'] = Session::newInstance()->_getForm('regionId');
                 }
                 parent::generic_select('regionId', $regions, 'pk_i_id', 's_name', __('Select a region...'), isset($item['fk_i_region_id']) ? $item['fk_i_region_id'] : null);
                 return true;
             } else {
-                if( Session::newInstance()->_getForm('region') != '' ) {
+                if (Session::newInstance()->_getForm('region') != '') {
                     $item['s_region'] = Session::newInstance()->_getForm('region');
                 }
                 parent::generic_input_text('region', isset($item['s_region']) ? $item['s_region'] : null);
@@ -645,7 +646,7 @@
             if( Session::newInstance()->_getForm('regionId') != '' ) {
                 $cities = City::newInstance()->findByRegion( Session::newInstance()->_getForm('regionId') );
             } else if($cities==null) {
-                $cities = City::newInstance()->findByRegion( $item['fk_i_region_id'] );
+                $cities = City::newInstance()->findByRegion(isset($item['fk_i_region_id']) ? $item['fk_i_region_id'] : 0);
             }
 
             if( count($cities) >= 1 ) {
