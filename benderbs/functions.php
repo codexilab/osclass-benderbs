@@ -1003,17 +1003,17 @@ if (!function_exists('theme_benderbs_actions_admin')) {
                 $package = Params::getFiles('logo');
 
                 if ($package['error'] == UPLOAD_ERR_OK) {
-                    if (osc_version() < 5) {
+                    if (class_exists('ImageResizer')) {
                         $img = ImageResizer::fromFile($package['tmp_name']);
                     }
 
-                    if (osc_version() >= 5) {
+                    if (class_exists('ImageProcessing')) {
                         $img = ImageProcessing::fromFile($package['tmp_name']);
                     }
 
                     $ext = $img->getExt();
                     $logo_name = 'bender_logo';
-                    $logo_name .= '.'.$ext;
+                    $logo_name .= '.' . $ext;
                     $path = osc_uploads_path() . $logo_name;
                     
                     //$img->saveToFile($path);
