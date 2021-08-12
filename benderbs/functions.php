@@ -276,7 +276,7 @@ if (!function_exists('benderbs_logo_header')) {
     function benderbs_logo_header() {
          $logo = osc_get_preference('logo', 'bender');
          $html = '<a href="'.osc_base_url().'"><img class="img-fluid" border="0" alt="' . osc_page_title() . '" src="' . benderbs_logo_url() . '"></a>';
-         if($logo!='' && file_exists(osc_uploads_path() . $logo )) {
+         if ($logo!='' && file_exists(osc_uploads_path() . $logo)) {
             return $html;
          } else {
             return '<a href="'.osc_base_url().'">'.osc_page_title().'</a>';
@@ -390,15 +390,15 @@ if (!function_exists('benderbs_search_number')) {
     function benderbs_search_number() {
         $search_from = ((osc_search_page() * osc_default_results_per_page_at_search()) + 1);
         $search_to   = ((osc_search_page() + 1) * osc_default_results_per_page_at_search());
-        if( $search_to > osc_search_total_items() ) {
+        if ($search_to > osc_search_total_items()) {
             $search_to = osc_search_total_items();
         }
 
-        return array(
+        return [
             'from' => $search_from,
             'to'   => $search_to,
             'of'   => osc_search_total_items()
-        );
+        ];
     }
 }
 
@@ -408,10 +408,10 @@ if (!function_exists('benderbs_search_number')) {
 if (!function_exists('benderbs_item_title')) {
     function benderbs_item_title() {
         $title = osc_item_title();
-        foreach( osc_get_locales() as $locale ) {
-            if( Session::newInstance()->_getForm('title') != "" ) {
+        foreach (osc_get_locales() as $locale) {
+            if (Session::newInstance()->_getForm('title') != "") {
                 $title_ = Session::newInstance()->_getForm('title');
-                if( @$title_[$locale['pk_c_code']] != "" ){
+                if (@$title_[$locale['pk_c_code']] != "") {
                     $title = $title_[$locale['pk_c_code']];
                 }
             }
@@ -423,10 +423,10 @@ if (!function_exists('benderbs_item_title')) {
 if (!function_exists('benderbs_item_description')) {
     function benderbs_item_description() {
         $description = osc_item_description();
-        foreach( osc_get_locales() as $locale ) {
-            if( Session::newInstance()->_getForm('description') != "" ) {
+        foreach (osc_get_locales() as $locale) {
+            if (Session::newInstance()->_getForm('description') != "" ) {
                 $description_ = Session::newInstance()->_getForm('description');
-                if( @$description_[$locale['pk_c_code']] != "" ){
+                if (@$description_[$locale['pk_c_code']] != ""){
                     $description = $description_[$locale['pk_c_code']];
                 }
             }
@@ -528,7 +528,7 @@ if (!function_exists('benderbs_draw_item')) {
         if ($premium) {
             $filename .='-premium';
         }
-        require WebThemes::newInstance()->getCurrentThemePath().$filename.'.php';
+        require WebThemes::newInstance()->getCurrentThemePath() . $filename . '.php';
     }
 }
 
