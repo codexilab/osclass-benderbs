@@ -532,81 +532,85 @@ if (!function_exists('benderbs_draw_item')) {
     }
 }
 
-/**
- * Get html option to nav menu
- *
- * @param $n to use in switch structure
- * @return $html
- */
-function html_option_nav_menu($n) {
-    switch ($n) {
-        case 'publish_btn':
-            return  '<div class="dropdown-row d-flex align-items-center ml-auto d-lg-none">
-                        <a class="btn btn-danger btn-lg btn-block" href="' . osc_item_post_url_in_category() . '">' . __('Publish your ad for free', BENDERBS_THEME_FOLDER) . '</a>
-                    </div>';
-            break;
+if (!function_exists('html_option_nav_menu')) {
+    /**
+     * Get html option to nav menu
+     *
+     * @param $n to use in switch structure
+     * @return $html
+     */
+    function html_option_nav_menu($n) {
+        switch ($n) {
+            case 'publish_btn':
+                return  '<div class="dropdown-row d-flex align-items-center ml-auto d-lg-none">
+                            <a class="btn btn-danger btn-lg btn-block" href="' . osc_item_post_url_in_category() . '">' . __('Publish your ad for free', BENDERBS_THEME_FOLDER) . '</a>
+                        </div>';
+                break;
 
-        case 'logout_link':
-            return  '<a class="dropdown-item logout" href="javascript:void(0);">
-                        <i class="fas fa-sign-out-alt fa-dm fa-fw mr-2 text-gray-900"></i>
-                        ' . __('Logout') . '
-                    </a>';
-            break;
+            case 'logout_link':
+                return  '<a class="dropdown-item logout" href="javascript:void(0);">
+                            <i class="fas fa-sign-out-alt fa-dm fa-fw mr-2 text-gray-900"></i>
+                            ' . __('Logout') . '
+                        </a>';
+                break;
+        }
     }
 }
 
-function get_user_nav_menu() {
-    $options = array();
-    if (osc_users_enabled()) {
-        if (osc_is_web_user_logged_in()) {
-            $options[] = array(
-                'name'  => __('My listings'),
-                'url'   => osc_user_dashboard_url(),
-                'class' => 'fas fa-th-list fa-dm fa-fw mr-2 text-gray-900'
-            );
+if (!function_exists('get_user_nav_menu')) {
+    function get_user_nav_menu() {
+        $options = array();
+        if (osc_users_enabled()) {
+            if (osc_is_web_user_logged_in()) {
+                $options[] = array(
+                    'name'  => __('My listings'),
+                    'url'   => osc_user_dashboard_url(),
+                    'class' => 'fas fa-th-list fa-dm fa-fw mr-2 text-gray-900'
+                );
 
-            $options[] = array(
-                'name'  => __('Alerts'),
-                'url'   => osc_user_alerts_url(),
-                'class' => 'fas fa-bell fa-dm fa-fw mr-2 text-gray-900'
-            );
+                $options[] = array(
+                    'name'  => __('Alerts'),
+                    'url'   => osc_user_alerts_url(),
+                    'class' => 'fas fa-bell fa-dm fa-fw mr-2 text-gray-900'
+                );
 
-            $options[] = array(
-                'name'  => __('My account', BENDERBS_THEME_FOLDER),
-                'url'   => osc_user_profile_url(),
-                'class' => 'fas fa-user-circle fa-dm fa-fw mr-2 text-gray-900'
-            );
+                $options[] = array(
+                    'name'  => __('My account', BENDERBS_THEME_FOLDER),
+                    'url'   => osc_user_profile_url(),
+                    'class' => 'fas fa-user-circle fa-dm fa-fw mr-2 text-gray-900'
+                );
 
-            $options[] = array('custom' => '<div class="dropdown-divider"></div>');
+                $options[] = array('custom' => '<div class="dropdown-divider"></div>');
+            }
         }
-    }
 
-    $options[] = array(
-        'name'  => __('Home', BENDERBS_THEME_FOLDER),
-        'url'   => osc_base_url(),
-        'class' => 'fas fa-home fa-dm fa-fw mr-2 text-gray-900'
-    );
+        $options[] = array(
+            'name'  => __('Home', BENDERBS_THEME_FOLDER),
+            'url'   => osc_base_url(),
+            'class' => 'fas fa-home fa-dm fa-fw mr-2 text-gray-900'
+        );
 
-    $options[] = array(
-        'name'  => __('Contact'),
-        'url'   => osc_contact_url(),
-        'class' => 'far fa-address-book fa-dm fa-fw mr-2 text-gray-900'
-    );
+        $options[] = array(
+            'name'  => __('Contact'),
+            'url'   => osc_contact_url(),
+            'class' => 'far fa-address-book fa-dm fa-fw mr-2 text-gray-900'
+        );
 
-    $options[] = array('custom' => '<div class="dropdown-divider d-lg-none"></div>');
+        $options[] = array('custom' => '<div class="dropdown-divider d-lg-none"></div>');
 
-    if (osc_users_enabled() || (!osc_users_enabled() && !osc_reg_user_post())) {
-        $options[] = array('custom' => html_option_nav_menu('publish_btn'));
-    }
-    
-    if (osc_users_enabled()) {
-        if (osc_is_web_user_logged_in()) {
-            $options[] = array('custom' => '<div class="dropdown-divider"></div>');
-            $options[] = array('custom' => html_option_nav_menu('logout_link'));
+        if (osc_users_enabled() || (!osc_users_enabled() && !osc_reg_user_post())) {
+            $options[] = array('custom' => html_option_nav_menu('publish_btn'));
         }
-    }
 
-    return $options;
+        if (osc_users_enabled()) {
+            if (osc_is_web_user_logged_in()) {
+                $options[] = array('custom' => '<div class="dropdown-divider"></div>');
+                $options[] = array('custom' => html_option_nav_menu('logout_link'));
+            }
+        }
+
+        return $options;
+    }
 }
 
 /**
