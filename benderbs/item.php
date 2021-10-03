@@ -104,8 +104,8 @@ osc_current_web_theme_path('header.php'); ?>
 
 				<div class="carousel-inner">
 					<?php $num = 0; while (osc_has_item_resources()) : $num++; ?>
-					<div class="carousel-item<?php if ($num == 1) echo ' active'; ?>">
-						<a href="<?php echo osc_resource_original_url(); ?>" target="_blank">
+                    <div class="carousel-item<?php if ($num == 1) echo ' active'; ?>">
+                        <a href="<?php echo (file_exists(osc_resource_path())) ? osc_resource_original_url() : osc_resource_url(); ?>" target="_blank">
 							<img src="<?php echo osc_resource_url(); ?>" class="img-fluid" alt="<?php echo osc_resource_name(); ?>">
 						</a>
 					</div>
