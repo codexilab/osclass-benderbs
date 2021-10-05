@@ -35,6 +35,8 @@ if (benderbs_show_as() == 'gallery') {
 	$listClass 	= 'col-sm-4';
 }
 
+$rw = (osc_rewrite_enabled()) ? '?' : '&';
+
 osc_current_web_theme_path('header.php'); ?>
 
 	<?php osc_current_web_theme_path('user-sidebar.php'); ?>
@@ -56,10 +58,10 @@ osc_current_web_theme_path('header.php'); ?>
 		<div class="row mb-3">
 			<div class="col-md-12 text-right">
 				<div class="btn-group btn-group-toggle">
-					<a href="<?php echo osc_user_list_items_url(); ?>&sShowAs=list" class="btn btn-info btn-sm <?php echo $list; ?>">
+					<a href="<?php echo osc_user_list_items_url() . $rw; ?>sShowAs=list" class="btn btn-info btn-sm <?php echo $list; ?>">
 						<i class="fas fa-list-ul"></i>
 					</a>
-					<a href="<?php echo osc_user_list_items_url(); ?>&sShowAs=gallery" class="btn btn-info btn-sm <?php echo $gallery; ?>">
+					<a href="<?php echo osc_user_list_items_url() . $rw; ?>sShowAs=gallery" class="btn btn-info btn-sm <?php echo $gallery; ?>">
 						<i class="fas fa-th"></i>
 					</a>
 				</div>
