@@ -19,7 +19,7 @@
      * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-define('BENDERBS_THEME_VERSION', '1.1.6');
+define('BENDERBS_THEME_VERSION', '1.1.7');
 define('BENDERBS_THEME_FOLDER', 'benderbs');
 define('BENDERBS_THEME_PATH', osc_themes_path() . BENDERBS_THEME_FOLDER . '/');
 
