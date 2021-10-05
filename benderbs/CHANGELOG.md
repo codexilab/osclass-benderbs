@@ -1,6 +1,12 @@
 # BenderBS
 ====================
 
+## [1.1.8-rc] 2021-10-05
+
+### Fixed
+
+- Search generates a CSRF Token.
+
 ## [1.1.7] 2021-10-04
 
 ### Fixed
