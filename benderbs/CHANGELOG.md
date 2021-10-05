@@ -1,5 +1,11 @@
-# Bender Bootstrap
+# BenderBS
 ====================
+
+## [1.1.7] 2021-10-04
+
+### Fixed
+
+- Little bugs about URLs.
 
 ## [1.1.6] 2021-08-10
 
