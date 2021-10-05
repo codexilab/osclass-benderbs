@@ -19,7 +19,7 @@
      * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-define('BENDERBS_THEME_VERSION', '1.1.6');
+define('BENDERBS_THEME_VERSION', '1.1.7');
 define('BENDERBS_THEME_FOLDER', 'benderbs');
 define('BENDERBS_THEME_PATH', osc_themes_path() . BENDERBS_THEME_FOLDER . '/');
 
@@ -276,7 +276,7 @@ if (!function_exists('benderbs_logo_header')) {
     function benderbs_logo_header() {
          $logo = osc_get_preference('logo', 'bender');
          $html = '<a href="'.osc_base_url().'"><img class="img-fluid" border="0" alt="' . osc_page_title() . '" src="' . benderbs_logo_url() . '"></a>';
-         if($logo!='' && file_exists(osc_uploads_path() . $logo )) {
+         if ($logo!='' && file_exists(osc_uploads_path() . $logo)) {
             return $html;
          } else {
             return '<a href="'.osc_base_url().'">'.osc_page_title().'</a>';
@@ -390,15 +390,15 @@ if (!function_exists('benderbs_search_number')) {
     function benderbs_search_number() {
         $search_from = ((osc_search_page() * osc_default_results_per_page_at_search()) + 1);
         $search_to   = ((osc_search_page() + 1) * osc_default_results_per_page_at_search());
-        if( $search_to > osc_search_total_items() ) {
+        if ($search_to > osc_search_total_items()) {
             $search_to = osc_search_total_items();
         }
 
-        return array(
+        return [
             'from' => $search_from,
             'to'   => $search_to,
             'of'   => osc_search_total_items()
-        );
+        ];
     }
 }
 
@@ -408,10 +408,10 @@ if (!function_exists('benderbs_search_number')) {
 if (!function_exists('benderbs_item_title')) {
     function benderbs_item_title() {
         $title = osc_item_title();
-        foreach( osc_get_locales() as $locale ) {
-            if( Session::newInstance()->_getForm('title') != "" ) {
+        foreach (osc_get_locales() as $locale) {
+            if (Session::newInstance()->_getForm('title') != "") {
                 $title_ = Session::newInstance()->_getForm('title');
-                if( @$title_[$locale['pk_c_code']] != "" ){
+                if (@$title_[$locale['pk_c_code']] != "") {
                     $title = $title_[$locale['pk_c_code']];
                 }
             }
@@ -423,10 +423,10 @@ if (!function_exists('benderbs_item_title')) {
 if (!function_exists('benderbs_item_description')) {
     function benderbs_item_description() {
         $description = osc_item_description();
-        foreach( osc_get_locales() as $locale ) {
-            if( Session::newInstance()->_getForm('description') != "" ) {
+        foreach (osc_get_locales() as $locale) {
+            if (Session::newInstance()->_getForm('description') != "" ) {
                 $description_ = Session::newInstance()->_getForm('description');
-                if( @$description_[$locale['pk_c_code']] != "" ){
+                if (@$description_[$locale['pk_c_code']] != ""){
                     $description = $description_[$locale['pk_c_code']];
                 }
             }
@@ -528,85 +528,89 @@ if (!function_exists('benderbs_draw_item')) {
         if ($premium) {
             $filename .='-premium';
         }
-        require WebThemes::newInstance()->getCurrentThemePath().$filename.'.php';
+        require WebThemes::newInstance()->getCurrentThemePath() . $filename . '.php';
     }
 }
 
-/**
- * Get html option to nav menu
- *
- * @param $n to use in switch structure
- * @return $html
- */
-function html_option_nav_menu($n) {
-    switch ($n) {
-        case 'publish_btn':
-            return  '<div class="dropdown-row d-flex align-items-center ml-auto d-lg-none">
-                        <a class="btn btn-danger btn-lg btn-block" href="' . osc_item_post_url_in_category() . '">' . __('Publish your ad for free', BENDERBS_THEME_FOLDER) . '</a>
-                    </div>';
-            break;
+if (!function_exists('html_option_nav_menu')) {
+    /**
+     * Get html option to nav menu
+     *
+     * @param $n to use in switch structure
+     * @return $html
+     */
+    function html_option_nav_menu($n) {
+        switch ($n) {
+            case 'publish_btn':
+                return  '<div class="dropdown-row d-flex align-items-center ml-auto d-lg-none">
+                            <a class="btn btn-danger btn-lg btn-block" href="' . osc_item_post_url_in_category() . '">' . __('Publish your ad for free', BENDERBS_THEME_FOLDER) . '</a>
+                        </div>';
+                break;
 
-        case 'logout_link':
-            return  '<a class="dropdown-item logout" href="javascript:void(0);">
-                        <i class="fas fa-sign-out-alt fa-dm fa-fw mr-2 text-gray-900"></i>
-                        ' . __('Logout') . '
-                    </a>';
-            break;
+            case 'logout_link':
+                return  '<a class="dropdown-item logout" href="javascript:void(0);">
+                            <i class="fas fa-sign-out-alt fa-dm fa-fw mr-2 text-gray-900"></i>
+                            ' . __('Logout') . '
+                        </a>';
+                break;
+        }
     }
 }
 
-function get_user_nav_menu() {
-    $options = array();
-    if (osc_users_enabled()) {
-        if (osc_is_web_user_logged_in()) {
-            $options[] = array(
-                'name'  => __('My listings'),
-                'url'   => osc_user_dashboard_url(),
-                'class' => 'fas fa-th-list fa-dm fa-fw mr-2 text-gray-900'
-            );
+if (!function_exists('get_user_nav_menu')) {
+    function get_user_nav_menu() {
+        $options = array();
+        if (osc_users_enabled()) {
+            if (osc_is_web_user_logged_in()) {
+                $options[] = array(
+                    'name'  => __('My listings'),
+                    'url'   => osc_user_dashboard_url(),
+                    'class' => 'fas fa-th-list fa-dm fa-fw mr-2 text-gray-900'
+                );
 
-            $options[] = array(
-                'name'  => __('Alerts'),
-                'url'   => osc_user_alerts_url(),
-                'class' => 'fas fa-bell fa-dm fa-fw mr-2 text-gray-900'
-            );
+                $options[] = array(
+                    'name'  => __('Alerts'),
+                    'url'   => osc_user_alerts_url(),
+                    'class' => 'fas fa-bell fa-dm fa-fw mr-2 text-gray-900'
+                );
 
-            $options[] = array(
-                'name'  => __('My account', BENDERBS_THEME_FOLDER),
-                'url'   => osc_user_profile_url(),
-                'class' => 'fas fa-user-circle fa-dm fa-fw mr-2 text-gray-900'
-            );
+                $options[] = array(
+                    'name'  => __('My account', BENDERBS_THEME_FOLDER),
+                    'url'   => osc_user_profile_url(),
+                    'class' => 'fas fa-user-circle fa-dm fa-fw mr-2 text-gray-900'
+                );
 
-            $options[] = array('custom' => '<div class="dropdown-divider"></div>');
+                $options[] = array('custom' => '<div class="dropdown-divider"></div>');
+            }
         }
-    }
 
-    $options[] = array(
-        'name'  => __('Home', BENDERBS_THEME_FOLDER),
-        'url'   => osc_base_url(),
-        'class' => 'fas fa-home fa-dm fa-fw mr-2 text-gray-900'
-    );
+        $options[] = array(
+            'name'  => __('Home', BENDERBS_THEME_FOLDER),
+            'url'   => osc_base_url(),
+            'class' => 'fas fa-home fa-dm fa-fw mr-2 text-gray-900'
+        );
 
-    $options[] = array(
-        'name'  => __('Contact'),
-        'url'   => osc_contact_url(),
-        'class' => 'far fa-address-book fa-dm fa-fw mr-2 text-gray-900'
-    );
+        $options[] = array(
+            'name'  => __('Contact'),
+            'url'   => osc_contact_url(),
+            'class' => 'far fa-address-book fa-dm fa-fw mr-2 text-gray-900'
+        );
 
-    $options[] = array('custom' => '<div class="dropdown-divider d-lg-none"></div>');
+        $options[] = array('custom' => '<div class="dropdown-divider d-lg-none"></div>');
 
-    if (osc_users_enabled() || (!osc_users_enabled() && !osc_reg_user_post())) {
-        $options[] = array('custom' => html_option_nav_menu('publish_btn'));
-    }
-    
-    if (osc_users_enabled()) {
-        if (osc_is_web_user_logged_in()) {
-            $options[] = array('custom' => '<div class="dropdown-divider"></div>');
-            $options[] = array('custom' => html_option_nav_menu('logout_link'));
+        if (osc_users_enabled() || (!osc_users_enabled() && !osc_reg_user_post())) {
+            $options[] = array('custom' => html_option_nav_menu('publish_btn'));
         }
-    }
 
-    return $options;
+        if (osc_users_enabled()) {
+            if (osc_is_web_user_logged_in()) {
+                $options[] = array('custom' => '<div class="dropdown-divider"></div>');
+                $options[] = array('custom' => html_option_nav_menu('logout_link'));
+            }
+        }
+
+        return $options;
+    }
 }
 
 /**
@@ -1003,17 +1007,17 @@ if (!function_exists('theme_benderbs_actions_admin')) {
                 $package = Params::getFiles('logo');
 
                 if ($package['error'] == UPLOAD_ERR_OK) {
-                    if (osc_version() < 5) {
+                    if (class_exists('ImageResizer')) {
                         $img = ImageResizer::fromFile($package['tmp_name']);
                     }
 
-                    if (osc_version() >= 5) {
+                    if (class_exists('ImageProcessing')) {
                         $img = ImageProcessing::fromFile($package['tmp_name']);
                     }
 
                     $ext = $img->getExt();
                     $logo_name = 'bender_logo';
-                    $logo_name .= '.'.$ext;
+                    $logo_name .= '.' . $ext;
                     $path = osc_uploads_path() . $logo_name;
                     
                     //$img->saveToFile($path);
