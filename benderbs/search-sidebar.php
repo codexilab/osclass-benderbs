@@ -31,7 +31,7 @@ if (!isset($category['pk_i_id'])) {
 <aside id="sidebar" class="col">
 	<?php osc_alert_form(); ?>
 
-	<form action="<?php echo osc_base_url(true); ?>" method="get" class="pt-3">
+	<form action="<?php echo osc_base_url(true); ?>" method="get" class="nocsrf pt-3">
 		<input type="hidden" name="page" value="search"/>
 	    <input type="hidden" name="sOrder" value="<?php echo osc_search_order(); ?>" />
 	    <input type="hidden" name="iOrderType" value="<?php $allowedTypesForSorting = Search::getAllowedTypesForSorting() ; echo $allowedTypesForSorting[osc_search_order_type()]; ?>" />

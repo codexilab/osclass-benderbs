@@ -28,7 +28,7 @@
 	<?php echo benderbs_logo_nav(); ?>
 
 	<?php if (osc_is_home_page() || osc_is_static_page() || osc_is_contact_page()) : ?>
-	<form class="d-none d-xsm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<?php echo osc_base_url(true); ?>" method="get">
+	<form class="nocsrf d-none d-xsm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="<?php echo osc_base_url(true); ?>" method="get">
 		<input type="hidden" name="page" value="search"/>
 		<div class="input-group">
 			<input type="text" name="sPattern" value="" class="form-control form-control-info bg-light border-1 small" placeholder="<?php echo osc_esc_html(__(osc_get_preference('keyword_placeholder', 'bender'), 'bender')); ?>" aria-label="Search" aria-describedby="basic-addon2">
@@ -57,7 +57,7 @@
             </a>
             <!-- Dropdown search -->
             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-				<form class="form-inline mr-auto w-100 navbar-search" action="<?php echo osc_base_url(true); ?>" method="get">
+				<form class="nocsrf form-inline mr-auto w-100 navbar-search" action="<?php echo osc_base_url(true); ?>" method="get">
 					<input type="hidden" name="page" value="search"/>
 					<div class="input-group">
 						<input type="text" name="sPattern" value="" class="form-control form-control-info bg-light border-1 small" placeholder="<?php echo osc_esc_html(__(osc_get_preference('keyword_placeholder', 'bender'), 'bender')); ?>" aria-label="Search" aria-describedby="basic-addon2">
